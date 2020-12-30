@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>设备明细</title>
+    <link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css">
+   	<style type="text/css">
+    	.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		h5 {
+	    	font-size: 14px;
+	    	padding: 8px 5px 6px;
+	    	background-color: #efeff4;
+	    }
+    	.label-red {
+			padding-left: 5px;
+			color:red !important;
+		}
+		.text-disabled {
+			background-color: #EEEEEE;
+		}
+		.iconfont{
+			font-size:24px;
+		}
+		.footer{
+			position:static;
+			/*padding-top: 8px;
+			padding-left: 20px;
+			padding-right: 20px;*/
+		}
+		.btncommit{
+			/*padding-left: 20px;
+			
+			padding-right: 20px;*/
+			width: 70%;
+			
+		}
+		/*.head{
+			position: fixed !important;
+			top: auto;
+			bottom: auto;
+			
+		}*/
+		/*.mui-content{
+			position: absolute;
+			position:fixed;top:0px; bottom:0px;width:100%;overflow:scroll;
+		}	*/
+		
+		/*.head,.foot{position:fixed;left:0;height:50px;line-height:50px;width:100%;background-color:#99CC00;}*/
+		
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary head" id="head">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title" id="title"></h1>
+	</header>
+	<nav class="mui-bar mui-bar-footer" id="footer">
+		<center>
+		<button id="btncommit" type="button" class="mui-btn mui-btn-block mui-btn-primary btncommit" style="font-size: 17px;">保存</button>
+		</center>
+	</nav>
+	
+	<!--工单基本信息-->
+	<div class="mui-content mui-hidden" id="mui-content">
+		<form class="mui-input-group">
+			
+			<div class="mui-input-row" >
+				<label>设备编号</label>
+				<input id='device_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;height: 39px;margin-top: 1px;"/>
+				
+				<input id='vary_id' type="hidden"/>
+				<input id='device_id' type="hidden"/>
+			</div>
+			<div class="mui-input-row">
+				<label>资产编号</label> 
+				<input id='asset_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>设备名称</label>
+				<input id='device_name' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<!--<div class="mui-input-row" >
+				<label>设备型号</label>
+				<input id='device_type' type="text"  readonly="readonly" style="background-color: #F2F2F2;" />
+			</div>-->
+			<div class="mui-input-row" style="height: 60px;">
+				<label>设备型号</label>
+				<textarea id="device_type" rows="2" type="text" readonly="readonly" style="background-color: #F2F2F2;"></textarea>
+			</div>
+			<div class="mui-input-row" >
+				<label>设备规格</label>
+				<input id='device_size' type="text"  readonly="readonly" style="background-color: #F2F2F2;" />
+			</div>
+			<!--<div class="mui-input-row" style="height: 50px;">
+				<label>设备规格</label>
+				<textarea id="device_size" rows="2" type="text"  readonly="readonly" style="background-color: #F2F2F2;"></textarea>
+			</div>-->
+			<div class="mui-input-row" >
+				<label>使用部门</label>
+				<input id='dept_name'type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				<input id="dept_id" type="hidden"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>维保部门</label>
+				<input id='wdept_name'type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			
+			<!--<div class="mui-input-row" >
+				<label>地理区域</label>
+				<input id='site_name' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>-->
+			<div class="mui-input-row" style="height: 60px;">
+				<label>地理区域</label>
+				<textarea id="site_name" rows="2" type="text" readonly="readonly" style="background-color: #F2F2F2;"></textarea>
+			</div>
+			<div class="mui-input-row" >
+				<label>安装地点</label>
+				<input id='install_site' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row mui-hidden" id="org">
+				<label>设备原值(元)</label>
+				<input id='org_value' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			
+			<div class="mui-input-row mui-hidden" id="dep">
+				<label>已提折旧(元)</label>
+				<input id='dep_value' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row mui-hidden" id="net">
+				<label>设备净值(元)</label>
+				<input id='net_value' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row mui-hidden" id="use">
+				<label>使用年限(年)</label>
+				<input id='use_year' type="number" readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row rowlength mui-hidden"id="used" >
+				<label>已使用年限(年)</label>
+				<input id='used_year' type="number" readOnly=true style="background-color: #F2F2F2;height: 50px;"/>
+			</div>
+			
+			<div class="mui-input-row mui-hidden rowlength" id="allot">
+				<label>变卖金额(元)<span class="label-red mui-hidden" id="span">*</span></label>
+				<input id='allot_money' type="number" readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" style="height: 60px;">
+				<label>备注</label>
+				<textarea id="memo" rows="2" type="text"></textarea>
+			</div>
+		</form>
+	</div>	
+	
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<script src="../../../jxm/js/jxm-image-input.js"></script>
+	<script src="../../../jxm/js/jxm-util.js"></script>
+	<script src="../../../jxm/js/combo-data.js"></script>
+	<script src="../../../jxm/js/combo-data.js"></script>
+	<script src="../../../jxm/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	var key_id = '';
+      	var title = '';
+      	var funid = '';
+      	var pfunid = '';
+      	mui.plusReady(function(){
+      		
+      		
+      		var self = plus.webview.currentWebview();
+      		key_id = self.key_id;
+      		title = self.title;
+      		funid = self.funid;
+      		pfunid = self.pfunid;
+      		document.getElementById('title').innerHTML = title;
+  			readData(key_id);
+      			
+	    });
+	    
+	     //加载表单数据
+	    var readData = function(key_id) {
+	     	
+//	    	if (!key_id || key_id.length == 0) return;
+	    	
+	    	var wheresql = 'device_vary_det.vary_det_id = ?';
+			var params = "funid=queryevent&eventcode=query_data&query_funid="+funid+"&query_type=0&has_page=1&limit=1"+
+			"&where_sql="+wheresql+"&where_type=string&where_value="+key_id;
+			
+			console.log('---'+params)
+			jxm.post(params, function(data){
+				console.log('-----00---'+JSON.stringify(data));
+	    		//读取数据
+		    	if (!data) return;
+		    	document.getElementById('mui-content').classList.remove('mui-hidden');
+//		    	document.getElementById("mui-content").style.display="";//显示
+  				console.log('-----00---'+JSON.stringify(data));
+				data = data.root;
+				data = data[0];
+				document.getElementById('device_code').value = data.device_card__device_code;
+				document.getElementById('device_id').value = data.device_vary_det__device_id;
+				
+				document.getElementById('vary_id').value = data.device_vary_det__vary_id;
+				document.getElementById('device_name').value = data.device_card__device_name;
+
+	  			document.getElementById('device_type').value = data.device_card__device_type;
+	  			document.getElementById('device_size').value = data.device_card__device_size;
+	  			document.getElementById('dept_name').value = data.device_vary_det__dept_name;
+	  			document.getElementById('dept_id').value = data.device_vary_det__dept_id;
+	  			document.getElementById('wdept_name').value = data.device_card__wdept_name;
+	  			document.getElementById('site_name').value = data.device_card__site_name;
+	  			document.getElementById('install_site').value = data.device_card__install_site;
+	  			document.getElementById('asset_code').value = data.device_card__asset_code;
+	  			document.getElementById('org_value').value = data.device_card__org_value;
+	  			document.getElementById('memo').value = data.device_vary_det__memo;
+	  			
+	  			
+	  			if (funid != 'device_unidle_det') {
+	  				document.getElementById('org').classList.remove('mui-hidden');
+	  			}
+	  			if (funid == 'device_scrap_det' ) {
+//	  				mui.toast('--')
+					document.getElementById("used_year").readOnly=false;
+					document.getElementById("used_year").setAttribute("style","background-color:white");
+					document.getElementById('dep').classList.remove('mui-hidden');
+					document.getElementById('net').classList.remove('mui-hidden');
+					document.getElementById('use').classList.remove('mui-hidden');
+					document.getElementById('used').classList.remove('mui-hidden');
+					document.getElementById('dep_value').value = data.device_card__dep_value;
+		  			document.getElementById('net_value').value = data.device_card__net_value;
+		  			document.getElementById('use_year').value = data.device_card__use_year;
+		  			document.getElementById('used_year').value = data.device_vary_det__used_year;
+	  			}
+	  			if (funid == 'device_allot_det') {
+//	  				mui.toast('--11')
+	  				document.getElementById("allot_money").readOnly=false;
+					document.getElementById("allot_money").setAttribute("style","background-color:white");
+					document.getElementById('dep').classList.remove('mui-hidden');
+					document.getElementById('net').classList.remove('mui-hidden');
+					document.getElementById('use').classList.remove('mui-hidden');
+					document.getElementById('allot').classList.remove('mui-hidden');
+					document.getElementById('span').classList.remove('mui-hidden');
+					document.getElementById('dep_value').value = data.device_card__dep_value;
+		  			document.getElementById('net_value').value = data.device_card__net_value;
+		  			document.getElementById('use_year').value = data.device_card__use_year;
+		  			document.getElementById('allot_money').value = data.device_vary_det__allot_money;
+	  			}
+				
+			});
+		};
+	    
+  		var commitAsset = function() {
+  			var device_code = document.getElementById('device_code').value;
+			var device_id = document.getElementById('device_id').value;
+			var dept_id = document.getElementById('dept_id').value;
+			var dept_name = document.getElementById('dept_name').value;
+			var vary_id = document.getElementById('vary_id').value;
+			var device_name = document.getElementById('device_name').value;
+
+  			var device_type = document.getElementById('device_type').value;
+  			var device_size = document.getElementById('device_size').value;
+  			var wdept_name = document.getElementById('wdept_name').value;
+  			var site_name = document.getElementById('site_name').value;
+  			var install_site = document.getElementById('install_site').value;
+  			var asset_code = document.getElementById('asset_code').value;
+  			var org_value = document.getElementById('org_value').value;
+  			var memo = document.getElementById('memo').value;
+			
+			var params = 'funid='+funid+'&eventcode=save_eg&pagetype=editgrid';
+			params += '&pfunid='+pfunid+'&fkValue='+vary_id;
+			params += '&keyid='+key_id;
+			
+			//报废和闲置启用时才拼接
+			if (funid == 'device_unidle_det' || funid == 'device_scrap_det') {
+				var re = /^[0-9]*[1-9][0-9]*$/;　　//正整数 
+				var used_year = document.getElementById('used_year');
+				var use_year = document.getElementById('use_year').value;
+//				if (!re.test(used_year.value)) {
+//			　　　　	console.log(used_year.value.length);
+//			　　　　	used_year.value = "";
+//			
+////					used_year.focus();
+//			　　　　	return false;
+//				}
+				if (parseFloat(used_year.value) > parseFloat(use_year)) {
+	  				mui.alert('已使用年限不能大于使用年限！');
+	  				used_year.value = "";
+	  				return false;
+	  			}
+  				params += '&device_vary_det__used_year='+used_year.value;
+			}
+			
+			//变卖时才拼接
+			if (funid == 'device_allot_det') {
+				var re = /^[0-9]+.?[0-9]*$/;　　//正整数 
+				var allot_money = document.getElementById('allot_money');
+//				var use_year = document.getElementById('use_year').value;
+					
+				if (allot_money.value.length == 0) {
+					mui.alert('变卖金额为必填项，请输入正确的格式！');
+					allot_money.value = "";
+					return false;
+				}
+				if (!re.test(allot_money.value)) {
+			　　　　	alert("请输入正确的格式！");
+			　　　　	allot_money.value = "";
+			
+//					allot_money.focus();
+			　　　　	return false;
+				}
+				
+  				params += '&device_vary_det__allot_money='+allot_money.value;
+			}
+			params += '&device_vary_det__dept_name='+dept_name;
+			params += '&device_vary_det__dept_id='+dept_id;
+			params += '&device_vary_det__memo='+memo;
+//			params += '&device_card__device_code='+device_code;
+//			params += '&device_card__device_name='+device_name;
+			params += '&device_vary_det__vary_id='+vary_id;
+			
+			params += '&device_vary_det__device_id='+device_id;
+			params += '&device_vary_det__vary_det_id='+key_id;
+			
+  			
+  			console.log(params)
+			//保存
+			jxm.post(params, function(data){
+			
+				console.log("save:"+JSON.stringify(data));
+				//提交成功后返回列表页面
+				setTimeout(function(){
+					mui.toast('保存成功！');
+					//获得列表界面的webview  
+				    var list = plus.webview.currentWebview().opener();  
+				    //触发列表界面的自定义事件（reload）,从而进行数据刷新  
+				    mui.fire(list, 'loadDet');
+					
+					mui.currentWebview.close('auto');
+				}, 500);
+			});
+  		};
+  		
+//		//点击提交按钮
+		document.getElementById('btncommit').addEventListener('tap', commitAsset);
+		
+    </script>
+</body>
+</html>

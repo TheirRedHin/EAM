@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../jxm/css/jxm.css">
+    <style>
+		
+		
+	</style>
+</head>
+<body style="background-color: #fff;">
+	<header class="mui-bar mui-bar-nav mui-bar-primary">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 id="title" class="mui-title">流程图</h1>
+		<!--<span id="reload" class="mui-pull-right mui-icon mui-icon-reload"></span>-->
+	</header>
+	
+	<div class="mui-content" id="mui-content">
+		<div id="mx_graph_show" style="height:auto;width:100%;background-color:white;overflow:auto;">
+				<center id="mx_splash">
+				</center>
+		</div>
+		
+	</div>
+	
+	<script src="../../mui/js/mui.min.js"></script>
+   	<script src="../../jxm/js/jxm.js"></script>
+   	
+	
+	<script src="../../jxm/js/jxm-util.js"></script>
+	<script type="text/javascript" src="../../lib/ext-base.js" ></script>
+	<script type="text/javascript" src="../../lib/mxCanvas.js" ></script>
+   	<script src="../../lib/mxclient-ch.js"></script>
+	<script type="text/javascript" src="../../lib/ext-all.js" ></script>
+	<script type="text/javascript" charset="UTF-8">
+		mui.init();
+		
+	
+		mui.plusReady(function(){
+			var self = plus.webview.currentWebview();
+			var keyId = self.keyId;
+			var funId = self.funId;
+//			alert(funId+'---'+keyId);
+			
+			var hdcall = function(data){
+				console.log(JSON.stringify(data))
+//				data = eval('('+data+')');
+//				data = data.data
+				
+				//取当前到达的节点
+				var nodeIds = data.nodeIds;
+				console.log('---'+nodeIds)
+				//if (nodeIds.length == 0) {
+				//	JxHint.alert('过程已经执行完成，没有当前节点标志！');
+				//}
+				nodeIds = nodeIds.split(',');
+				
+				var processId = data.processId;
+				var processName = data.processName;
+//				alert(nodeIds+'---'+processId+'==='+processName);
+				readDesign(processId, nodeIds);
+			}
+			
+			
+			var readDesign = function(processId, nodeIds) {
+			var self = this;
+			//创建流程图编辑器，先检查加载图形库
+			console.log('---')
+			self.editor = new mxCanvas('../../lib/showeditor.xml');
+			//设置编辑器为只读
+			self.editor.graph.setEnabled(false);
+			//从数据库中读取设计文件
+			var params = 'funid=wf_process&dataType=xml&eventcode=readdesign&pagetype=formdes';
+			params += '&process_id='+ processId;
+			params += '&user_id='+jxm.getUserId();
+				console.log(params)
+			
+			Ext.Ajax.request({
+				method: 'POST',
+				url: jxm.getURL(true)+'?'+params,
+				timeout: 5000,
+				success:function(response){
+					
+					var xdoc = response.responseXML;
+					var query = Ext.DomQuery;
+					var xmlfile = query.selectValue('data', xdoc);
+//					alert(JSON.stringify(response));
+					if (response == null || response.length == 0) { 
+						return false;
+					}
+					
+					var doc = mxUtils.parseXml(xmlfile);
+					var dec = new mxCodec(doc);
+					dec.decode(doc.documentElement, self.editor.graph.getModel());
+					
+					//标记当前节点
+					for (var i = 0, n = nodeIds.length; i < n; i++) {
+						flagCurNode(nodeIds[i]);
+					}
+					
+					
+				},
+				error:function(){
+					
+				}
+			})
+	} 
+				
+			/**
+	 * 给指定节点加上标记
+	 * cellId -- 节点ID
+	 **/
+			var flagCurNode = function(cellId) {
+				
+				var self = this;
+				var model = self.editor.graph.getModel();
+				var curCell = model.getCell(cellId);
+				model.beginUpdate();
+				try {
+					self.editor.graph.setCellStyles("strokeColor", "red", [curCell]);
+					self.editor.graph.setCellStyles("strokeWidth", "2", [curCell]);
+				} finally {
+					model.endUpdate();
+				}
+			}
+			
+			var params = 'funid=wf_assign&pagetype=chkgrid&eventcode=querynode';
+			params += '&check_funid='+ funId +'&keyid='+ keyId;
+			
+			jxm.post(params, hdcall)
+			
+		});
+		
+    </script>
+</body>
+</html>

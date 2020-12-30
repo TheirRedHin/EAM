@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>EAM</title>
+    <link rel="stylesheet" href="../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../jxm/css/jxm.css">
+    <style>
+		.icon-left {
+			padding-top: 12px !important;
+		}
+		
+		.mui-grid-view.mui-grid-9 {
+			border-top-width: 0;
+		    border-left-width: 0;
+		    background-color:#fff !important;
+		}
+		.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+			padding: 4px !important;
+			border-left-width: 0;
+			border-right-width: 0;
+		    border-bottom-width: 0;
+		}
+		.mui-table-view:before,
+		.mui-table-view:after {
+			/*background-color: #d8d8d8;*/
+		}
+		
+		/* app icon */
+		.mui-grid-view .iconfont {
+		    font-size: 36px;
+		    position: relative;
+		}
+		.mui-grid-view .icon-bg {
+			color:#fff;
+			padding-top:20px;
+			padding-left:1px;
+			border-radius: 100px;
+			height: 58px;
+			width: 58px;
+			display: inline-block;
+		}
+		.icon-bg-blue {
+			background-color:deepskyblue;
+		}
+		.icon-bg-coral {
+			background-color:coral;
+		}
+		.icon-bg-quoise {
+			background-color:darkturquoise;
+		}
+		
+		/* app line */
+		.mui-media-object {
+			margin: 0 !important;
+			margin-right: 12px !important;
+		}
+		.mui-media-object .iconfont {
+			color: #fff;
+			font-size: 26px;
+		}
+		.mui-media-icon .mui-media-body {
+			padding-top: 6px;
+		}
+		.title{
+			padding-top: 12px ;
+		}
+		.icon {
+			padding-top: 12px ;
+		}
+		.noline{
+			height: 110px !important;
+		}
+		#main-list{
+			margin-top: 10px ;
+		}
+		/*.unfold{
+			padding-top: 10px ;
+		}*/
+		/*.mui-media-object {
+			margin: 0 !important;
+			margin-right: 10px !important;
+			height:48px !important;
+			line-height:48px !important;
+			width:48px !important;
+			max-width:48px !important;
+		}*/
+		.taizhang {
+			padding: 2px 11px;
+		}
+		.mui-table-view .mui-table-view-cell.mui-media-icon .mui-media-body:after {
+			left: 0px;
+			background-color:#D8D8D8;
+		}
+		.mui-media-title {
+			padding: 12px 0;
+		}
+		
+		.mui-media-blue {
+			background-color:darkturquoise;
+		}
+	</style>
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav1 mui-bar-primary mui-hidden">
+		<a class="mui-icon mui-pull-left icon-left"><i class="iconfont icon-saoma1"></i></a>
+		<h1 id="title" class="mui-title">业务</h1>
+		<a class="mui-pull-right"><span class="mui-icon mui-icon-gear"></span></a>
+	</header>
+	
+	<div class="mui-content " id="eam-content">
+		<ul id="quick-list" class="mui-hidden quick mui-table-view mui-grid-view mui-grid-9 noline"></ul>
+		<ul id="main-list" class="mui-table-view"></ul>
+	    
+	</div>
+	<div class="mui-loader" id="no">没有权限</div>
+	<script src="../../mui/js/arttmpl.js"></script>
+	<script src="../../mui/js/mui.min.js"></script>
+	<script src="../../jxm/js/jxm.js"></script>
+	
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	var loadPage = function (){
+      		
+//    		console.log(1);
+      		
+      		//获取功能列表
+  			var str = localStorage.getItem('cur_user_menu_bus');
+			if(!str){
+				return;
+			}
+			console.log('str:'+str);
+  			if (!str || str.length == 0) return;
+  			var data = JSON.parse(str);
+//			if (!data.packs[0].funs || data.packs[0].funs.length == 0) return;
+			var record = data.packs
+			document.getElementById("no").style.display="none";//隐藏
+//				alert('33')
+//				var allHtml = template('eam-all-done', {
+//						"record": data.packs
+//					});
+//				document.getElementById("eam-content").innerHTML = allHtml;
+			
+			
+			var html = '';
+			var qhtml= ''
+			
+//			html += '<ul class="mui-table-view">';
+			for (var i in record) {
+				
+				var funs = record[i].funs;
+				if (funs.length == 0) {
+					continue;
+				}
+				
+				
+//				<a class="mui-navigate-right">
+//							 <div class="mui-media-object mui-pull-left">
+//								<i class="iconfont icon-taizhang"></i>
+//							</div>
+//						        <div class="mui-media-body title " style="font-size: 18px;"><%=record[i].pack_name%></div>
+//					    </a>
+				//一级菜单
+				
+				html += '<li class="mui-table-view-cell mui-collapse unfold" style="padding-left: 0px; padding-right: 0px;">';
+				html += '<a class="mui-navigate-right" style="padding-left: 24px;margin-right:0px;font-size: 17px;">';
+//				
+				html +=  '<div class="mui-media-object mui-pull-left" style="padding-left: 10px;">';
+				html += '<i class=" mui-icon icon mui-icon-list" style="color: #00AAEF;"></i>';
+				html += '</div>'	
+				html += '<div class="mui-media-body title" style="font-size: 17px;">'+record[i].pack_name+'</div>';
+				
+				
+				
+//				html +=  '<div class="mui-media-object mui-media-blue mui-pull-left taizhang">';
+//					html+='<span class=""><i class="icon iconfont icon-taizhang" ></i></span>';
+//					html+='</div>';
+////					html+='<span class="mui-badge mui-badge-danger mui-hidden">0</span>';
+//					html+='<div class="mui-media-body mui-media-title" style="font-size: 17px;padding-top: 17px;">'+record[i].pack_name+'</div>';
+						
+					
+				
+//				html +=  '<div class="mui-media-object mui-pull-left">';
+//				html += '<i class="iconfont icon-taizhang" style=""></i>';
+//				html += '</div>'	
+//				html += '<div class="mui-media-body title" style="font-size: 17px;">'+record[i].pack_name+'</div>';
+				
+				
+				
+				html += '</a>'
+
+//				html += '<a class="mui-navigate-right">';
+//				html +=  '<div class="mui-media-object mui-pull-left">';
+//				html += '<i class="iconfont icon-taizhang" style=""></i>';
+//				html += '</div>'	
+//				html += '<div class="mui-media-body title" style="font-size: 17px;">'+record[i].pack_name+'</div>';
+//				html +=  '</a>';
+				
+				
+				html += '<ul class="mui-table-view mui-grid-view mui-grid-9" style="margin-left: 0px;margin-right: 0px;">';
+				
+				for(var j in funs){
+					var item  = funs[j];
+					if(item.is_show == "0"){
+						continue;
+					}
+					
+					if (item.fun_memo == '快速切入') {
+						
+						qhtml += '<li class="mui-table-view-cell mui-col-xs-4 quick-fun">';
+						qhtml += '<a href="'+item.page_url+'">'; 	
+					    qhtml += '<span class="'+item.fun_color+'"><i class="'+item.fun_icon+'"></i></span>';       
+					    qhtml += '<div class="mui-media-body" style="font-size: 16px;">'+item.fun_name+'</div>';       
+						qhtml += '</a>'		
+					    qhtml += '</li>';
+					}
+					
+					
+					//二级菜单
+//					html += '<li class="mui-table-view-cell mui-media mui-media-icon jxm-fun">';
+//					html += '<a class="mui-navigate-right" href="'+item.page_url+'">';    
+//					html += '<div class="mui-media-object mui-pull-left">';	    
+//					html += '<i class="'+item.fun_icon+'"></i></div>';			
+//					html += '<div class="mui-media-body " style="font-size: 17px;">'+item.fun_name+'</div></a></li>';
+//					
+					html += '<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3 jxm-fun">';
+		            html += '<a href="'+item.page_url+'">'; 
+		            html += '<span class="mui-icon '+item.fun_icon+'" style="color: #00AAEF;"></span>';
+		            html += '<div class="mui-media-body">'+item.fun_name+'</div></a></li>';    
+					
+				}
+				html += '</ul></li>';
+			}
+			if (qhtml.length != 0) {
+				document.getElementById('quick-list').classList.remove('mui-hidden');
+				document.getElementById('quick-list').innerHTML = qhtml;
+			}
+//			else if(qhtml.length == 0){
+//				document.getElementById("main-list'").setAttribute("style","margin-top: 10px ;");
+//			}
+			document.getElementById('main-list').innerHTML = html;
+			
+			//点击事件
+			mui(".mui-table-view").on('tap','.quick-fun',function(e){
+	      		var href = this.getElementsByTagName('a')[0].getAttribute('href');
+//	      		console.log(href)
+	      		
+	      		jxm.open(href);
+//	      		jxm.open(href,{extras:{keyid:'eam5001851'}});
+	      	});
+			
+			
+  			//点击事件
+			mui(".mui-table-view").on('tap','.jxm-fun',function(e){
+	      		var href = this.getElementsByTagName('a')[0].getAttribute('href');
+//	      		console.log(href)
+	      		
+	      		jxm.open(href);
+//	      		jxm.open(href,{extras:{keyid:'eam5001851'}});
+	      	});
+      	}
+      	
+      	window.addEventListener("refresh",function(){
+//    		mui.toast('---');
+      		loadPage();
+      	});
+      	window.addEventListener("refresh2",function(){
+//    		mui.toast('更新了');
+//    		loadPage();
+      	});
+    </script>
+</body>
+</html>

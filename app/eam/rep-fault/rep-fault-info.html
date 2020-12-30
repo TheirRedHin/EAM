@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>待处理异常台账</title>
+    <link rel="stylesheet" href="../../../mui/css/previewer.css">
+	<link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css">
+    <style type="text/css">
+   		.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		.head-search {
+			padding-top: 1px;
+			height: 50px !important; 
+		}
+		.head-search button {
+			height: 48px; 
+			width: 18%;
+			border: none;
+			border-radius: 0 !important;
+			background-color:#f7f7f7;
+		}
+		.head-search input {
+			width:62%; 
+			height: 50px; 
+			border: none;
+		}
+    	.label-red {
+			padding-left: 5px;
+			color:red !important;
+		}
+		.text-disabled {
+			background-color: #EEEEEE;
+		}
+		.iconfont{
+			font-size:24px;
+		}
+		h5 {
+	    	font-size: 14px;
+	    	padding: 8px 5px 6px;
+	    	background-color: #efeff4;
+	    }
+	    /*.footer{
+			position:static;
+			padding-top: 8px;
+			padding-left: 20px;
+			padding-right: 20px;
+			margin: auto;
+		}*/
+		.btnfinish{
+			/*padding-left: 20px;
+			
+			padding-right: 20px;*/
+			width: 50%;
+			
+		}
+		
+		
+		.order-det {
+			width: 100%;
+			background-color: #FFFFFF;
+		}
+		.order-det tr th {
+			color: #929292;
+			font-weight: normal;
+			text-align: left;
+			padding: 6px 15px;
+			line-height: 30px;
+			text-align: center;
+			/*background-color:#f7f7f7 !important;*/
+		}
+		.order-det tr td  {
+			padding: 8px;
+			font-size: 15px;
+			line-height: 30px;
+			text-align: center;
+		}
+		.order-det tr td:first-child  {
+			padding-left: 15px;
+		}
+		.order-det tr:nth-of-type(even) {
+			background-color:#f7f7f7;
+		}
+		.btncommit{
+			/*padding-left: 20px;
+			
+			padding-right: 20px;*/
+			width: 70%;
+			
+		}
+		.footer{
+			position:static;
+			/*padding-top: 8px;*/
+			/*padding-left: 20px;
+			padding-right: 20px;*/
+		}
+		
+    </style>
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary" id="head">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" id="title">待处理异常台账-表单</h1>
+	</header>
+	
+	<nav class=" mui-bar mui-bar-footer mui-hidden" id="footer">
+		<center>
+			<button id="btncommit" type="button" class="mui-btn mui-btn-block mui-btn-primary btncommit" style="font-size: 17px;">提交</button>
+		</center>
+	</nav>
+	<div class="mui-content mui-hidden" id="mui-content">
+		<div>
+		
+			
+			<!--<h5>设备故障上报</h5>-->
+			<form class="mui-input-group">
+				<div class="mui-input-row " > 
+					<label >故障单号</label>
+					<input id='fault_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;margin-top: 1px;"/>
+				
+				</div>
+				<div class="mui-input-row  mui-hidden" > 
+					<label >故障状态</label>
+					<input id='fault_status' type="text" readonly="readonly"/>
+				</div>
+				<div class="mui-input-row" > 
+					<label >故障发生时间</label>
+					<input id='fault_date' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>设备名称</label>
+					<input id='device_name' type="text"  type="text"  readonly="readonly" style="background-color: #F2F2F2; "/>
+				</div>
+				<div class="mui-input-row" > 
+					<label >设备状态</label>
+					<input id='device_status' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				
+				<div class="mui-input-row" >
+					<label>设备编号</label>
+					<input id='device_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>资产编号</label>
+					<input id='asset_code' type="text" readonly="readonly" />
+				
+				</div>
+				<div class="mui-input-row" >
+					<label>设备型号</label>
+					<input id='device_type' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>设备规格</label>
+					<input id='device_size' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>设备类别</label>
+					<input id='type_name' type="text" readonly="readonly" />
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>安装地点</label>
+					<input id='install_site' type="text" readonly="readonly" />
+				</div>
+				<div class="mui-input-row" >
+					<label>使用部门</label>
+					<input id='dept_name' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+					<input id="dept_id" type="hidden" />
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>使用二级单位</label>
+					<input id='sec_dept' type="text" readonly="readonly" />
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>上报人</label>
+					<input id='edit_user' type="text" readonly="readonly"/>
+				</div>
+				
+				<div class="mui-input-row mui-hidden" >
+					<label>维保部门</label>
+					<input id='wdept_name' type="text" readonly="readonly" />
+					<input id="wdept_id" type="hidden"/>
+				</div>
+				<div class="mui-input-row rowlength mui-hidden" >
+					<label>维保部门二级单位</label>
+					<input id='wsec_dept' type="text" readonly="readonly"/>
+				</div>
+				
+				<div class="mui-input-row mui-hidden" style="height: 60px;">
+					<label>地理区域</label>
+					<textarea name="site_name" id="site_name" readonly="readonly" rows="2" readonly="readonly" placeholder="不可编辑"></textarea>
+				</div>
+				<div class="mui-input-row" style="height: 100px;">
+					<label>故障现象描述</label>
+					<textarea id="fault_describe" rows="4" type="text"  readonly="readonly" style="background-color: #F2F2F2;"></textarea>
+				
+				</div>
+				
+			<!--</form>
+			
+			
+			
+			<h5>异常处理</h5>
+			<form class="mui-input-group">-->
+				<div class="mui-input-row" > 
+					<label>异常处理<span class="label-red">*</span></label>
+						<select id="fault_dispose" type="text">
+							<option disabled selected value>请选择</option>
+							<option value="10">无需处理</option>
+							<option value="20">故障处理</option>
+						</select>
+				</div>
+				<div class="mui-input-row" >
+					<label>维修人员<span class="label-red mui-hidden" id="span">*</span></label>
+					<input id='repair_user' type="text"   type="text" readonly="readonly" placeholder="请选择维修人员"/>
+					<input id="repair_userid" type="hidden" />
+				</div>
+				<!--<div class="mui-input-row" > 
+					<label>异常处理</label>
+						<input id='order_user' value="故障处理" type="text" readonly="readonly"/>
+				</div>-->
+				
+				<div class="mui-input-row mui-hidden" > 
+					<label >接单人</label>
+					<input id='order_user' type="text" readonly="readonly"/>
+					<input id="order_userid" type="hidden"/>
+				</div>
+				<div class="mui-input-row mui-hidden" > 
+					<label >接单时间</label>
+					<input id='order_date' type="text" readonly="readonly"/>
+				</div>
+				<div class="mui-input-row" style="height: 100px;">
+					<label>备注</label>
+					<textarea id="exception_memo"   rows="4" type="text"></textarea>
+				</div>
+			</form>	
+			<h5 class="mui-hidden" id="imageTitle">报修图片</h5>
+			<form class="mui-hidden mui-input-group jxm-image-input" id="image">
+				<div id='image-list' class="row image-list">
+				</div>
+			</form>
+		</div>
+		
+	</div>
+	
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	
+	<script src="../../../mui/js/mui.zoom.js"></script>
+	<script src="../../../mui/js/mui.previewimage.js"></script>
+	<script src="../../../jxm/js/jxm-image-input.js"></script>
+	<script src="../../../jxm/js/jxm-util.js"></script>
+	<script src="../../../jxm/js/combo-data.js"></script>
+	<script src="../../../jxm/js/jquery-3.2.1.min.js"></script>
+	<!--<script type="text/javascript" src="http://down.hovertree.com/jquery/jquery-1.12.3.min.js"></script>-->
+	<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	
+      	var fault_id = '';
+      	var whereSql = '';
+      	
+      	mui.plusReady(function(){
+      		
+      		//申请人默认当前用户
+	      	var cur_user = localStorage.getItem('cur_user');
+			var data = JSON.parse(cur_user);
+//			document.getElementById('order_user').value = data.user_name;
+//			document.getElementById('order_userid').value = data.user_id;
+//			
+//			document.getElementById('order_date').value = jxm.getTodayTime();
+      		
+      		var self = plus.webview.currentWebview();
+      		
+      		whereSql = self.whereSql;
+      		
+      		fault_id = self.fault_id;
+//    		alert(whereSql+'----'+fault_id);
+      		//如果存在工单ID，读取工单信息显示在页面
+      		readOrder(fault_id);
+      		
+	    });
+	    //加载表单数据
+	    var readOrder = function(fault_id) {
+//	    	alert(orderid)
+	    	if (!fault_id || fault_id.length == 0) return;
+	    	
+	    	//基本信息发送请求
+			var wheresql = 'fault_id = ?';
+			var params = "funid=queryevent&eventcode=query_data&query_funid=rep_fault_list&query_type=0&has_page=1&limit=1"+
+			"&where_sql="+wheresql+"&where_type=string&where_value="+fault_id;
+			
+			console.log('---'+params)
+			jxm.post(params, function(data){
+				if (!fault_id || fault_id.length == 0) return;
+	    	
+	    		//读取数据
+		    	if (!data) return;
+	    		document.getElementById('mui-content').classList.remove('mui-hidden');
+	  			document.getElementById('footer').classList.remove('mui-hidden');
+  				
+  				console.log('-------'+JSON.stringify(data));
+				
+				data = data.root;
+				
+				data = data[0];
+				document.getElementById('fault_code').value = data.rep_fault__fault_code;
+				
+				var fault_status = jxm.getComboText(ComboData.fault_status, data.rep_fault__fault_status);
+				document.getElementById('fault_status').value = fault_status;
+				document.getElementById('fault_date').value = data.rep_fault__fault_date.substr(0,16);
+				
+				var device_status = jxm.getComboText(ComboData.device_status, data.rep_fault__device_status);
+				document.getElementById('device_status').value = device_status;
+				
+				document.getElementById('device_code').value = data.rep_fault__device_code;
+	  			
+	  			document.getElementById('device_name').value = data.rep_fault__device_name;
+	  			document.getElementById('device_type').value = data.rep_fault__device_type;
+	  			document.getElementById('device_size').value = data.rep_fault__device_type;
+	  			document.getElementById('type_name').value = data.rep_fault__type_name;
+	  			document.getElementById('install_site').value = data.rep_fault__install_site;
+	  			document.getElementById('dept_name').value = data.rep_fault__dept_name;
+	  			document.getElementById('edit_user').value = data.rep_fault__edit_user;
+	  			document.getElementById('sec_dept').value = data.rep_fault__sec_dept;
+//		  			document.getElementById('major_device_type').value = jxm.getComboText(ComboData.majortype, data.asset_card__major_device_type);
+//				document.getElementById('sec_deptid').value = data.device_card__sec_deptid;
+				document.getElementById('asset_code').value = data.rep_fault__asset_code;
+//		  			document.getElementById('edit_userid').value = data.asset_card__major_device_type;
+				document.getElementById('wdept_name').value = data.rep_fault__wdept_name;
+	  			
+	  			document.getElementById('wdept_id').value = data.rep_fault__wdept_id;
+				document.getElementById('wsec_dept').value = data.rep_fault__wsec_dept;
+	  			document.getElementById('exception_memo').value = data.rep_fault__exception_memo;
+				document.getElementById('repair_user').value = data.rep_fault__repair_user;
+	  			document.getElementById('repair_userid').value = data.rep_fault__repair_userid;
+		  			
+				document.getElementById('site_name').value = data.rep_fault__site_name;
+				document.getElementById('fault_describe').value = data.rep_fault__fault_describe;
+				
+				var fault_dispose = jxm.getComboText(ComboData.fault_dispose, data.rep_fault__fault_dispose);
+				
+				if (fault_dispose == '故障处理') {
+					document.getElementById('span').classList.remove('mui-hidden');
+				}
+//				var obj = document.getElementsByTagName('fault_dispose')[0]; 
+				//设置select中text="paraText"的第一个Item为选中 
+				//判断是否存在 
+				var obj = mui("#fault_dispose option");
+				for (var i = 0; i < obj.length; i++) { 
+					if (obj[i].text == fault_dispose){ 
+						obj[i].selected = true; 
+						return false; 
+					} 
+				} 
+			
+				
+				
+			});
+			//加载报修的图片
+			jxm.imgUI.downImages({dataid:fault_id, tablename:'rep_fault', isedit:false, callback:function(){
+				jxm.imgUI.newImageDiv('noadd');
+				mui.previewImage();
+			}});
+		
+			
+	    };
+	    
+	    
+	    //监听处理方式的选择值
+		var select = document.getElementById('fault_dispose');
+		select.onchange = function(){
+			
+//			type=$(this).children('option:selected').val()
+			
+			var fault_dispose = document.getElementById('fault_dispose').value;
+//			mui.toast(fault_dispose)
+	    	if (fault_dispose == 20) {
+	    		document.getElementById('span').classList.remove('mui-hidden');
+	    	}else{
+	    		document.getElementById('span').classList.add('mui-hidden');
+	    	}
+		}
+	    
+//	    //异常处理失去焦点时，判断维修人员是否为必填
+//	    var fault_dispose = document.getElementById('fault_dispose');
+//		fault_dispose.addEventListener("blur",function(){
+//			mui.toast(fault_dispose.value)
+//			if (fault_dispose.value == '故障处理') {
+//				document.getElementById('span').classList.remove('mui-hidden');
+//			}else{
+//				document.getElementById('span').classList.add('mui-hidden');
+//			}
+//		});
+	    
+	    //提交
+	    var btncommit = function(){
+//	    	alert(fault_id)
+	    	var repair_user  = document.getElementById('repair_user').value;
+	    	var repair_userid  = document.getElementById('repair_userid').value;
+	    	
+	    	var fault_dispose  = document.getElementById('fault_dispose').value;
+	    	var order_user  = document.getElementById('order_user').value;
+	    	var order_userid  = document.getElementById('order_userid').value;
+	    	var order_date  = document.getElementById('order_date').value;
+	    	var exception_memo  = document.getElementById('exception_memo').value;
+	    	
+	    	
+	    	if (!fault_dispose  || fault_dispose .length == 0) {
+				mui.alert('请选择处理异常！');
+				return false;
+			}
+	    	if (fault_dispose == '20') {
+	    		if (!repair_user  || repair_user .length == 0) {
+				mui.alert('请选择维修人员！');
+				return false;
+			}
+	    	}
+				
+			var e = encodeURIComponent;
+			var params = 'funid=rep_fault_list&eventcode=save&pagetype=form';
+			params += '&rep_fault__repair_user='+e(repair_user)+'&rep_fault__fault_dispose='+e(fault_dispose);
+			params += '&rep_fault__order_user='+e(order_user)+'&rep_fault__order_userid='+e(order_userid);
+			params += '&rep_fault__order_date='+e(order_date)+'&rep_fault__exception_memo='+e(exception_memo);
+			params += '&rep_fault__repair_userid='+e(repair_userid)+'&keyid='+fault_id;;
+			params += '&dirtyfields=rep_fault.repair_user;rep_fault.fault_dispose;rep_fault.order_user;';
+			params += 'rep_fault.order_userid;rep_fault.order_date;rep_fault.exception_memo;rep_fault.repair_userid';
+			console.log("params:"+params);
+			
+			//保存成功后再提交
+			jxm.post(params, function(data){
+				console.log("save:"+JSON.stringify(data));
+//				mui.toast('保存成功！');
+				var params = 'funid=rep_fault_list&eventcode=audit&pagetype=form';
+//				
+				params += '&auditvalue=1'+'&keyid='+fault_id;
+	//			alert(params)
+			
+				jxm.post(params, function(data){
+					
+					//提交成功后返回列表页面
+					setTimeout(function(){
+						//获得列表界面的webview
+					    var list = plus.webview.currentWebview().opener();  
+					    //触发列表界面的自定义事件（reload）,从而进行数据刷新  
+					    mui.fire(list, 'reload');
+						
+						mui.currentWebview.close('auto');
+					}, 500);
+				
+				});
+			});
+	    	}
+	    
+	    
+  		//选择维修人员
+		var cbe2 = 'select-user';
+		document.getElementById('repair_user').addEventListener('tap', function(){
+			var wdept_id = document.getElementById('wdept_id').value;
+			console.log(wdept_id);
+			//从设备组里选择维修人员
+			if (!wdept_id || wdept_id.length == 0) {
+				mui.alert("请先选择设备！");
+				return;
+			}
+			
+			var href = "../../../app/util/select-user.html";
+			var param = {callbackWinId:mui.currentWebview.id, callbackEvent:cbe2, dept_id:wdept_id};
+			jxm.open(href,{extras:{selectParams:param}});
+		
+		});
+		window.addEventListener(cbe2, function(event){
+			var obj = event.detail;
+			document.getElementById('repair_user').value = obj.dataext;
+			document.getElementById('repair_userid').value = obj.dataid;
+			
+		});
+		//提交按钮
+		document.getElementById('btncommit').addEventListener('tap', btncommit);
+		
+    </script>	
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>待处理异常台账</title>
+	<link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css">
+    <style type="text/css">
+   		.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		.head-search {
+			padding-top: 1px;
+			height: 50px !important; 
+		}
+		.head-search button {
+			height: 48px; 
+			width: 18%;
+			border: none;
+			border-radius: 0 !important;
+			background-color:#f7f7f7;
+		}
+		.head-search input {
+			width:62%; 
+			height: 50px; 
+			border: none;
+		}
+    	.label-red {
+			padding-left: 5px;
+			color:red !important;
+		}
+		.text-disabled {
+			background-color: #EEEEEE;
+		}
+		.iconfont{
+			font-size:24px;
+		}
+		h5 {
+	    	font-size: 14px;
+	    	padding: 8px 5px 6px;
+	    	background-color: #efeff4;
+	    }
+	    /*.footer{
+			position:static;
+			padding-top: 8px;
+			padding-left: 20px;
+			padding-right: 20px;
+			margin: auto;
+		}*/
+		.btnfinish{
+			/*padding-left: 20px;
+			
+			padding-right: 20px;*/
+			width: 50%;
+			
+		}
+		
+		
+		.order-det {
+			width: 100%;
+			background-color: #FFFFFF;
+		}
+		.order-det tr th {
+			color: #929292;
+			font-weight: normal;
+			text-align: left;
+			padding: 6px 15px;
+			line-height: 30px;
+			text-align: center;
+			/*background-color:#f7f7f7 !important;*/
+		}
+		.order-det tr td  {
+			padding: 8px;
+			font-size: 15px;
+			line-height: 30px;
+			text-align: center;
+		}
+		.order-det tr td:first-child  {
+			padding-left: 15px;
+		}
+		.order-det tr:nth-of-type(even) {
+			background-color:#f7f7f7;
+		}
+		.btncommit{
+			/*padding-left: 20px;
+			
+			padding-right: 20px;*/
+			width: 70%;
+			
+		}
+		.footer{
+			position:static;
+			/*padding-top: 8px;*/
+			/*padding-left: 20px;
+			padding-right: 20px;*/
+		}
+		
+    </style>
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary" id="head">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" id="title">设备台账-表单</h1>
+	</header>
+	
+	<nav class="mui-hidden mui-bar mui-bar-footer" id="footer">
+		<center>
+			<button id="setBindCode" type="button" class="mui-btn mui-btn-block mui-btn-primary btncommit" style="font-size: 17px;">RFID标签绑定</button>
+		</center>
+	</nav>
+	<div class="mui-content " id="mui-content">
+		<div>
+		
+			<h5>基础信息</h5>
+			<form class="mui-input-group">
+				<div class="mui-input-row " > 
+					<label >设备编号</label>
+					<input id='device_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;margin-top: 1px;"/>
+				
+				</div>
+				<div class="mui-input-row" >
+					<label>设备名称</label>
+					<input id='device_name' type="text"  type="text"  readonly="readonly" style="background-color: #F2F2F2; "/>
+				</div>
+				<div class="mui-input-row" >
+					<label>设备型号</label>
+					<input id='device_type' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>设备规格</label>
+					<input id='device_size' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row " > 
+					<label >设备机型</label>
+					<input id='bom_name' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" > 
+					<label >设备类别</label>
+					<input id='type_name' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label class="label-blue">标签编码</label>
+					<input id='label_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;" placeholder=""/>
+				</div>
+				<div class="mui-input-row" >
+					<label>使用部门</label>
+					<input id='dept_name' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>维保部门</label>
+					<input id='wdept_name' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+					<input id="wdept_id" type="hidden"/>
+				</div>
+				<div class="mui-input-row" > 
+					<label >ABC分类</label>
+					<input id='abc_type' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				
+				<div class="mui-input-row" >
+					<label>立卡日期</label>
+					<input id='card_date' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>启用日期</label>
+					<input id='rev_date' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>安装地点</label>
+					<input id='install_site' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				
+				<div class="mui-input-row" style="height: 60px;">
+					<label>地理区域</label>
+					<textarea name="site_name" id="site_name" readonly="readonly" rows="2" readonly="readonly" style="background-color: #F2F2F2;"></textarea>
+				</div>
+				<div class="mui-input-row" >
+					<label>使用人</label>
+					<input id='card_user' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>主设备编号</label>
+					<input id='fdevice_code' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>专项管理属性</label>
+					<input id='special_type' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>当前管理状态</label>
+					<input id='status' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				
+			</form>
+			
+			<h5>财务信息</h5>
+			<form class="mui-input-group">
+				<div class="mui-input-row" >
+					<label>资产编号</label>
+					<input id='asset_code' type="text" readonly="readonly" style="background-color: #F2F2F2;height: 39px;margin-top: 1px;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>财务分类</label>
+					<input id='finan_type' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				
+				<div class="mui-input-row" >
+					<label>当前折旧月度</label>
+					<input id='dep_month' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>当前累计折旧</label>
+					<input id='dep_value' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>原值(元)</label>
+					<input id='org_value' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>净值(元)</label>
+					<input id='net_value' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>使用年限(年)</label>
+					<input id='use_year' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>资产来源</label>
+					<input id='asset_source' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+			</form>
+			<h5>其他信息</h5>
+			<form class="mui-input-group">
+				<div class="mui-input-row" >
+					<label>供应商</label>
+					<input id='provider_name' type="text" readonly="readonly" style="background-color: #F2F2F2;height: 39px;margin-top: 1px;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>制造厂</label>
+					<input id='factory' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>出厂编号</label>
+					<input id='out_code' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>出厂日期</label>
+					<input id='out_date' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>生产用途</label>
+					<input id='purpose' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>图号</label>
+					<input id='graph_no' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+			</form>
+				
+			
+		</div>
+		
+		
+	</div>
+	
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<script src="../../../jxm/js/NfcUtil.js"></script>
+	<script src="../../../jxm/js/jxm-util.js"></script>
+	<script src="../../../jxm/js/combo-data.js"></script>
+	<script src="../../../jxm/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	
+      	var key_id = '';
+//    	var whereSql = '';
+      	
+      	mui.plusReady(function(){
+      		
+      		var self = plus.webview.currentWebview();
+      		
+      		key_id = self.key_id;
+      		
+      		readData(key_id);
+      		//如果是Android执行绑定标签的方法
+      		if (plus.os.name == 'Android') {
+      			setBindCode();
+      			document.getElementById('footer').classList.remove('mui-hidden');
+      			$(document.getElementById("label_code")).attr('placeholder',"请点击RFID标签绑定按钮");
+      		}
+      		
+	    });
+	    //加载表单数据
+	    var readData = function(key_id) {
+//	    	alert(orderid)
+	    	if (!key_id || key_id.length == 0) return;
+	    	
+	    	//基本信息发送请求
+			var wheresql = 'device_card.device_id = ?';
+			var params = "eventcode=query_data&funid=queryevent&pagetype=grid&query_funid=device_list&limit=1"+
+			"&where_sql="+wheresql+"&where_type=string&where_value="+key_id;
+			
+			console.log('---'+params)
+			jxm.post(params, function(data){
+				if (!key_id || key_id.length == 0) return;
+	    	
+	    		//读取数据
+		    	if (!data) return;
+		    	
+  				console.log('-------'+JSON.stringify(data));
+				data = data.root;
+				data = data[0];
+				document.getElementById('device_code').value = data.device_card__device_code;
+	  			document.getElementById('bom_name').value = data.device_card__bom_name;
+	  			document.getElementById('abc_type').value = data.device_card__abc_type;
+	  			document.getElementById('device_name').value = data.device_card__device_name;
+	  			document.getElementById('type_name').value = data.device_card__type_name;
+	  			document.getElementById('device_type').value = data.device_card__device_type;
+	  			document.getElementById('device_size').value = data.device_card__device_size;
+	  			document.getElementById('card_date').value = data.device_card__card_date.substring(0,10);
+	  			document.getElementById('rev_date').value = data.device_card__rev_date.substring(0,10);
+	  			document.getElementById('dept_name').value = data.device_card__dept_name;
+				document.getElementById('install_site').value = data.device_card__install_site;
+	  			document.getElementById('wdept_name').value = data.device_card__wdept_name;
+				document.getElementById('label_code').value = data.device_card__label_code;
+	  			document.getElementById('fdevice_code').value = data.device_card__fdevice_code;
+	  			
+	  			var usestate = jxm.getComboText(ComboData.usestate, data.device_card__status);
+	  			
+	  			
+				document.getElementById('status').value = usestate;
+				
+	  			document.getElementById('card_user').value = data.device_card__card_user;
+		  		document.getElementById('special_type').value = data.device_card__special_type;
+				document.getElementById('site_name').value = data.device_card__site_name;
+				
+				
+				document.getElementById('asset_code').value = data.device_card__asset_code;
+	  			document.getElementById('finan_type').value = data.device_card__finan_type;
+				document.getElementById('dep_month').value = data.device_card__dep_month;
+	  			document.getElementById('dep_value').value = data.device_card__dep_value;
+				document.getElementById('org_value').value = data.device_card__org_value;
+	  			document.getElementById('net_value').value = data.device_card__net_value;
+		  		document.getElementById('use_year').value = data.device_card__use_year;
+				document.getElementById('asset_source').value = data.device_card__asset_source;
+				document.getElementById('provider_name').value = data.device_card__provider_name;
+	  			document.getElementById('factory').value = data.device_card__factory;
+				document.getElementById('out_code').value = data.device_card__out_code;
+	  			document.getElementById('out_date').value = data.device_card__out_date.substring(0,10);
+		  		document.getElementById('purpose').value = data.device_card__purpose;
+				document.getElementById('graph_no').value = data.device_card__graph_no;
+			});
+		};
+		
+	    //标签绑定
+	    var setBindCode = function(){
+	    	
+			document.getElementById('setBindCode').addEventListener('tap', function(){
+				mui.toast('可以进行RFID标签绑定了');
+				document.getElementById("setBindCode").setAttribute("disabled",true);
+				var device_code = document.getElementById('device_code').value
+		    	//nfc功能
+		    	NfcUtil.initNfc(function(result){
+					var btnArray = ['是', '否'];
+					mui.confirm('是否将'+result+'绑定到设备编号为['+device_code+']的设备上？', '提示', btnArray, function(e) {
+						if (e.index == 0) {
+							
+					    	var params='funid=device_list&device_id='+key_id+'&label_code='+result+'&eventcode=chkCodeRepeat';
+				  			jxm.post(params, function(data){
+				  				console.log('---'+JSON.stringify(data));
+				  				//如果有返回值再提示
+				  				if (data.tipStr) {
+				  					mui.confirm(data.tipStr, '提示', btnArray, function(e) {
+										if (e.index == 0) {
+											
+									    	var params='funid=device_list&device_id='+key_id+'&label_code='+result+'&eventcode=setBindCode';
+								  			jxm.post(params, function(data){
+								  				console.log('---'+JSON.stringify(data));
+								  				location.reload(); 
+								  				
+								  			})
+										} 
+									});
+				  				} 
+				  				//没有返回值就直接刷新页面
+								else {
+									location.reload(); 
+								}
+		//		  				
+				  			})
+						}
+					});
+				})
+		    	
+		    });
+	    }
+		
+		
+    </script>	
+</body>
+</html>

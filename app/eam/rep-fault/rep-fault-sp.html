@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>备件消耗明细</title>
+    <link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css">
+   	<style type="text/css">
+    	.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		h5 {
+	    	font-size: 14px;
+	    	padding: 8px 5px 6px;
+	    	background-color: #efeff4;
+	    }
+    	.label-red {
+			padding-left: 5px;
+			color:red !important;
+		}
+		.text-disabled {
+			background-color: #EEEEEE;
+		}
+		.iconfont{
+			font-size:24px;
+		}
+		.footer{
+			position:static;
+			/*padding-top: 8px;
+			padding-left: 20px;
+			padding-right: 20px;*/
+		}
+		.btncommit{
+			/*padding-left: 20px;
+			
+			padding-right: 20px;*/
+			width: 70%;
+			
+		}
+		/*.head{
+			position: fixed !important;
+			top: auto;
+			bottom: auto;
+			
+		}*/
+		/*.mui-content{
+			position: absolute;
+			position:fixed;top:0px; bottom:0px;width:100%;overflow:scroll;
+		}	*/
+		
+		/*.head,.foot{position:fixed;left:0;height:50px;line-height:50px;width:100%;background-color:#99CC00;}*/
+		
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary head" id="head">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">备件消耗明细</h1>
+	</header>
+	<nav class="mui-bar mui-bar-footer mui-hidden" id="footer">
+		<center>
+		<button id="btncommit" type="button" class="mui-btn mui-btn-block mui-btn-primary btncommit" style="font-size: 17px;">保存</button>
+		</center>
+	</nav>
+	
+	<!--工单基本信息-->
+	<div class="mui-content mui-hidden" id="mui-content">
+		<form class="mui-input-group">
+			<!--<div class="mui-input-row" >
+				
+			</div>-->
+			<div class="mui-input-row rowlength mui-hidden" id="isOrder">
+				<label>是否已生成领料单</label>
+				<input id='fault_id' type="hidden"/>
+				<input id='house_id' type="hidden"/>
+				<input id='sp_house_id' type="hidden"/>
+				<input id='sp_id' type="hidden"/>
+				<input id='is_order' type="text"  readonly="readonly" style="background-color: #F2F2F2;height: 50px;margin-top: 1px;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>来源</label>
+				<input id='sp_source' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>备件品种编码</label>
+				<input id='sp_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>备件品种名称</label>
+				<input id='sp_name' type="text"  readonly="readonly" style="background-color: #F2F2F2;" />
+			</div>
+			<!--<div class="mui-input-row" >
+				<label>备件型号</label>
+				<input id='sp_type' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>-->
+			<div class="mui-input-row" style="height: 50px;">
+				<label>备件型号</label>
+				<textarea id="sp_type" rows="2" type="text"  readonly="readonly" style="background-color: #F2F2F2;"></textarea>
+			</div>
+			<div class="mui-input-row" >
+				<label>品牌</label>
+				<input id='brand'type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			
+			<div class="mui-input-row" >
+				<label>申请数量<span class="label-red">*</span></label>
+				<input id='apply_num' type="number" class="mui-input-clear" placeholder="请输入申请数量"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>实际消耗数量</label>
+				<input id='real_out_num' type="number"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row">
+				<label>库存数量</label> 
+				<input id='cur_num' type="number"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>仓库名称</label>
+				<input id='house_name' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>其他编号</label>
+				<input id='other_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			
+			<div class="mui-input-row" >
+				<label>计量单位</label>
+				<input id='unit' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>制造厂</label>
+				<input id='factory'type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>含税金额(元)</label>
+				<input id='tax_money'type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row rowlength" >
+				<label>不含税金额(元)</label>
+				<input id='notax_money' type="text"  readonly="readonly" style="background-color: #F2F2F2;height: 50px;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>出库单号</label>
+				<input id='out_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;" />
+			</div>
+			<div class="mui-input-row" style="height: 60px;">
+				<label>备注</label>
+				<textarea id="memo" rows="2" type="text"></textarea>
+			</div>
+		</form>
+	</div>	
+	
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<script src="../../../jxm/js/jxm-image-input.js"></script>
+	<script src="../../../jxm/js/jxm-util.js"></script>
+	<script src="../../../jxm/js/combo-data.js"></script>
+	<script src="../../../jxm/js/jquery-3.2.1.min.js"></script>
+	<script src="../../../mui/js/mui.picker.min.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	var key_id = '';
+      	var type = '';
+      	var funid = '';
+//    	document.getElementById("mui-content").style.display="none";//隐藏
+      	mui.plusReady(function(){
+      		
+      		
+//    		document.getElementById("footer").style.display="none";
+      		
+      		var self = plus.webview.currentWebview();
+      		key_id = self.key_id;
+      		type = self.type;
+      		funid = self.funid;
+      		//保养实施
+      		if (funid != undefined) {
+      			readData2(key_id);
+      			
+      		}
+      		//故障
+      		else{
+      			readData(key_id);
+      		}
+//    		alert(self.key_id);
+      		
+      		
+	    });
+	    
+	     //加载表单数据
+	    var readData2 = function(key_id) {
+	     	
+//	    	if (!key_id || key_id.length == 0) return;
+	    	
+	    	var wheresql = 'pm_plan_sp.plan_sp_id = ?';
+			var params = "funid=queryevent&eventcode=query_data&query_funid=maint_done_sp&query_type=0&has_page=1&limit=1"+
+			"&where_sql="+wheresql+"&where_type=string&where_value="+key_id;
+			
+			console.log('---'+params)
+			jxm.post(params, function(data){
+				
+	    		//读取数据
+		    	if (!data) return;
+		    	document.getElementById('mui-content').classList.remove('mui-hidden');
+//		    	document.getElementById("mui-content").style.display="";//显示
+  				console.log('-----00---'+JSON.stringify(data));
+				data = data.root;
+				data = data[0];
+				document.getElementById('fault_id').value = data.pm_plan_sp__plan_id;
+				document.getElementById('house_id').value = data.pm_plan_sp__house_id;
+				
+				document.getElementById('sp_house_id').value = data.pm_plan_sp__sp_house_id;
+				document.getElementById('sp_id').value = data.pm_plan_sp__sp_id;
+				
+				var is_order = jxm.getComboText(ComboData.yesno, data.pm_plan_sp__is_order);
+				document.getElementById('is_order').value = is_order;
+				if (is_order == '是' || type == 'readOnly') {
+					document.getElementById("memo").setAttribute("disabled","disabled");
+					document.getElementById("memo").setAttribute("style","background-color:#F2F2F2");
+					document.getElementById("apply_num").setAttribute("disabled","disabled");
+					document.getElementById("apply_num").setAttribute("style","background-color:#F2F2F2");
+				}
+				else{
+					document.getElementById('footer').classList.remove('mui-hidden');
+					document.getElementById('isOrder').classList.remove('mui-hidden');
+				}
+				var sp_source = jxm.getComboText(ComboData.sp_source, data.pm_plan_sp__sp_source);
+				document.getElementById('sp_source').value = sp_source;
+	  			document.getElementById('sp_code').value = data.pm_plan_sp__sp_code;
+	  			document.getElementById('sp_name').value = data.pm_plan_sp__sp_name;
+	  			document.getElementById('sp_type').value = data.pm_plan_sp__sp_type;
+	  			document.getElementById('brand').value = data.pm_plan_sp__brand;
+	  			document.getElementById('apply_num').value = data.pm_plan_sp__apply_num;
+	  			document.getElementById('real_out_num').value = data.pm_plan_sp__fact_num;
+	  			document.getElementById('cur_num').value = data.pm_plan_sp__store_num;
+	  			document.getElementById('house_name').value = data.pm_plan_sp__house_name;
+				document.getElementById('other_code').value = data.pm_plan_sp__other_code;
+				document.getElementById('unit').value = data.pm_plan_sp__unit;
+	  			document.getElementById('factory').value = data.pm_plan_sp__factory;
+				document.getElementById('tax_money').value = data.pm_plan_sp__tax_money;
+				document.getElementById('notax_money').value = data.pm_plan_sp__notax_money;
+	  			document.getElementById('out_code').value = data.pm_plan_sp__out_code;
+		  		document.getElementById('memo').value = data.pm_plan_sp__memo;
+				
+			});
+		};
+	    
+	    
+	    //加载表单数据
+	    var readData = function(key_id) {
+	     	
+//	    	if (!key_id || key_id.length == 0) return;
+	    	
+	    	var wheresql = 'rep_fault_sp.fault_sp_id = ?';
+			var params = "funid=queryevent&eventcode=query_data&query_funid=rep_fault_sp&query_type=0&has_page=1&limit=1"+
+			"&where_sql="+wheresql+"&where_type=string&where_value="+key_id;
+			
+			console.log('---'+params)
+			jxm.post(params, function(data){
+				
+	    		//读取数据
+		    	if (!data) return;
+		    	document.getElementById('mui-content').classList.remove('mui-hidden');
+//		    	document.getElementById("mui-content").style.display="";//显示
+  				console.log('----00000000000---'+JSON.stringify(data));
+				data = data.root;
+				data = data[0];
+				document.getElementById('fault_id').value = data.rep_fault_sp__fault_id;
+				document.getElementById('house_id').value = data.rep_fault_sp__house_id;
+				
+				document.getElementById('sp_house_id').value = data.rep_fault_sp__sp_house_id;
+				document.getElementById('sp_id').value = data.rep_fault_sp__sp_id;
+				
+				var is_order = jxm.getComboText(ComboData.yesno, data.rep_fault_sp__is_order);
+				document.getElementById('is_order').value = is_order;
+				if (is_order == '是' || type == 'readOnly') {
+					document.getElementById("memo").setAttribute("disabled","disabled");
+					document.getElementById("memo").setAttribute("style","background-color:#F2F2F2");
+					document.getElementById("apply_num").setAttribute("disabled","disabled");
+					document.getElementById("apply_num").setAttribute("style","background-color:#F2F2F2");
+				}
+				else{
+					document.getElementById('footer').classList.remove('mui-hidden');
+					document.getElementById('isOrder').classList.remove('mui-hidden');
+				}
+				var sp_source = jxm.getComboText(ComboData.sp_source, data.rep_fault_sp__sp_source);
+				document.getElementById('sp_source').value = sp_source;
+	  			document.getElementById('sp_code').value = data.rep_fault_sp__sp_code;
+	  			document.getElementById('sp_name').value = data.rep_fault_sp__sp_name;
+	  			document.getElementById('sp_type').value = data.rep_fault_sp__sp_type;
+	  			document.getElementById('brand').value = data.rep_fault_sp__brand;
+	  			document.getElementById('apply_num').value = data.rep_fault_sp__apply_num;
+	  			document.getElementById('real_out_num').value = data.rep_fault_sp__real_out_num;
+	  			document.getElementById('cur_num').value = data.rep_fault_sp__cur_num;
+	  			document.getElementById('house_name').value = data.rep_fault_sp__house_name;
+				document.getElementById('other_code').value = data.rep_fault_sp__other_code;
+				document.getElementById('unit').value = data.rep_fault_sp__unit;
+	  			document.getElementById('factory').value = data.rep_fault_sp__factory;
+				document.getElementById('tax_money').value = data.rep_fault_sp__tax_money;
+				document.getElementById('notax_money').value = data.rep_fault_sp__notax_money;
+	  			document.getElementById('out_code').value = data.rep_fault_sp__out_code;
+		  		document.getElementById('memo').value = data.rep_fault_sp__memo;
+				
+			});
+		};
+		
+		//失去焦点后判断申请数量不能大于库存数量
+		var apply_num = document.getElementById('apply_num');
+		apply_num.addEventListener('blur',function(){
+			var sp_source = document.getElementById('sp_source').value;
+			var cur_num = document.getElementById('cur_num').value;
+			if ((apply_num.value  > parseFloat(cur_num)) && (sp_source == "库存")) {
+				mui.alert('申请数量不能大于库存数量！');
+				apply_num.focus();
+				return false;
+			}
+			//如果来源是其他，实际消耗数量=申请数量
+			if ( sp_source == '其他') {
+				document.getElementById('real_out_num').value = apply_num.value;
+			}
+		})
+		
+  		var commitAsset = function() {
+  			var fault_id = document.getElementById('fault_id').value;
+			var house_id = document.getElementById('house_id').value;
+			
+			var sp_house_id = document.getElementById('sp_house_id').value;
+			var sp_id = document.getElementById('sp_id').value;
+			
+			var is_order = document.getElementById('is_order').value;
+			var sp_source = document.getElementById('sp_source').value
+  			var sp_code = document.getElementById('sp_code').value;
+  			var sp_name = document.getElementById('sp_name').value;
+  			var sp_type = document.getElementById('sp_type').value;
+  			var brand = document.getElementById('brand').value;
+  			var apply_num = document.getElementById('apply_num').value;
+  			var real_out_num = document.getElementById('real_out_num').value;
+  			var cur_num = document.getElementById('cur_num').value;
+  			var house_name = document.getElementById('house_name').value;
+			var other_code = document.getElementById('other_code').value;
+			var unit = document.getElementById('unit').value;
+  			var factory = document.getElementById('factory').value;
+			var tax_money = document.getElementById('tax_money').value;
+			var notax_money = document.getElementById('notax_money').value;
+  			var out_code = document.getElementById('out_code').value;
+	  		var memo = document.getElementById('memo').value;
+			if ((!apply_num || apply_num.length == 0)) {
+				mui.alert('请输入申请数量！');
+				return false;
+			}
+			if (apply_num > parseFloat(cur_num) && (sp_source == "库存")) {
+				return false;
+			}
+			//保养
+			if (funid != undefined) {
+				var params = 'funid=maint_done_sp&eventcode=save_eg&pagetype=editgrid';
+				params += '&pfunid=maint_done&fkValue='+fault_id;
+				params += '&keyid='+key_id;
+				
+				params += '&pm_plan_sp__is_order='+(is_order== '否'?'0':'1');
+				params += '&pm_plan_sp__sp_source='+(sp_source == '库存'?'10':'20');
+				params += '&pm_plan_sp__sp_code='+sp_code;
+				params += '&pm_plan_sp__sp_name='+sp_name;
+				params += '&pm_plan_sp__sp_type='+sp_type;
+				
+				params += '&pm_plan_sp__brand='+brand;
+				params += '&pm_plan_sp__apply_num='+apply_num;
+				params += '&pm_plan_sp__store_num='+cur_num;
+				if (sp_source != '库存') {
+					params += '&pm_plan_sp__fact_num='+apply_num;
+				}
+				
+				params += '&pm_plan_sp__house_name='+house_name;
+				params += '&pm_plan_sp__other_code='+other_code;
+				params += '&pm_plan_sp__unit='+unit;
+				params += '&pm_plan_sp__factory='+factory;
+				params += '&pm_plan_sp__tax_money='+tax_money;
+				params += '&pm_plan_sp__notax_money='+notax_money;
+				params += '&pm_plan_sp__out_code='+out_code;
+				params += '&pm_plan_sp__memo='+memo;
+				params += '&pm_plan_sp__plan_id='+fault_id;
+				
+				params += '&pm_plan_sp__house_id='+house_id;
+				params += '&pm_plan_sp__sp_house_id='+sp_house_id;
+				params += '&pm_plan_sp__sp_id='+sp_id;
+				params += '&pm_plan_sp__plan_sp_id='+key_id;
+			}
+			//故障
+			else{
+				var params = 'funid=rep_fault_sp&eventcode=save_eg&pagetype=editgrid';
+				params += '&pfunid=rep_fault_exe&fkValue='+fault_id;
+				params += '&keyid='+key_id;
+				
+				params += '&rep_fault_sp__is_order='+(is_order== '否'?'0':'1');
+				params += '&rep_fault_sp__sp_source='+(sp_source == '库存'?'10':'20');
+				params += '&rep_fault_sp__sp_code='+sp_code;
+				params += '&rep_fault_sp__sp_name='+sp_name;
+				params += '&rep_fault_sp__sp_type='+sp_type;
+				
+				params += '&rep_fault_sp__brand='+brand;
+				params += '&rep_fault_sp__apply_num='+apply_num;
+				params += '&rep_fault_sp__cur_num='+cur_num;
+				if (sp_source != '库存') {
+					params += '&rep_fault_sp__real_out_num='+apply_num;
+				}
+//				params += '&rep_fault_sp__real_out_num='+real_out_num;
+				params += '&rep_fault_sp__house_name='+house_name;
+				params += '&rep_fault_sp__other_code='+other_code;
+				params += '&rep_fault_sp__unit='+unit;
+				params += '&rep_fault_sp__factory='+factory;
+				params += '&rep_fault_sp__tax_money='+tax_money;
+				params += '&rep_fault_sp__notax_money='+notax_money;
+				params += '&rep_fault_sp__out_code='+out_code;
+				params += '&rep_fault_sp__memo='+memo;
+				params += '&rep_fault_sp__fault_id='+fault_id;
+				
+				params += '&rep_fault_sp__house_id='+house_id;
+				params += '&rep_fault_sp__sp_house_id='+sp_house_id;
+				params += '&rep_fault_sp__sp_id='+sp_id;
+				params += '&rep_fault_sp__fault_sp_id='+key_id;
+			}
+  			
+					
+  			
+  			console.log(params)
+			//保存
+			jxm.post(params, function(data){
+			
+				console.log("save:"+JSON.stringify(data));
+				//提交成功后返回列表页面
+				setTimeout(function(){
+					mui.toast('保存成功！');
+					//获得列表界面的webview  
+				    var list = plus.webview.currentWebview().opener();  
+				    //触发列表界面的自定义事件（reload）,从而进行数据刷新  
+				    mui.fire(list, 'loadDet');
+					
+					mui.currentWebview.close('auto');
+				}, 500);
+			});
+  		};
+  		
+//		//点击提交按钮
+		document.getElementById('btncommit').addEventListener('tap', commitAsset);
+		
+    </script>
+</body>
+</html>

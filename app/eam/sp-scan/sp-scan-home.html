@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    
+    <link href="../../../mui/css/mui.min.css" rel="stylesheet"/>
+    
+	<style>
+		.mui-table h4,.mui-table h5,.mui-table .mui-h5,.mui-table .mui-h6,.mui-table p{
+	        margin-top: 0;
+	    }
+	    .mui-table h4{
+	    	font-size: 15px;
+	        line-height: 21px;
+	        font-weight: 500;
+	    }
+	    .mui-table h5{
+	    	font-size: 14px;
+	        line-height: 21px;
+	        font-weight: 500;
+	    }
+	
+	    .mui-table .oa-icon{
+	        position: absolute;
+	        right:0;
+	        bottom: 0;
+	    }
+	    .mui-table .oa-icon-star-filled{
+	        color:#f14e41;
+	    }
+	    .mui-content>.mui-table-view:first-child {
+		    margin-top: 5px;
+		}
+		.off_line{
+			padding-top: 50px;
+			color:red;
+			display: none;
+		}
+		#no{
+			margin-top: 20px;
+		}
+	</style>
+ 
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary">
+		<!--<a href="../../home.html"><span class="mui-icon mui-icon-back mui-pull-left"></span></a>-->
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">盘点任务</h1>
+		<!--<i id="fresh" class="iconfont icon-shuaxin mui-pull-right" style=""></i>-->
+		<!--<button type="button" id="fresh" class="mui-btn mui-pull-right" style="top: 5px;">离线数据</button>-->
+	</header>
+	
+		
+	<div class="mui-content">
+		<div style="padding: 10px 10px;">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<div class="mui-control-item mui-active" style="font-size: 16px;" id="store_house">盘点任务</div>
+				<div class="mui-control-item" style="font-size: 16px;" id="fresh">离线数据</div>
+			</div>
+		</div>
+		
+		<ul id="task" class=" mui-table-view mui-table-view-striped mui-table-view-condensed">
+	        <li id="loading" style="color:#AAA;text-align: center;">加载中...</li>
+	    </ul>
+	  
+	     <ul id="task2" class=" mui-table-view mui-table-view-striped mui-table-view-condensed">
+	        <!--<li id="loading" style="color:#AAA;text-align: center;">加载中...</li>-->
+	    </ul>
+	    <div id="off_line" class="off_line">
+			<h4 id="off_remind" align="center" >当前处于离线操作模式！</h4><br>
+			<h4 id="remind" align="center" style="display: none;">没有已下载的任务！</h4>
+		</div>
+	</div>	 
+	<div class="mui-hidden" style="color:#AAA;text-align: center;" id="no">没有数据</div>
+	
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<script src="../../../jxm/js/JxDao.js"></script>
+	<script src="SpTaskDown.js"></script>
+	<script src="SpQuery.js"></script>
+
+    <script type="text/javascript" charset="UTF-8">
+    
+      	mui.init();
+      	mui.plusReady(function(){
+      		var data_id='';
+      		var data_code='';
+      		var downscan_id='';//下载的任务的ID
+      		
+			//下载盘点任务
+			var downloadScan = function(){
+				document.getElementById("no").classList.add("mui-hidden");
+				document.getElementById("task").innerHTML = '';
+				document.getElementById("task2").innerHTML = '';
+//				alert('000')
+  				var hdcall=function(data){
+  					console.log(JSON.stringify(data));
+  					if (data.total == 0) {
+  						document.getElementById("no").classList.remove("mui-hidden");
+  					}
+  					data = data.root
+  					var html = "";
+	  				for(var i=0;i<data.length;i++){
+	  					console.log(JSON.stringify(data))
+						var scan_data=data[i].sp_scan__scan_date;
+//						console.log(scan_data)
+//		  				var taskname=data.substring(0,scan_data.indexOf(' '));
+		  				var dectask=scan_data.substr(0,10);
+//						html += "<li id='"+data[i].sp_scan__scan_id+"' data_code='"+data[i].sp_scan__scan_code
+						html += "<li id='"+data[i].sp_scan__scan_id+"' data_code='"+data[i].sp_scan__scan_code;
+								html += "' scan_user='"+data[i].sp_scan__scan_user+"' dectask='"+dectask+"' house_name='"+data[i].sp_scan__house_name;
+								html+="' class='mui-table-view-cell' ><div class='mui-table'><div class='mui-table-cell mui-col-xs-10'><h4 class='mui-ellipsis'>";
+								html+='盘点单号：'+data[i].sp_scan__scan_code+"</h4><h4>"+'盘点人：'+data[i].sp_scan__scan_user+"</h4><h4>"+'盘点仓库：'+data[i].sp_scan__house_name+"</h4><h4>"+'盘点日期：'+dectask+"</h4>";
+								html+="</div><div class='mui-table-cell mui-col-xs-4 mui-text-right'><span id='downstate-"+ data[i].sp_scan__scan_id +"' name='downloadscan' class='mui-badge mui-badge-warning'>未下载</span></div></div></li>";
+						var sql = 'SELECT scan_state,scan_id FROM sp_scan_det WHERE scan_id = ? GROUP BY scan_state';
+						var scan_id = data[i].sp_scan__scan_id;
+						var fun = function(json, list, target,index){ 
+							json=JSON.stringify(json);
+							json=JSON.parse(json);
+							
+							if(json.length>0){
+								document.getElementById('downstate-'+json[0].scan_id).innerHTML = '已下载';
+							}
+						};
+						JxDao.query(sql, [scan_id], fun);
+	  				}
+//	  				document.getElementById("loading").classList.add("mui-hidden");
+					if(html == ''){
+						document.getElementById("remind").setAttribute("style","display: block;")
+					}else{
+						document.getElementById("task").innerHTML = html;
+//						document.getElementById("task").classList.remove("mui-hidden");
+					}
+  				};
+//				var params = "funid=asset_scan&eventcode=readtask";
+				var where_sql = 'sp_scan.scan_status = 2';
+				var params = "funid=queryevent&eventcode=query_data&query_funid=sp_scan_ans&query_type=0&has_page=1&limit=500&"+
+				"where_sql="+where_sql;
+				jxm.post(params, hdcall, {masked:true});
+			};
+			document.getElementById('store_house').addEventListener('tap',function(){
+				
+				downloadScan();
+			})
+			downloadScan();
+			
+			//查看进度
+			mui("#task").on("tap","li",function(event){
+				var where="scan_id=?";
+				var scan_id=this.getAttribute("id");
+				var scan_id=this.getAttribute("id");
+				var house_name = this.getAttribute('house_name');
+				var scan_user=this.getAttribute("scan_user");
+				var dectask = this.getAttribute('dectask');
+				var scan_code=this.getAttribute("data_code");
+				var sql = 'SELECT scan_state FROM sp_scan_det WHERE ' + where + ' GROUP BY scan_state';
+				JxDao.query(sql, [scan_id], function(json, list, target,index){ 
+					json=JSON.stringify(json);
+					json=JSON.parse(json);
+					//没有下载任务
+					if(json.length==0){
+						jxm.confirm('您确定要下载该盘点任务吗？', function(){
+							record={"scan_id":scan_id,"scan_code":scan_code,"house_name":house_name,"scan_user":scan_user,"dectask":dectask};
+		      				SpTaskDown.onDisclose1(list, record, target, index);
+		      			});
+					}
+					//如果有下载任务直接进到明细列表
+					else{
+						JxDao.setParam("scan_code",scan_code);
+						JxDao.setParam("scan_id",scan_id,function(){window.location.href="sp-queryScan.html";})
+					}
+				});
+	  		});
+			
+      		//获取离线数据	
+      		document.getElementById("fresh").addEventListener("tap",function(event){
+      			document.getElementById("no").classList.add("mui-hidden");
+      			document.getElementById("task2").innerHTML = '';
+      			document.getElementById("task").innerHTML = '';
+      			var scan_id;
+      			var is_down;
+      			JxDao.getParam('spData',function(data){
+      				var data = JSON.parse(data);
+			      	scan_id = data.scanid;
+					
+					var sql = 'SELECT scan_state,scan_id FROM sp_scan_det WHERE scan_id = ? GROUP BY scan_state';
+	//				var scan_id = data[i].sp_scan__scan_id;
+					var fun = function(json, list, target,index){ 
+						console.log(scan_id+'----'+JSON.stringify(json));
+						
+						if (JSON.stringify(json) !="[]") {
+	//						mui.toast('---');
+							var html = '';
+	      					html += "<li id='"+scan_id+"' data_code='"+data.scancode;
+							html += "' class='mui-table-view-cell' ><div class='mui-table'><div class='mui-table-cell mui-col-xs-10'><h4 class='mui-ellipsis'>";
+							html += '盘点单号：'+data.scancode+"</h4><h4>"+'盘点人：'+data.scan_user+"</h4>"+'盘点仓库：'+data.house_name+"</h4><h4>"+'盘点日期：'+data.dectask+"</h4>";
+							html += "</div><div class='mui-table-cell mui-col-xs-4 mui-text-right'><span id='downstate-"+ scan_id +"' name='downloadscan' class='mui-badge mui-badge-warning'>已下载</span></div></div></li>";
+	//						"</div><div class='mui-table-cell mui-col-xs-4 mui-text-right'><span id='downstate-"+ scan_id +"' name='downloadscan' class='mui-badge mui-badge-warning'>"+'00'+"</span></div></div></li>";
+							document.getElementById("task2").classList.remove("mui-hidden");
+				      		document.getElementById("task2").innerHTML = html;
+				      	}
+						else{
+							document.getElementById("no").classList.remove("mui-hidden");
+						}
+					};
+					JxDao.query(sql, [scan_id], fun);
+      			})
+//    			var data = localStorage.getItem('spData');
+//	      		if (data == null) {
+//		      		return;
+//		      	}
+//		      	console.log('----'+data)
+//		      	var data = JSON.parse(data);
+//		      	scan_id = data.scanid;
+//				
+//				var sql = 'SELECT scan_state,scan_id FROM sp_scan_det WHERE scan_id = ? GROUP BY scan_state';
+////				var scan_id = data[i].sp_scan__scan_id;
+//				var fun = function(json, list, target,index){ 
+//					console.log(scan_id+'----'+JSON.stringify(json));
+//					
+//					if (JSON.stringify(json) !="[]") {
+////						mui.toast('---');
+//						var html = '';
+//    					html += "<li id='"+scan_id+"' data_code='"+data.scancode;
+//						html += "' class='mui-table-view-cell' ><div class='mui-table'><div class='mui-table-cell mui-col-xs-10'><h4 class='mui-ellipsis'>";
+//						html += '盘点单号：'+data.scancode+"</h4><h4>"+'盘点人：'+data.scan_user+"</h4>"+'盘点仓库：'+data.house_name+"</h4><h4>"+'盘点日期：'+data.dectask+"</h4>";
+//						html += "</div><div class='mui-table-cell mui-col-xs-4 mui-text-right'><span id='downstate-"+ scan_id +"' name='downloadscan' class='mui-badge mui-badge-warning'>已下载</span></div></div></li>";
+////						"</div><div class='mui-table-cell mui-col-xs-4 mui-text-right'><span id='downstate-"+ scan_id +"' name='downloadscan' class='mui-badge mui-badge-warning'>"+'00'+"</span></div></div></li>";
+//						document.getElementById("task2").classList.remove("mui-hidden");
+//			      		document.getElementById("task2").innerHTML = html;
+//			      	}
+//				};
+//				JxDao.query(sql, [scan_id], fun);
+				
+				//离线查看
+				mui("#task2").on("tap","li",function(event){
+					var where="scan_id=?";
+					var scan_id=this.getAttribute("id");
+					
+					var scan_code=this.getAttribute("data_code");
+					JxDao.setParam("scan_code",scan_code);
+					JxDao.setParam("scan_id",scan_id,function(){window.location.href="sp-queryScan.html";})
+				});
+			});
+      	});
+  	</script>
+</body>
+</html>

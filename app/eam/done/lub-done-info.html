@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>设备润滑实施-表单</title>
+    <link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css">
+    <style type="text/css">
+    	.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		.head-search {
+			padding-top: 1px;
+			height: 50px !important; 
+		}
+		.head-search button {
+			height: 48px; 
+			width: 18%;
+			border: none;
+			border-radius: 0 !important;
+			background-color:#f7f7f7;
+		}
+		.head-search input {
+			width:62%; 
+			height: 50px; 
+			border: none;
+		}
+    	.label-red {
+			padding-left: 5px;
+			color:red !important;
+		}
+		.text-disabled {
+			background-color: #EEEEEE;
+		}
+		.iconfont{
+			font-size:24px;
+		}
+		h5 {
+	    	font-size: 14px;
+	    	padding: 8px 5px 6px;
+	    	background-color: #efeff4;
+	    }
+	  
+		.btnfinish{
+			width: 50%;
+		}
+		#detailNum{
+			float: left;
+			padding-top: 20px;
+		}
+		
+		#save_item{
+			float: right !important;
+		}
+		
+		.footer{
+			position:static;
+			padding-top: 8px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		
+		#addPopover{
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 998;
+			background-color: rgba(0,0,0,.4);
+		}
+		.addContent{
+			position: absolute;
+			left:5%;
+			right:5%;
+			top: 35%;
+			/*margin:0 auto;*/
+		}
+		.listtip{
+			padding-top: 20px;
+			text-align: center;
+			background-color: white;
+			height: 100px;
+			color: #CCCCCC;
+		}
+    </style>
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary" id="head">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" id="title">设备润滑实施-表单</h1>
+	</header>
+	<nav class="mui-bar mui-bar-footer mui-hidden " id="footer">
+		<center>
+			<button type="button" id="start" class="mui-btn mui-btn-primary" style="width: 28%;font-size: 17px;">扫描实施</button>
+			<button type="button" id="end" class="mui-btn mui-btn-primary" style="width: 28%;font-size: 17px;" >结束实施</button>
+			<button type="button" id="save" class="mui-btn mui-btn-primary" style="width: 20%;font-size: 17px;" >保存</button>
+			<button type="button" id="btncommit" class="mui-btn mui-btn-primary" style="width: 20%;font-size: 17px;">提交</button>
+		</center>
+	</nav>
+	<div class="mui-content mui-hidden" id="mui-content">
+		<div style="">
+			
+			<!--<form class="mui-input-group">-->
+			<form class="mui-input-group">
+				
+				<div class="mui-input-row" > 
+					<label >润滑计划单号</label>
+					<input id='plan_code' type="text" readonly="readonly" style="background-color: #F2F2F2;height: 39px;margin-top: 1px;"/>
+					
+				</div>
+				<div class="mui-input-row mui-hidden" > 
+					<label >润滑定标编号</label>
+					<input id='din_code' type="text" readonly="readonly"/>
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>润滑标准名称</label>
+					<input id='std_name' type="text"  type="text" readonly="readonly" />
+				</div>
+				<div class="mui-input-row mui-hidden" > 
+					<label >润滑标准编号</label>
+					<input id='std_code' type="text" readonly="readonly"/>
+				</div>
+				
+				<div class="mui-input-row" > 
+					<label >设备编号</label>
+					<input id='device_code' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				
+				<div class="mui-input-row mui-hidden" >
+					<label>资产编号</label>
+					<input id='asset_code' type="text" readonly="readonly" />
+				</div>
+				<div class="mui-input-row" >
+					<label>设备名称</label>
+					<input id='device_name' type="text" readonly="readonly" style="background-color: #F2F2F2;" />
+				
+				</div>
+				<div class="mui-input-row" >
+					<label>设备型号</label>
+					<input id='device_type' type="text" readonly="readonly" style="background-color: #F2F2F2;" />
+				</div>
+				<div class="mui-input-row" >
+					<label>设备规格</label>
+					<input id='device_size' type="text" readonly="readonly" style="background-color: #F2F2F2;" />
+				</div>
+				<div class="mui-input-row" style="height: 60px;">
+					<label>地理区域</label>
+					<textarea id="site_name" rows="2" type="text" style="background-color: #F2F2F2;"></textarea>
+				</div>
+				<div class="mui-input-row" >
+					<label>安装地点</label>
+					<input id='install_site' type="text" readonly="readonly" style="background-color: #F2F2F2;" />
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>使用部门</label>
+					<input id='dept_name' type="text" readonly="readonly"/>
+					<input id="dept_id" type="hidden" />
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>使用二级单位</label>
+					<input id='sec_dept' type="text" readonly="readonly" />
+					<input id="sec_deptid" type="hidden" />
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>维保部门</label>
+					<input id='wdept_name' type="text" readonly="readonly" />
+					<input id="wdept_id" type="hidden"/>
+				</div>
+				<div class="mui-input-row rowlength mui-hidden" >
+					<label>维保部门二级单位</label>
+					<input id='wsec_dept' type="text" readonly="readonly"/>
+					<input id="wsec_deptid" type="hidden" />
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>润滑来源</label>
+					<input id='source' type="text"  readonly="readonly" placeholder=""/>
+				</div>
+				<div class="mui-input-row" >
+					<label>润滑负责人</label>
+					<input id='exe_user' type="text" readonly="readonly" style="background-color: #F2F2F2;" />
+					<input id="exe_userid" type="hidden" />
+				</div>
+				<div class="mui-input-row" >
+					<label>计划润滑时间</label>
+					<input id='std_date' type="text" readonly="readonly" style="background-color: #F2F2F2;" />
+				</div>
+				
+				<div class="mui-input-row rowlength" >
+					<label>实际开工时间<span class="label-red">*</span></label>
+					<input id='begin_date' type="text" readonly="readonly" style="background-color: #F2F2F2;height: 50px;" />
+				</div>
+				<div class="mui-input-row" >
+					<label>实际完工时间</label>
+					<input id='end_date' type="text" readonly="readonly" style="background-color: #F2F2F2;" />
+				</div>
+				<div class="mui-input-row rowlength" >
+					<label>实际润滑工时(h)</label>
+					<input id='plan_date' type="text" readonly="readonly" style="background-color: #F2F2F2;height: 50px;" />
+				</div>
+				<div class="mui-input-row rowlength" >
+					<label>是否有遗留问题</label>
+					
+					<select id="is_lose" disabled=ture style="background-color: #F2F2F2;height: 50px;margin-top: 0px;" type="text">
+							
+							<option value="0">否</option>
+							<option value="1">是</option>
+						</select>
+				</div>
+				
+				<div class="mui-input-row" style="height: 60px;">
+					<label>遗留问题描述</label>
+					<textarea name="leg_desc" id="leg_desc" readonly=ture rows="2" readonly="readonly" style="background-color: #F2F2F2;"></textarea>
+				</div>
+				<div class="mui-input-row" style="height: 100px;">
+					<label>备注</label>
+					<textarea id="memo" rows="4" type="text" readonly=ture style="background-color: #F2F2F2;"></textarea>
+				
+				</div>
+				
+			</form>
+			
+			<h5 id="itemNum"></h5>
+			<ul id="spare_list3" class="mui-table-view">
+			</ul>
+			
+			
+			<h5 id="laborNum"></h5>
+			<!--人员明细-->
+			<form class="mui-input-group">
+				<div class="mui-input-row " style="height: 50px;">
+					<!--<button type="button" id="newsp" class="mui-btn-primary mui-pull-right" style="margin-top:5px ;margin-left:5px;width: 50px;height:30px;" onclick="openwin()">新增</button>-->
+					<button type="button" id="import" class="mui-btn-primary mui-pull-right" style="margin-top:5px ;margin-right:10px;width: 25%;height:40px;font-size: 16px;">添加人员</button>
+				</div>
+			</form>
+			<div class="listtip" style="clear:both">
+				<p style="font-size: 16px;">点击添加人员按钮可添加人员明细</p>
+			</div>
+			<ul id="spare_list" class="mui-table-view mui-hidden">
+			</ul>
+			
+			<div style="height: 10px;"></div>
+			<div id="addPopover" class="mui-hidden">
+				<div class="addContent ">
+					<form class="mui-input-group">
+						<div class="mui-input-row">
+							<label>姓名</label>
+							<input id='labor_name' type="text" class="mui-input-clear" placeholder="请输入调拨数量">
+							<input id="labor_id" />
+						</div>
+						<div class="mui-input-row rowlength">
+							<label>润滑工时(h)<span class="label-red">*</span></label>
+							<input id='work_hours' type="number" class="mui-input-clear" placeholder="请输入工时">
+						</div>
+						<div class="mui-input-row">
+							<label>备注</label>
+							<input id='labor_memo' type="text" class="mui-input-clear" placeholder="请输入备注">
+						</div>
+						
+						<div style="background-color: #f7f7f7;">
+						<center>
+							<button type="button" id="btnok" class=" mui-btn-blue" style="width:30%;margin: 10px 10px;">确定</button>
+							<button type="button" id="btncancel" class=" mui-btn-blue" style="width:30%;margin: 10px 10px;">取消</button>
+						</center>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		
+	</div>
+	<div class="mui-loader" id="no">加载中...</div>
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<script src="../../../jxm/js/jxm-image-input.js"></script>
+	<!--<script src="../util/eam-util.js"></script>-->
+	<script src="../../../jxm/js/jxm-util.js"></script>
+	<script src="../../../jxm/js/combo-data.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	var plan_id = '';//主键
+      	var whereSql = '';//过滤条件
+      	var x;//保存删除前用到
+      	var Params;//明细保存删除用
+      	var rowIdx = '';//行号
+      	
+      	mui.plusReady(function(){
+//    		document.getElementById("mui-content").style.display="none";//隐藏
+//    		document.getElementById("footer").style.display="none";
+      		var self = plus.webview.currentWebview();
+      		plan_id = self.plan_id;
+      		whereSql = self.whereSql;
+//    		alert(orderid)
+      		readData();
+      		
+	    });
+	    
+	    var readData = function() {
+	    	
+	    	if (!plan_id || plan_id.length == 0) return;
+	    	
+	    	//读取数据
+	  		//基本信息发送请求
+	    	
+			var wheresql = 'pm_plan.plan_id = ?'
+			var params = "funid=queryevent&eventcode=query_data&query_funid=lub_done&query_type=0&has_page=1&limit=1"+
+			"&where_sql="+wheresql+"&where_type=string&where_value="+plan_id;
+//			
+				jxm.post(params, function(data){
+					console.log('-------'+JSON.stringify(data));
+		    		if (!data) return;
+	  				document.getElementById('mui-content').classList.remove('mui-hidden');
+	  				document.getElementById('footer').classList.remove('mui-hidden');
+//	  				document.getElementById("footer").style.display="";
+	  				
+					data = data.root;
+					
+					data = data[0];
+					
+					document.getElementById('plan_code').value = data.pm_plan__plan_code;
+	  				document.getElementById('din_code').value = data.pm_plan__din_code;
+	  				
+		  			document.getElementById('std_code').value = data.pm_plan__std_code;
+		  			document.getElementById('std_name').value = data.pm_plan__std_name;
+		  			document.getElementById('device_code').value = data.pm_plan__device_code;
+		  			document.getElementById('device_name').value = data.pm_plan__device_name;
+		  			document.getElementById('device_type').value = data.pm_plan__device_type;
+		  			document.getElementById('asset_code').value = data.pm_plan__asset_code;
+		  			document.getElementById('device_size').value = data.pm_plan__device_size;
+		  			document.getElementById('install_site').value = data.pm_plan__install_site;
+		  			document.getElementById('site_name').value = data.pm_plan__site_name;
+		  			document.getElementById('dept_name').value = data.pm_plan__dept_name;
+		  			document.getElementById('dept_id').value = data.pm_plan__dept_id;
+		  			
+		  			
+		  			document.getElementById('sec_dept').value = data.pm_plan__sec_dept;
+		  			document.getElementById('sec_deptid').value = data.pm_plan__sec_deptid;
+		  			document.getElementById('wdept_name').value = data.pm_plan__wdept_name;
+		  			document.getElementById('wdept_id').value = data.pm_plan__wdept_id;
+		  			document.getElementById('wsec_dept').value = data.pm_plan__wsec_dept;
+		  			document.getElementById('wsec_deptid').value = data.pm_plan__wsec_deptid;
+		  			
+		  			document.getElementById('end_date').value = data.pm_plan__end_date.substring(0,16);
+		  			document.getElementById('begin_date').value = data.pm_plan__begin_date.substr(0,16);
+		  			document.getElementById('std_date').value = data.pm_plan__std_date.substr(0,10);
+		  			document.getElementById('is_lose').value = data.pm_plan__is_lose;
+		  			document.getElementById('exe_user').value = data.pm_plan__exe_user;
+		  			
+		  			document.getElementById('exe_userid').value = data.pm_plan__exe_userid;
+		  			document.getElementById('leg_desc').value = data.pm_plan__leg_desc;
+		  			document.getElementById('memo').value = data.pm_plan__memo;
+		  			
+		  			var source = jxm.getComboText(ComboData.bysource, data.pm_plan__source);
+		  			document.getElementById('source').value = source;
+		  			document.getElementById('plan_date').value = jxm.date(data.pm_plan__plan_date);
+//		  			document.getElementById('plan_end_date').value = data.pm_plan__plan_end_date.substr(0,16);
+		  			
+		  			
+//		  			//如果有开始实施时间直接加载子表信息
+//		  			if (data.pm_plan__begin_date != 0) {
+//		  				document.getElementById('is_lose').disabled=false;
+//		  				document.getElementById('memo').readOnly=false;
+//		  				
+////		  				loadDet();
+////		    			lubDoneLabor();
+//		  				
+//		  			}
+//		  			var is_lose = document.getElementById('is_lose').value;
+//					
+//					if (is_lose == 1) {
+//						document.getElementById('leg_desc').readOnly=false;
+//			    	}
+
+					
+					//如果有开始实施时间
+		  			if (data.pm_plan__begin_date != 0) {
+		  				
+						document.getElementById("is_lose").setAttribute("style","background-color:white");
+						document.getElementById("memo").setAttribute("style","background-color:white");
+//						document.getElementById("exe_user").setAttribute("style","background-color:white");
+		  				document.getElementById('is_lose').disabled=false;
+		  				document.getElementById('memo').readOnly=false;
+		  			}
+		  			var is_lose = document.getElementById('is_lose').value;
+					//如果是否有遗留问题为是 遗留问题描述可编辑
+					if (is_lose == 1) {
+						document.getElementById('leg_desc').readOnly=false;
+						document.getElementById("leg_desc").setAttribute("style","background-color:white");
+			    	}
+						
+		  			loadDet();
+		    		lubDoneLabor();
+		    		
+				});
+				
+		    };
+	    	
+	    	//监听处理方式的选择值
+//			var select = document.getElementById('is_lose');
+//			select.onchange = function(){
+//				
+//	//			type=$(this).children('option:selected').val()
+//				
+//				var is_lose = document.getElementById('is_lose').value;
+//				//如果为是
+//				if (is_lose == 1) {
+//					document.getElementById('leg_desc').readOnly=false;
+//		    	}else{
+//		    		document.getElementById('leg_desc').readOnly=true;
+//		    		document.getElementById('leg_desc').value = '';
+//		    	}
+//		    }
+				
+			//监听处理方式的选择值
+			var select = document.getElementById('is_lose');
+			select.onchange = function(){
+				
+				var is_lose = document.getElementById('is_lose').value;
+				//如果为1可编辑
+				if (is_lose == 1) {
+					document.getElementById('leg_desc').readOnly=false;
+					document.getElementById("leg_desc").setAttribute("style","background-color:white");
+		    	}else{
+		    		document.getElementById('leg_desc').readOnly=true;
+		    		document.getElementById("leg_desc").setAttribute("style","background-color:#F2F2F2");
+		    		document.getElementById('leg_desc').value = '';
+		    	}
+		    	
+			}
+		    
+	  		//点击添加按钮导入工时明细
+	  		var seluserevent = 'select-user';
+	  		
+	  		document.getElementById('import').addEventListener('tap', function(){
+	  			
+	  			var begin_date = document.getElementById('begin_date').value;
+				if (begin_date.length == 0) {
+					mui.alert('请扫描设备确认开工时间后再操作！');
+					return false;
+				}
+	  			
+				console.log("key_id:----"+plan_id);
+	  			var wdept_id = document.getElementById('wdept_id').value;
+	  			var where_sql = "(sys_user.user_id not in(select user_id from pm_plan_labor where plan_id=?)) and (sys_user.dept_id like ? )";
+	    			
+				var href = "../../../app/util/sys-done-user.html";
+				var param = {callbackWinId:mui.currentWebview.id, callbackEvent:seluserevent, mutilsel:true,key_id:plan_id,where_sql:where_sql,wdept_id:wdept_id};
+				jxm.open(href,{extras:{selectParams:param}});
+	  		});
+	  		window.addEventListener(seluserevent, function(event){
+				var objs = event.detail.selectdata;
+			
+	  			//导入
+				var params = "funid=sys_user&destfunid=lub_done_labor&pagetype=import&eventcode=import&parentId="+plan_id;
+				
+				mui.each(objs, function(i, obj){
+	  				params += '&keyid='+obj.dataid;
+	  			});
+	//			var data = '';
+				jxm.post(params, function(data){
+					
+					console.log('导入：'+JSON.stringify(data));
+					//导入成功后加载明细
+					lubDoneLabor();
+//					location.reload();
+				});
+				
+				
+			});
+	  		
+  			//加载人员工时明细
+  			var lubDoneLabor = function(){
+  				
+		   		document.getElementById('spare_list').innerHTML='';
+		   		var wheresql = 'pm_plan_labor.plan_id = ?';
+				var params = "funid=queryevent&eventcode=query_data&query_funid=lub_done_labor&query_type=0&has_page=1&limit=500"+
+				"&where_sql="+wheresql+"&where_type=string&where_value="+plan_id;
+//				console.log('---'+params)
+				jxm.post(params, function(data){
+				console.log('人员明细：----'+JSON.stringify(data));
+				document.getElementById('laborNum').innerHTML = '人员明细 ('+data.total+')';
+				data = data.root;
+				if (data.length == 0) {
+					return false;
+				}
+				
+//				var objs = event.detail.selectdata;
+				//添加选中的人员明细明细
+				var li_html = document.getElementById('spare_list').innerHTML;
+				mui.each(data, function(n, obj){
+					var has = false;
+					mui('.mui-table-view li').each(function(){
+						var n = 0 ;
+		  				if (this.id == obj.rep_fault_labor__fault_labor_id) {
+		  					has = true;
+		  					return false;
+		  				}
+		  			});
+					
+					if (!has) {
+						li_html += '<li class="mui-table-view-cell" id="'+ obj.pm_plan_labor__plan_labor_id +
+						'" labor_name="'+obj.pm_plan_labor__user_name+
+						'" labor_id="'+obj.pm_plan_labor__user_id+
+						'" work_hours="'+obj.pm_plan_labor__plan_date+
+						'" memo="'+obj.pm_plan_labor__memo+'">';
+						li_html += ' <div class="mui-slider-right mui-disabled">';
+						li_html += '	<a class="mui-btn mui-btn-grey">删除</a>';
+						li_html += ' </div>';
+						li_html += '<div class="mui-table mui-slider-handle">';
+						li_html += '<div class="mui-table-cell mui-col-xs-10">';
+				    	li_html += '<p class="p2">姓名：'+ obj.pm_plan_labor__user_name+ '</p>';
+				    	li_html += '<p class="p2">润滑工时(h)：'+ jxm.date(obj.pm_plan_labor__plan_date)+ '</p>';
+				    	li_html += '<p class="p2">备注：'+ obj.pm_plan_labor__memo+ '</p>';
+						li_html += '</div>';
+						li_html += '<div class="mui-table-cell mui-col-xs-2 mui-text-right">';
+//						li_html += '<span class="mui-badge mui-badge-blue"  style="font-size: 15px;">1</span>';
+						li_html += '</div>';
+						li_html += '</div>';
+						li_html += '</li>';
+					}
+				});
+				if (li_html.length > 0) {
+					document.getElementById('spare_list').innerHTML = li_html;
+					document.getElementById('spare_list').classList.remove('mui-hidden');
+					document.body.querySelector('.listtip').classList.add('mui-hidden');
+				} 
+			})
+				
+		   	}
+  			
+  			//人员明细列表添加单击事件
+			mui("#spare_list").on('tap',".mui-table-view-cell",function(e){
+				
+				var begin_date = document.getElementById('begin_date').value;
+				if (begin_date.length == 0) {
+					mui.alert('请扫描设备确认开工时间后再操作！');
+					return false;
+				}
+				
+				var item = this;
+				var dataid = item.getAttribute("id");
+				
+				var addp = document.getElementById("addPopover");
+				addp.classList.remove("mui-hidden");
+				addp.setAttribute("data-id",dataid);
+				
+				document.getElementById("labor_name").value=item.getAttribute("labor_name");
+				document.getElementById("labor_id").value=item.getAttribute("labor_id");
+				document.getElementById("work_hours").value=jxm.date(item.getAttribute("work_hours"));
+				document.getElementById("memo").value=item.getAttribute("memo");
+			});
+			
+			//人员明细保存
+			document.getElementById("btnok").addEventListener("tap",function(){
+				
+				var plan_date = document.getElementById('plan_date').value;
+				var dataid = document.getElementById("addPopover").getAttribute("data-id");
+				var labor_id = document.getElementById("labor_id").value;
+				var labor_name = document.getElementById("labor_name").value;
+				var work_hours = document.getElementById("work_hours").value;
+				var memo = document.getElementById("labor_memo").value;
+//				mui.alert(memo)
+				var re = /^[0-9]+.?[0-9]*$/;   //判断字符串是否为数字     //判断正整数 /^[1-9]+[0-9]*]*$/  
+
+		    if (!re.test(work_hours)) {
+				
+		    	mui.alert('请输入数字！');
+		    	document.getElementById("work_hours").value = '';
+  				return false;
+		    }
+  			if (work_hours > plan_date) {
+  				mui.alert('人员工时不能大于润滑工时！');
+  				return false;
+  			}
+	  			var params = 'funid=lub_done_labor&eventcode=save_eg&pagetype=editgrid';
+				params += '&pfunid=lub_done&fkValue='+plan_id;
+				params += '&keyid='+dataid;
+				params += '&pm_plan_labor__user_name='+labor_name;
+				params += '&pm_plan_labor__plan_date='+work_hours;
+				params += '&pm_plan_labor__memo='+memo;
+				params += '&pm_plan_labor__plan_id='+plan_id;
+				params += '&pm_plan_labor__user_id='+labor_id;
+				params += '&pm_plan_labor__plan_labor_id='+dataid;
+				jxm.post(params,function(data){
+	//				console.log(data);
+					lubDoneLabor();
+					mui.toast('保存成功！');
+				})
+	  			mui.trigger(document.getElementById("btncancel"),"tap");
+			});
+			//取消
+			document.getElementById("btncancel").addEventListener("tap",function(){
+	//			document.getElementById("change_num").value="";
+				document.getElementById("addPopover").classList.add("mui-hidden");
+			});
+			
+			var btnArray = ['确认', '取消'];
+			//向左拖拽后显示删除图标，释放后自动删除该条人员明细
+			mui('#spare_list').on('slideleft', '.mui-table-view-cell', function(event) {
+				var begin_date = document.getElementById('begin_date').value;
+				if (begin_date.length == 0) {
+					mui.alert('请扫描设备确认开工时间后再操作！');
+					return false;
+				}
+				
+				var elem = this;
+				var keyid = event.target.getAttribute('id');
+				mui.confirm('确认删除该条明细？', '提示', btnArray, function(e) {
+					if (e.index == 0) {
+						
+						var params = 'funid=lub_done_labor&pagetype=editgrid&eventcode=delete_eg&keyid='+keyid;
+						
+						jxm.post(params, function(data){
+			   				console.log(JSON.stringify(data));
+			   				elem.parentNode.removeChild(elem);
+			   				mui.toast('删除成功！');
+			   				lubDoneLabor();//删除成功后重新加载人员明细信息
+			   			})
+					} else {
+						setTimeout(function() {
+							mui.swipeoutClose(elem);
+						}, 0);
+					}
+				});
+			});
+  			
+  			
+  			//加载设备润滑实施明细 
+  			var loadDet = function(){
+  				
+		   		document.getElementById('spare_list3').innerHTML='';
+		   		var wheresql = 'pm_plan_item.plan_id = ?';
+				var params = "funid=queryevent&eventcode=query_data&query_funid=lub_query_item&query_type=0&has_page=1&limit=500"+
+				"&where_sql="+wheresql+"&where_type=string&where_value="+plan_id;
+//				console.log('---'+params)
+				jxm.post(params, function(data){
+				console.log('实施明细：----'+JSON.stringify(data));
+				document.getElementById('itemNum').innerHTML = '设备润滑实施明细 ('+data.total+')';;
+				data = data.root;
+				if (data.length == 0) {
+					return false;
+				}
+				
+//				var objs = event.detail.selectdata;
+				//添加选中的人员明细明细
+				var li_html = document.getElementById('spare_list3').innerHTML;
+				mui.each(data, function(n, obj){
+					var has = false;
+					mui('.mui-table-view li').each(function(){
+						var n = 0 ;
+		  				if (this.id == obj.rep_fault_labor__fault_labor_id) {
+		  					has = true;
+		  					return false;
+		  				}
+		  			});
+					
+					if (!has) {
+						li_html += '<li class="mui-table-view-cell" id="'+ obj.pm_plan_item__plan_item_id +'">';
+						li_html += '<div class="mui-table mui-slider-handle">';
+						li_html += '<div class="mui-table-cell mui-col-xs-10">';
+				    	li_html += '<p class="p2">润滑部位：'+ obj.pm_plan_item__object_name+ '</p>';
+				    	
+						var lub_meth = jxm.getComboText(ComboData.lub_meth, obj.pm_plan_item__lub_meth);
+				    	li_html += '<p class="p2">润滑方式：'+ lub_meth+ '</p>';
+						li_html += '</div>';
+						li_html += '<div class="mui-table-cell mui-col-xs-2 mui-text-right">';
+						console.log('pm_plan_item__object_id--'+obj.pm_plan_item__object_id);
+						var complete = jxm.getComboText(ComboData.complete, obj.pm_plan_item__complete);
+//						alert(obj.pm_plan_item__complete)
+						li_html += '<span class="mui-badge mui-badge-blue"  style="font-size: 15px;">'+complete+'</span>';
+						li_html += '</div>';
+						li_html += '</div>';
+						li_html += '</li>';
+					}
+				});
+				if (li_html.length > 0) {
+					document.getElementById('spare_list3').innerHTML = li_html;
+//					document.getElementById('spare_list').classList.remove('mui-hidden');
+				} 
+			})
+				
+		   	}
+  			
+  			
+  			//实施明细列表添加单击事件
+			mui("#spare_list3").on('tap',".mui-table-view-cell",function(e){
+				var begin_date = document.getElementById('begin_date').value;
+				if (begin_date.length == 0) {
+					mui.alert('请扫描设备确认开工时间后再操作！');
+					return false;
+				}
+				var item = this;
+				var dataid = item.getAttribute("id");
+	//			mui.toast(dataid)
+				jxm.open('lub-done-item.html',{extras:{key_id:dataid,plan_id:plan_id,query_funid:'lub_done_item',pfunid:'lub_done',title:'设备润滑实施明细 '}});
+			});
+  			
+  			//扫描条码完成
+			var scanSucess = function(result){
+				console.log(result);
+				var device_code = document.getElementById('device_code').value;
+				var asset_code = document.getElementById('asset_code').value;
+				
+				//判断扫到的设备与单据的设备是否一样
+				if (result == device_code || result == asset_code) {
+					
+//					//加载子表信息
+//					loadDet();
+//					lubDoneLabor();
+		  			var begin_date = document.getElementById('begin_date').value;
+					//确定开始点检时间
+					if (!begin_date || begin_date.length == 0) {
+					
+//						var begin_date = jxm.getTodayTime();
+		  				
+		  				var params = 'funid=lub_done&eventcode=start';
+				
+						params += '&keyid='+plan_id;
+		//					alert(params)
+		
+						jxm.post(params,function(data){
+							console.log(JSON.stringify(data));
+							//开始实施后刷新页面
+							location.reload();
+//							document.getElementById('begin_date').value = jxm.getTodayTime2();
+//							document.getElementById('begin_date').value = data.pm_plan.begin_date.substr(0,16);
+			  				mui.toast('您已经开始实施了！');
+	//		  				document.getElementById('start_date').innerHTML = data.start_date;
+							
+						})
+						
+					}
+					else{
+		//   			mui.alert('开始点检时间已确认，不可再更改！');
+		     			mui.alert("开始实施时间已确认，不可再更改！");
+					}
+				}
+				else{
+					mui.alert("扫到的设备与单据的设备不符合！");
+				}
+			};
+  			//记录开始实施时间
+			var start = function(){
+				var begin_date = document.getElementById('begin_date').value;
+//		  			alert(start_date)
+				//有开始实施时间就不能再次扫码
+	  			if (begin_date.length > 0) {
+	  				
+	  				mui.alert("开始实施时间已确认，不可再更改！");
+	  			}
+	  			else
+	  			//没有开始实施时间就扫码
+	  			{
+		  			jxm.open('../../util/barcode_scan.html');
+		  			
+		  		}
+  			}
+  			var end = function(){
+  				
+  				var end_date = document.getElementById('end_date').value;
+  				
+  				var begin_date = document.getElementById('begin_date').value;
+  				
+  				if (begin_date.length == 0) {
+  					mui.alert("请扫描设备确认开工时间后再操作！");
+	  				return false;
+  				}
+//		  			alert(start_date)
+				
+	  			if (end_date.length > 0) {
+	  				
+	  				mui.alert("完工时间已确认，不可再更改！");
+	  				return false;
+	  			}
+	  			var params = 'funid=lub_done&eventcode=endDate';
+				
+				params += '&keyid='+plan_id;
+//					alert(params)
+
+				jxm.post(params,function(data){
+					console.log(JSON.stringify(data[0].end_date));
+					document.getElementById('end_date').value = data[0].end_date.substr(0,16);
+					document.getElementById('plan_date').value =jxm.date(data[0].plan_date);
+	  				mui.toast('完工时间已确定！');
+	  				
+				})
+  			}
+  			
+  			
+			//开始实施
+			document.getElementById('start').addEventListener('tap', start);
+			//完工
+			document.getElementById('end').addEventListener('tap',end);
+			//提交
+			document.getElementById('save').addEventListener('tap', function(){
+				
+	  			var begin_date  = document.getElementById('begin_date').value;
+	    		var end_date = document.getElementById('end_date').value;
+				var is_lose  = document.getElementById('is_lose').value;
+		    	var leg_desc  = document.getElementById('leg_desc').value;
+		    	var memo  = document.getElementById('memo').value;
+		    	
+		    	if (!begin_date || begin_date.length == 0) {
+					mui.alert('请扫描设备确认开工时间后再操作！');
+					return false;
+				}
+		    	if (!end_date || end_date.length == 0) {
+					mui.alert('请点击结束实施按钮确认完工时间后再操作！');
+					return false;
+				}
+		    	if (is_lose == 1 && leg_desc.length == 0) {
+		    		
+					mui.alert('是否有遗留问选择“是”时,遗留问题描述必须填写！');
+					return false;
+				}
+		    	
+		    	//分钟后面要补0
+		    	if (begin_date.length == 16) {
+		    		begin_date = begin_date+':00';
+		    	}
+		    	
+		    	var e = encodeURIComponent;
+				var params = 'funid=lub_done&eventcode=save&pagetype=form';
+				params += '&pm_plan__begin_date='+e(begin_date)+'&pm_plan__is_lose='+e(is_lose);
+				params += '&pm_plan__leg_desc='+e(leg_desc)+'&pm_plan__memo='+e(memo);
+				params += '&keyid='+plan_id;
+				params += '&dirtyfields=pm_plan.begin_date;pm_plan.is_lose;pm_plan.memo;pm_plan.leg_desc';
+				console.log("params:"+params);
+				
+	//			//保存成功后再提交
+				jxm.post(params, function(data){
+					mui.toast('保存成功！');
+				})
+	  		});
+			//提交
+			document.getElementById('btncommit').addEventListener('tap', function(){
+				
+				var begin_date  = document.getElementById('begin_date').value;
+	    		var end_date = document.getElementById('end_date').value;
+				var is_lose  = document.getElementById('is_lose').value;
+		    	var leg_desc  = document.getElementById('leg_desc').value;
+		    	var memo  = document.getElementById('memo').value;
+		    	
+		    	if (!begin_date || begin_date.length == 0) {
+					mui.alert('请扫描设备确认开工时间后再操作！');
+					return false;
+				}
+		    	if (!end_date || end_date.length == 0) {
+					mui.alert('请点击结束实施按钮确认完工时间后再操作！');
+					return false;
+				}
+		    	if (is_lose == 1 && leg_desc.length == 0) {
+		    		
+					mui.alert('是否有遗留问选择“是”时,遗留问题描述必须填写！');
+					return false;
+				}
+		    	
+		    	//分钟后面要补0
+		    	if (begin_date.length == 16) {
+		    		begin_date = begin_date+':00';
+		    	}
+		    	
+		    	var e = encodeURIComponent;
+				var params = 'funid=lub_done&eventcode=save&pagetype=form';
+				params += '&pm_plan__begin_date='+e(begin_date)+'&pm_plan__is_lose='+e(is_lose);
+				params += '&pm_plan__leg_desc='+e(leg_desc)+'&pm_plan__memo='+e(memo);
+				params += '&keyid='+plan_id;
+				params += '&dirtyfields=pm_plan.begin_date;pm_plan.is_lose;pm_plan.memo;pm_plan.leg_desc';
+				console.log("params:"+params);
+				
+	//			//保存成功后再提交
+				jxm.post(params, function(data){
+					
+					var params = 'funid=lub_done&eventcode=audit&pagetype=form';
+					params += '&auditvalue=1'+'&keyid='+plan_id;
+		//			alert(params)
+				
+					jxm.post(params, function(data){
+	//						
+						mui.toast('提交成功！');
+						//提交成功后返回列表页面
+						setTimeout(function(){
+							//获得列表界面的webview  
+						    var list = plus.webview.currentWebview().opener();  
+						    //触发列表界面的自定义事件（reload）,从而进行数据刷新  
+						    mui.fire(list, 'reload');
+							
+							mui.currentWebview.close('auto');
+						}, 500);
+					});
+				})
+				
+				
+			});
+			//自定义事件（refresh）,返回刷新数据  
+	  		window.addEventListener('loadDet', function(e) {  
+	            loadDet();
+	        });
+    </script>
+</body>
+</html>

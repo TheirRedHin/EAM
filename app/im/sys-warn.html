@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>工作预警</title>
+    <link rel="stylesheet" href="../../mui/css/icons-extra.css"/>
+    <link rel="stylesheet" href="../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../jxm/css/jxm.css">
+    <style>
+		.icon-left {
+			padding-top: 12px !important;
+		}
+		/*.icon{
+			margin-top: -1px !important;
+		}*/
+		/* app line */
+		.mui-media-object {
+			margin: 0 !important;
+			margin-right: 12px !important;
+		}
+		.mui-media-object .iconfont {
+			color: #00AAEF;
+			font-size: 26px;
+		}
+		.content{
+			height: 60px;
+			font-size: 17px;
+			padding-top: 20px !important;
+		}
+		/*.fun_icon{
+			padding-top: 20px !important;
+		}*/
+	</style>
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">工作预警</h1>
+		<span id="reload" class="mui-pull-right mui-icon mui-icon-reload"></span>
+		
+	</header>
+	<div class="mui-content" id="content">
+		<!--<ul id="main-list" class="mui-table-view"></ul>-->	
+		
+	</div>
+	<div class="mui-loader" id="no">加载中...</div>
+	<script src="../../mui/js/mui.min.js"></script>
+	<script src="../../mui/js/arttmpl.js"></script>
+	<script src="../../jxm/js/jxm.js"></script>
+	<script src="../util/eam-util.js"></script>
+    <script type="text/javascript" charset="UTF-8">
+    
+      	mui.init({  
+		    beforeback: function() {  
+			    //获得列表界面的webview  
+			    var list = plus.webview.currentWebview().opener();  
+			    //触发列表界面的自定义事件（refresh）,从而进行数据刷新  
+			    mui.fire(list, 'refresh');  
+			    //返回true，继续页面关闭逻辑  
+			    return true;  
+	    	}
+		});
+      
+      	mui.plusReady(function(){
+//    		alert('d')
+      		loadPage();	
+      		
+      		//刷新按钮
+      		document.getElementById("reload").addEventListener("tap", function(){
+      			
+				location.reload();
+			});
+      		
+//    		window.addEventListener('reload2', function(){
+////				alert(5);
+//			
+//				loadPage();
+//	
+//			});
+      	});
+//    	var count = 0;
+      	var loadPage = function (){
+  		
+//			var hdcall = function(data){};
+        	
+        	var params = "funid=app_warn&eventcode=cntwarn";
+        	jxm.post(params, function(data){
+        		
+//	        	data = eval("(" + data + ")");
+				console.log('---工作预警---'+JSON.stringify(data));
+//				data = data.data;
+				if (JSON.stringify(data) == '{}') {
+					document.getElementById('no').innerHTML = '没有数据';
+					return;
+				}
+				data = data.root;
+//				mui.alert('---'+JSON.stringify(data.fun_id))
+				
+				
+				//更新工作预警标记数量
+//				var imwin = plus.webview.getWebviewById("im-main");
+//				mui.fire(imwin, 'updateNum', {checknum:data.length});
+				
+				var html = '';
+	  			
+	  			//遍历上报提醒
+	  			for (var i in data) {
+	  				html += '<ul class="mui-table-view">'
+			       	html += '<li class="mui-table-view-cell mui-media mui-media-icon msg-menu jxm-fun" whereSql="'+data[i].whereSql+'">';
+			       	html += '<a class="mui-navigate-right content" href="'+'../eam/'+data[i].page_url+'">';
+//				    html += '<div class="mui-media-body mui-media-title" style="font-size: 17px;">'+data[i].warn_name+'('+data[i].warn_num+')'+'</div>';
+					
+					html +=  '<div class="mui-media-object mui-pull-left">';
+					html += '<i class="icon mui-icon-extra mui-icon-extra-lamp" style="color: #00AAEF;"></i>';
+					html += '</div>'	
+					html += '<div class="mui-media-body mui-media-title" style="font-size: 17px;padding-top: 2px">'+data[i].warn_name+'('+data[i].warn_num+')'+'</div>';
+				
+					
+					html += '</a></li></ul>';
+	  				
+				}
+  				document.getElementById('content').innerHTML = html;
+  				document.getElementById('no').innerHTML = '';
+//				jxm.loadhint(mainlist, (html.length>0));
+  				
+				mui(".mui-table-view").on('tap','.jxm-fun',function(e){
+		      		var href = this.getElementsByTagName('a')[0].getAttribute('href');
+		      		var whereSql = this.getAttribute("whereSql");
+//		      		alert(id);
+//		      		jxm.open('rep-orders-info.html',{extras:{fault_id:fault_id}});
+		      		jxm.open(href,{extras:{whereSql:whereSql}});
+		      	});
+	        	
+        		
+        		
+//				console.log('---工作预警---'+JSON.stringify(data));
+//				updateNum('sys-warn', data.root[0].warn_num);
+			});
+  		}
+      	//自定义事件（refresh）,返回刷新数据  
+  		window.addEventListener('refresh2', function(e) {  
+            location.reload();  
+        }); 
+    </script>
+</body>
+</html>

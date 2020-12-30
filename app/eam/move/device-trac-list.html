@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>设备调拨-列表</title>
+    <link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css">
+    <style type="text/css">
+    	.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		.head-search {
+			padding-top: 1px;
+			height: 50px !important; 
+		}
+		.head-search button {
+			height: 48px; 
+			width: 18%;
+			border: none;
+			border-radius: 0 !important;
+			background-color:#f7f7f7;
+		}
+		.head-search input {
+			width:62%; 
+			height: 50px; 
+			border: none;
+			font-size: 14px;
+		}
+		.iconfont, .mui-icon-search{
+			font-size:24px;
+		}
+		.mui-table-view:before {
+			height: 0;
+		}
+		/*.loader{
+			padding-top: 200px;
+		}*/
+		.search{
+			position: static !important;
+			
+			margin-top: 43px !important;
+		}
+		.content{
+			
+			margin-top:93px !important;
+		}
+		.list{
+			margin-top: -44px !important;
+			
+		}
+		
+    </style>
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">设备调拨-列表</h1>
+		<a class="mui-icon mui-pull-right icon-header" id="add">
+			<i class="iconfont icon-xinjian1"></i>
+		</a>
+		
+	</header>
+	
+	<div class="search">
+		<form class="mui-input-group">
+			<div id="" class="mui-input-row head-search">
+				<button type="button" id="btnscan" class="mui-icon iconfont icon-saoma1 mui-pull-left" style=""></button>
+				<input type="text" id="keyword" class="mui-input" style="font-size: 16px;" placeholder="输入调拨单号"/>
+				<button type="button" id="btnquery" class="mui-icon mui-icon-search mui-pull-right" style=""></button>
+			</div>
+		</form>
+	</div>
+	
+	<div id="pullrefresh" class="mui-content mui-scroll-wrapper content">
+		<div  class="mui-scroll mui-indexed-list list" id="list">
+			<!--数据列表-->
+			<ul id="main-list" class="mui-table-view mui-table-view-striped mui-table-view-condensed"></ul>
+			<div class="mui-loader loader">加载中...</div>
+		</div>
+	</div>
+	
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<!--<script src="../util/eam-util.js"></script>-->
+	
+	<script src="../../../jxm/js/jxm-util.js"></script>
+	<script src="../../../jxm/js/combo-data.js"></script>
+	<!--<script type="text/javascript" src="http://down.hovertree.com/jquery/jquery-1.12.3.min.js"></script>-->
+	<script type="text/javascript" charset="UTF-8">
+      mui.init({
+      		
+      		pullRefresh: {
+				container: '#pullrefresh',
+				up: {
+					contentrefresh: '正在加载...',
+					contentnomore:'没有更多数据',
+					callback: pullupRefresh
+				}
+			}
+		});
+	    var whereSql = '';
+	    var keyid = '';
+		/**
+		 * 上拉加载具体业务实现
+		 */
+		function pullupRefresh() {
+			
+			//10  limit参数  作为获取的列表条数
+			
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh((10*count>total)); 
+			if (count.length == 0) {
+				return;
+			}
+			loadOrderList();
+			
+			count++;
+		}
+		
+		if (mui.os.plus) {
+			mui.plusReady(function() {
+				
+		
+				
+				if (plus.os.name == 'Android') {
+//					$('#pullrefresh').removeClass("content");
+					document.getElementById('pullrefresh').classList.remove('content');
+				}
+				setTimeout(function() {	
+					count = 0;
+					total = 0;
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				}, 300);
+
+			});
+		} else {
+			mui.ready(function() {
+				mui('#pullrefresh').pullRefresh().pullupLoading();
+			    count = 0;
+			    total = 0;
+			});
+		}
+	    
+  		//加载工单列表
+  		
+  		var loadOrderList = function(keyword){
+  			contentnomore = '';
+  			var obtain = function(){
+  				//滚动到顶部
+				mui('#pullrefresh').pullRefresh().scrollTo(0, 0, 1000);
+				
+	      	}
+//	      	获取焦点
+			var barcode = document.getElementById('keyword');
+	      	barcode.addEventListener("focus",obtain);
+  			
+			var mainlist = document.getElementById('main-list');
+  			var html = '';
+    		//	var data='';
+  			var hdcall = function(data) {
+  				
+//				data = eval("(" + data + ")");
+  				console.log(JSON.stringify(data))
+//				data = data.data;
+				total= data.total;
+				
+				data = data.root;
+				if (total < 11) {
+					mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
+				}
+  				if (!data || data.length == 0) {
+  					
+  					if(keyword!=undefined){
+						mui.alert('不存在该单据！');
+//						jxm.loadhint(mui('ul')[0], false);
+						
+					}	
+					if (total == 0) {
+  						jxm.loadhint(mainlist, false);
+  					}
+  					return;
+  				}
+				if(keyword!=undefined){
+//					mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
+					var barcode = document.getElementById('keyword');
+					barcode.blur();
+					mui('ul')[0].innerHTML='';
+					if (keyword.length > 0) {
+						count='';
+					}
+				}
+  				
+  				var orderStates = ComboData.audit;
+  				
+  				//遍历工单记录
+  				mui.each(data, function(i, obj){
+					var record = obj;
+//					console.log(record.rep_fault__rep_code);
+					html += '<li class="mui-table-view-cell" id="'+ record.device_vary__vary_id +'">';
+				    html +=    '<div class="mui-table">';
+				    html +=    '<div class="mui-table-cell mui-col-xs-10">';
+				    html +=    '	<p class="p2">'+'调拨单号：'+ record.device_vary__vary_code+ '</p>';
+				    html +=    '	<p class="p2">'+'调出经办人：'+ record.device_vary__out_user+ '</p>';
+				    html +=    '	<p class="p2">'+'调出部门：'+ record.device_vary__dept_name+ '</p>';
+				    html +=    '    <p class="p2">'+'调入部门：'+record.device_vary__wdept_name+ '</p>';
+				    
+				    html +=    '</div>';
+				    html +=    ' <div class="mui-table-cell mui-col-xs-2 mui-text-right">';
+				    
+				    var stateText = jxm.getComboText(orderStates, record.device_vary__auditing);
+				    var stateColor = '';
+//				    alert(record.rep_fault__auditing_b)
+				  
+				    if (stateText == '未提交') {
+				    	stateColor = 'mui-badge-warning';
+				    } else if (stateText == '实施') {
+				    	stateColor = 'mui-badge-primary';
+				    } else if (stateText == '完工') {
+				    	stateColor = 'mui-badge-royal';
+				    } else if (stateText == '关闭') {
+				    	stateColor = 'mui-badge-success';
+				    }
+				    
+				    html +=    '     <span class="mui-badge '+ stateColor +'">'+ stateText +'</span>';
+				    html +=    '  </div>';
+				    html +=    '</div>';
+				    html +=    ' </li>';
+				    
+				    
+  				});
+				mui('ul')[0].innerHTML += html;
+				
+  				jxm.loadhint(mui('ul')[0], (html.length>0));
+  				
+  			};
+  			var startNum = count*10;
+			
+			var e = encodeURIComponent;
+			var wheresql = '';
+			var wheretype = '';
+			var wherevalue = '';
+			
+			//上拉
+  			if (keyword == undefined) {
+				console.log(8)
+  				wheresql = 'auditing = 0';
+  				var params = "funid=queryevent&eventcode=query_data&query_funid=device_trans&query_type=0&has_page=1&limit=10&start="+startNum;
+  				params += "&where_sql="+wheresql;
+  				
+  			}
+  			//查询
+  			else{
+  				console.log(keyword);
+  				wheresql = "auditing = 0 and "
+  				+e('(device_vary.vary_code like ? or device_vary.dept_name like ? or device_vary.wdept_name like ? or device_vary.reasons like ?)');
+  				wheretype = 'string;string;string;string';
+  				wherevalue = e('%'+keyword+'%;%'+keyword+'%;%'+keyword+'%;%'+keyword+'%');
+  				var params = "funid=queryevent&eventcode=query_data&query_funid=device_trans&query_type=0&has_page=1&limit=50&start=0";
+				params += "&where_sql="+wheresql+"&where_type="+wheretype+"&where_value="+wherevalue;
+  			}
+//			params += jxm.getUserId();
+			console.log(params);
+			jxm.post(params, hdcall);
+			
+				
+			//点击工单列表查看工单信息
+	  		mui('.mui-indexed-list ul').on('tap', 'li', function(){
+//	  		alert(0)
+				var vary_id = this.getAttribute("id");
+				jxm.open('device-trac.html',{extras:{vary_id:vary_id}});
+	  		});	
+  		};
+  		
+  		//加载数据
+		mui.ready(function(){
+			//loadOrderList();
+		});
+		window.addEventListener('reload', function(){
+			loadOrderList();
+		});
+		
+//  		点击查询按钮，根据查询关键字过滤工单
+		document.getElementById('btnquery').addEventListener('tap', function(){
+			
+			var keyword = document.getElementById('keyword').value;
+//			alert(keyword)
+//			count='';
+//			if (keyword.length == 0) {
+//				mui.alert('请输入调拨单号或扫调出部门！');
+//				return false;
+//			}
+			loadOrderList(keyword);
+		});
+		
+		//回车后查询
+		document.getElementById('keyword').addEventListener('keypress', function(event){
+			
+			if (event.keyCode == 13) {
+//				alert(event.keyCode)
+	  			//阻止默认回车键事件
+				event.preventDefault();
+				mui.trigger(document.getElementById('btnquery'),'tap');
+			} 
+			return false;
+		});
+		
+		
+		//扫描条码完成
+		var scanSucess = function(result){
+			document.getElementById('keyword').value = result;
+			loadOrderList(result);
+		};
+		
+		//扫描资产条码
+		document.getElementById('btnscan').addEventListener('tap', function(){
+			////滚动到顶部
+			mui('#pullrefresh').pullRefresh().scrollTo(0, 0, 1000);
+			jxm.open('../../util/barcode_scan.html');
+		});
+  		
+  		document.getElementById('add').addEventListener('tap',function(){
+  			jxm.open('device-trac.html');
+  		});
+  		
+  		//自定义事件（refresh）,返回刷新数据  
+  		window.addEventListener('reload', function(e) {  
+            location.reload();  
+        });
+    </script>
+</body>
+</html>

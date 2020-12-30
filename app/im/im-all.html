@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>消息-含及时消息</title>
+    <link rel="stylesheet" href="../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../jxm/css/jxm.css">
+    <style>
+		.icon-left {
+			padding-top: 12px !important;
+		}
+		.mui-title {/*挡住了左上角的图标*/
+			left: 50px !important;
+		}
+		
+		input[type=search] {
+			height: 38px;
+			font-size: 15px;
+			line-height: 30px !important;
+			padding-top: 10px;
+			padding-left: 40px !important;
+			margin:5px 0 !important;
+			background-color:#efeff4;
+			border-radius: 0;
+		}
+		input[type=search]:focus {
+			background-color:#fff;
+		}
+		.mui-search.mui-active:before {
+			padding-left: 5px;
+			padding-top: 8px;
+		}
+		.mui-search .mui-icon-clear {
+			margin-top: 8px;
+		}
+		.mui-search .mui-placeholder {
+			top:8px;
+		}
+		
+		.mui-table-view:after {
+			height: 0;
+		}/*解决最后一条消息不出现两条线*/
+		.mui-table-view-cell.msg-item:last-child {
+			height: 69px;
+		}
+		.mui-media-object .iconfont {
+			color: #fff;
+			font-size: 28px;
+		}
+		.mui-media-object .mui-icon {
+			color: #fff;
+		}
+		.mui-media-object {
+			margin: 0 !important;
+			margin-right: 10px !important;
+			height:48px !important;
+			line-height:48px !important;
+			width:48px !important;
+			max-width:48px !important;
+		}
+		.mui-media-green {
+			background-color:limegreen;
+		}
+		.mui-media-blue {
+			background-color:darkturquoise;
+		}
+		.mui-media-grey {
+			background-color:lavender;
+		}
+		.mui-media-warn {
+			background-color:orange;
+		}
+		.mui-media-grey .mui-icon {
+			padding: 10px;
+		}
+		.mui-table-view .mui-table-view-cell.mui-media-icon .mui-media-body:after {
+			left: 0px;
+			background-color:#D8D8D8;
+		}
+		.mui-media-title {
+			padding: 12px 0;
+		}
+		.mui-media-msg {
+			padding: 2px 0;
+		}
+		
+		.mui-media-object .mui-badge {
+			position: absolute;
+			top: 6px;
+			left: 48px;
+			vertical-align: top;
+		}
+		.face {
+			width: 50px !important;
+			height: 50px !important;
+			line-height: 50px !important;
+		    max-width: 50px !important;
+		}
+		
+		.fast-plus {
+			position: fixed;
+			bottom: 15px;
+			right: 15px;
+			width: 60px;
+			height: 60px;
+			z-index: 20;
+			padding: 5px 4px;
+			border-radius: 30px;
+			background-color:gold;/*coral*/
+		}
+		.fast-plus .mui-icon {
+			color: #fff;
+			font-weight: bold;
+			font-size: 50px;
+		}
+		
+		.daiban {
+			padding: 2px 4px;
+		}
+		.gonggao {
+			padding: 5px 10px;
+		}
+		.tongzhi {
+			padding: 5px 10px;
+		}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav1 mui-bar-primary mui-hidden">
+		<a class="mui-icon mui-pull-left icon-left"><i class="iconfont icon-saoma1"></i></a>
+		<h1 id="title" class="mui-title">消息</h1>
+		<span id="im-chat.html" class="mui-icon mui-pull-right">
+			<i class="iconfont icon-xiaoxi1"></i>
+		</span>
+	</header>
+	<div class="mui-content">
+
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell mui-media mui-media-icon msg-menu" id="sys-warn">
+				<a class="mui-navigate-right">
+					<div class="mui-media-object mui-btn-danger mui-pull-left tongzhi">
+						<span class="mui-icon"><i class="iconfont icon-tongzhi"></i></span>
+					</div>
+					<span class="mui-badge mui-badge-danger mui-hidden">0</span>
+					<div class="mui-media-body mui-media-title" style="font-size: 17px;padding-top: 16px;">
+						工作预警
+					</div>
+				</a>
+			</li>
+			
+			<li class="mui-table-view-cell mui-media mui-media-icon msg-menu" id="im-check">
+				<a class="mui-navigate-right">
+					<div class="mui-media-object mui-media-green mui-pull-left daiban">
+						<span class="mui-icon"><i class="iconfont icon-daiban"></i></span>
+					</div>
+					<span class="mui-badge mui-badge-danger mui-hidden">0</span>
+					<div class="mui-media-body mui-media-title" style="font-size: 17px;padding-top: 16px;">
+						待办审批
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-media-icon msg-menu" id="im-news">
+				<a class="mui-navigate-right">
+					<div class="mui-media-object mui-media-blue mui-pull-left gonggao">
+						<span class="mui-icon"><i class="iconfont icon-gonggao"></i></span>
+					</div>
+					<span class="mui-badge mui-badge-danger mui-hidden">0</span>
+					<div class="mui-media-body mui-media-title" style="font-size: 17px;padding-top: 16px;">
+						公告
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-media-icon msg-menu" id="im-notify">
+				<a class="mui-navigate-right">
+					<div class="mui-media-object mui-media-warn mui-pull-left tongzhi">
+						<span class="mui-icon"><i class="iconfont icon-tongzhi"></i></span>
+					</div>
+					<span class="mui-badge mui-badge-danger mui-hidden">0</span>
+					<div class="mui-media-body mui-media-title" style="font-size: 17px;padding-top: 16px;">
+						通知
+					</div>
+				</a>
+			</li>
+		</ul>
+		<script id='msg-template' type="text/template">
+			<% for(var key in pools){ 
+				var item = pools[key]; 
+				item.face = faceurl(key);
+			%>
+				<li class="mui-table-view-cell mui-slider-handle mui-media mui-media-icon msg-item" msg-sender="<%=(key)%>" msg-name="<%=(item.nickname)%>">
+					<div class="mui-media-object mui-pull-left mui-media-grey">
+					<% if(item.face) { %>
+						<img class="face" src="<%=(item.face)%>">
+					<% } else { %>
+						<span class="mui-icon"><i class="iconfont icon-wo-k"></i></span>
+					<% } %>
+					<% if(item.num > 0) { %>
+						<span class="mui-badge mui-badge-danger"><%=(item.num)%></span>
+					<% } %>
+					</div>
+					<p class="mui-pull-right"><%=(time(item.last.date))%></p>
+					<div class="mui-media-body mui-media-msg">
+						<%=(item.nickname)%>
+						<p class='mui-ellipsis'>
+						<% if(item.last.type=='text') { %>
+							<%=( item.last.content|| '&nbsp;&nbsp;') %>
+						<% } else if(item.last.type=='image' ) { %>
+							[图片]
+						<% } else if(item.last.type=='sound' ) { %>
+							[语音]
+						<% } else if(item.last.type=='file' ) { %>
+							[文件]
+						<% } %>
+						</p>
+					</div>
+				</li>
+			<% } %>
+		</script>
+		<ul id='msg-list' class="mui-table-view">
+			<!--<div class="mui-inloader">加载消息...</div>-->
+		</ul>
+		
+		<div class="mui-input-row mui-search mui-hidden">
+			<input type="search" class="mui-input-clear" placeholder="搜索">
+		</div>
+		<div class="fast-plus mui-hidden">
+			<span class="mui-icon mui-icon-plusempty"></span>
+		</div>
+	</div>
+	
+	<!-- mui -->
+	<script src="../../mui/js/mui.min.js"></script>
+	<script src="../../mui/js/arttmpl.js"></script>
+    <!-- ytx sdk -->
+	<script src="../../lib/ytx/MD5.min.js"></script>
+	<script src="../../lib/ytx/base64.min.js"></script>
+    <!--<script src="../../lib/ytx/ytx-web-im-min-new.js"></script>-->
+    <!-- jxm -->
+   	<script src="../../jxm/js/jxm.js"></script>
+	<script src="../../jxm/js/jxm-im.js"></script>
+	<script src="../../jxm/js/jxm-util.js"></script>
+	<script src="../../jxm/js/jxm-update.js"></script>
+	    
+	<script type="text/javascript" charset="UTF-8">
+		
+		mui.init();
+		var refrashtime = '';
+		var chatwin;
+		mui.plusReady(function() {
+			
+			//应用重新从后台恢复到前台时 
+			document.addEventListener("resume", onResume, false);  
+			function onResume() {      
+				qrymsg(); 
+            	querynum();
+            	app_warn();
+			}  
+			
+			//获取上报任务刷新间隔
+			var params = "funid=queryevent&eventcode=query_data&query_funid=sys_var&query_type=0&has_page=1&limit=1000";
+			params += "&where_sql="+'var_code=?'+"&where_type=string&where_value=app.warn.refrashtime";
+//			params += jxm.getUserId();
+			
+			console.log(params);
+			jxm.post(params, function(data){
+				
+				data = data.root;
+				refrashtime = data[0].sys_var__var_value;
+				//刷新
+				setInterval(function(){
+					
+					app_warn();
+					
+				}, refrashtime);
+//				console.log('----'+refrashtime);
+			});
+			
+			
+		});
+		
+		
+		 //后台查询待办消息数量
+        var querynum = function(){
+//      	mui.toast('--querynum-');
+        	var hdcall = function(data){
+        		console.log('----'+JSON.stringify(data))
+        		if (!data) return;
+        		updateNum('im-check', data.checknum);
+				updateNum('im-news', data.newsnum);
+        	};
+        	var params = "funid=wf_assign&eventcode=checknum";
+        	jxm.post(params,hdcall,{hasmask:false});
+        };
+        querynum();
+		
+		//从后台查询预警数量
+        var app_warn = function(){
+        	
+        	var params = "funid=app_warn&eventcode=cntwarn";
+        	
+        	params += '&user_id='+jxm.getUserId();
+			console.log(params);
+			mui.ajax(jxm.getURL(true), {
+				data:params,
+				dataType:'jsonp',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:5000,//超时时间设置为5秒；
+				success:function(data){
+					data = eval("(" + data + ")");
+		        	
+					data = data.data;
+//					
+					data = data.root;
+					console.log('---工作预警---'+JSON.stringify(data));
+					if (data != undefined) {
+						updateNum('sys-warn', data.length);
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					
+					mui.toast('连接服务器失败！');
+				}
+			});
+        	
+        };
+		//工作预警
+		app_warn();
+		
+		var qrymsg = function(){
+//			mui.toast('--qrymsg-');
+			//获取通知条数
+			var params = "funid=oa_msg&eventcode=qrymsg";
+			jxm.post(params, function(data){
+				if (!data || data.length == 0) {
+					return;
+				}
+				updateNum('im-notify', data.length);
+			});
+		}
+		
+		qrymsg();
+		
+		//更新消息数量
+		window.addEventListener('updateNum', function(event){
+			var num = event.detail.checknum;
+			updateNum('im-check', num);
+		});
+		//更新公告数量
+		window.addEventListener('updateNum1', function(event){
+			var num = event.detail.checknum;
+			updateNum('im-news', num);
+		});
+		//更新通知数量
+		window.addEventListener('updateNum2', function(event){
+			var num = event.detail.checknum;
+			updateNum('im-notify', num);
+		});
+//		
+         //查看工作预警
+        document.getElementById("sys-warn").addEventListener("tap", function(){
+        	
+       		var id = "sys-warn.html";
+        	jxm.open(id,{extras:{id:id}});
+        	
+        });
+        
+        //查看待办提醒、公告
+        var imcheck = document.getElementById("im-check");
+        imcheck.addEventListener("tap", function(){
+        	var id = "check-msg.html";
+        	jxm.open(id);
+        });
+        var imnews = document.getElementById("im-news");
+        imnews.addEventListener("tap", function(){
+        	jxm.open("../oa/oa-news-list.html");
+        });
+        //查看通知
+        document.getElementById("im-notify").addEventListener("tap", function(){
+        	jxm.open("notify-list.html");
+        });
+        
+        //更新消息数量
+        var updateNum = function(name, num) {
+        	if (typeof(num) == "undefined") return;
+			var check = document.getElementById(name).querySelector('.mui-badge');
+			check.innerHTML = num;
+			if (num && num > 0) {
+				check.classList.remove('mui-hidden');
+			} else {
+				check.classList.add('mui-hidden');
+			}
+        };
+        //自定义事件（refresh）,返回刷新数据  
+  		window.addEventListener('refresh', function(e) {  
+            location.reload();  
+        }); 
+        
+        //自定义事件（refresh）,返回刷新数据  
+		window.addEventListener('refresh2', function(e) {  
+			app_warn();
+            qrymsg(); 
+            querynum();
+        }); 
+    </script>
+</body>
+</html>

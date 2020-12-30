@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css"/>
+    <style>
+    	.footer{
+			position:static;
+			padding-top: 8px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+    </style>
+</head>
+<body>
+	
+	<header class="mui-bar mui-bar-nav mui-bar-primary">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">备件盘点</h1>
+	</header>
+	
+	<div class="mui-content">
+	
+		<div style="margin: 0px;"> 
+			<form class="mui-input-group">
+				<input id="scan_id" type="hidden">
+				<input id="scan_det_id" type="hidden">
+				<div class="mui-input-row">
+					<label>来源类型</label>
+					<input id='src_type' type="text" class="mui-input" placeholder=""  readOnly=true style="background-color: #F2F2F2;margin-top: 1px;">
+					
+				</div>
+				<div class="mui-input-row ">
+					<label>备件编号</label>
+					<input id='sp_code' type="text" class="mui-input" placeholder=""  readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<div class="mui-input-row ">
+					<label>备件名称</label>
+					<input id='sp_name' type="text" class="mui-input" placeholder=""  readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<!--<div class="mui-input-row ">
+					<label>备件型号</label>
+					<input id='sp_type' type="text" class="mui-input" placeholder=""  readOnly=true style="background-color: #F2F2F2;">
+				</div>-->
+				<div class="mui-input-row" style="height: 50px;">
+					<label>备件型号</label>
+					<textarea id="sp_type" rows="2" type="text"  readOnly=true style="background-color: #F2F2F2;"></textarea>
+				</div>
+				<div class="mui-input-row">
+					<label>品牌</label>
+					<input id='brand' type="text" class="mui-input"  readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<div class="mui-input-row">
+					<label>计量单位</label>
+					<input id='unit' type="text" class="mui-input"  readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				
+				<div class="mui-input-row ">
+					<label>库存数量</label>
+					<input id='store_num' type="text" class="mui-input" placeholder=""  readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<div class="mui-input-row">
+					<label>盘点数量<span class="label-red">*</span></label>
+					<input id='scan_num' type="number" class="mui-input">
+				</div>
+				<div class="mui-input-row">
+					<label>仓库名称</label>
+					<input id='house_name' type="text" class="mui-input"  readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<div class="mui-input-row">
+					<label>库位名称</label>
+					<input id='stock_name' type="text" class="mui-input"  readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<input id='ismore' type="hidden" value="0" />
+		</form>
+		
+		</div>
+		<div class="mui-content-padded" style="margin-top: 25px;"> 
+			<!--<button id="scan" type="button" class="mui-btn mui-btn-success mui-pull-left" style="width:33%; padding:10px 0;">
+				<i class="iconfont icon-saoma" style="font-size: 20px;"></i>&nbsp;扫码</button>
+				<button id='ensurescan' type="button" class="mui-btn mui-btn-primary mui-pull-right" style="width:33%; padding:10px 0;">确定</button>-->
+			<!--<button id='ensurescan' type="button" class="mui-btn mui-btn-primary mui-pull-right" style="width:33%; padding:10px 0;">确定</button>-->
+		
+		<!--<nav class="mui-bar-footer footer" id="footer">
+				<center>
+				<button id="scan" type="button" class="mui-btn mui-btn-primary mui-btn-success  mui-btn-outlined" style="width:24%; padding:10px 0;">
+				<i class="iconfont icon-saoma" style="font-size: 20px;"></i>&nbsp;扫码</button>
+				<button type="button" id="ensurescan" class="mui-btn mui-btn-primary mui-btn-outlined" style="width: 24%;font-size: 17px;">保存</button>
+				</center>
+			</nav>-->
+			<div class="mui-content-padded" style="margin-top: 20px;height:50px"> 
+			<button id="scan" type="button" class="mui-btn mui-btn-success mui-pull-left " style="width:48%; padding:10px 0;height: 100%;" >
+				<i class="iconfont icon-saoma" style="font-size: 20px;"></i>&nbsp;扫码</button>
+			<button id='ensurescan' type="button" class="mui-btn mui-btn-primary mui-pull-right" style="width:48%; padding:10px 0;height: 100%;">保存</button>
+		</div>
+		
+		</div>
+	</div>
+	
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<script src="../../../jxm/js/JxDao.js"></script>
+	<script src="SpTaskDown.js"></script>
+	<script src="SpQuery.js"></script>
+	<script src="SpScan.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+      	mui.init({  
+		    beforeback: function() {  
+			    //获得列表界面的webview  
+			    var list = plus.webview.currentWebview().opener();  
+			    //触发列表界面的自定义事件（refresh）,从而进行数据刷新  
+			    mui.fire(list, 'refresh');  
+			    //返回true，继续页面关闭逻辑  
+			    return true;  
+	    	}
+		});
+		var device_code = '';
+		var scan_det_id = '';
+		var isOpen;
+		mui.plusReady(function(){
+      		var self = plus.webview.currentWebview();
+      		device_code = self.device_code;
+      		scan_det_id = self.scan_det_id;
+      		//手动盘点进来
+			if (device_code != undefined && scan_det_id != undefined) {
+				SpScan.onCodeAction(device_code,scan_det_id);
+			}
+			
+			//正常、盘盈、盘亏
+			if (scan_det_id != undefined && device_code == undefined) {
+				console.log(scan_det_id+'---'+scan_det_id);
+				SpScan.onCodeAction(device_code,scan_det_id);
+			}
+	    });
+	    //判断输入的盘点数量是否为数字
+		var scan_num = document.getElementById('scan_num');
+//		scan_num.addEventListener("blur",function(){
+//				
+//				var re = /^[0-9]+.?[0-9]*$/;
+//				if (!re.test(scan_num.value)) {
+//			　　　　	alert("请输入数字");
+//			　　　　	scan_num.value = "";
+//			
+////					scan_num.focus();
+//			　　　　	return false;
+//				}
+//		});
+		
+		//扫描条码完成
+		var scanSucess = function(result){
+//			device_code = result;
+			SpScan.onCodeAction(result,scan_det_id);
+		};
+		
+  		//加载时自动聚焦在资产条码框里
+//		document.getElementById('device_code').focus();
+  		
+  		//扫描资产条码
+  		document.getElementById('scan').addEventListener('tap', function(){
+  			isOpen = 1;
+  			jxm.open('../../util/barcode_scan.html');
+  		});
+  		//盘亏
+//		document.getElementById('loss').addEventListener('tap',function(){
+////			alert(device_code.length)
+//				if (device_code.length != 0) {
+//					AssetScan.onScanOk('loss');
+//				}else{
+//					mui.alert('盘亏时才可操作！')
+//				}
+//				
+//				
+//		});
+  		
+  		//盘盈
+//		document.getElementById('more').addEventListener('tap',function(){
+//				device_code = '';
+//				AssetScan.addAsset();
+//		});
+  		
+		//点击保存后，
+		document.getElementById('ensurescan').addEventListener('tap',function(){	
+			
+			//判断输入的盘点数量是否为数字
+			var scan_num = document.getElementById('scan_num');
+//		scan_num.addEventListener("blur",function(){
+				
+				var re = /^[0-9]*[1-9][0-9]*$/;
+				if (!re.test(scan_num.value)) {
+			　　　　	alert("盘点数量为必填项，请输入正确的格式！");
+			　　　　	scan_num.value = "";
+			
+					scan_num.focus();
+			　　　　	return false;
+				}
+				SpScan.onScanOk();	
+				isOpen = 1;
+				if (device_code != undefined && scan_det_id != undefined) {
+					//保存后延迟打开相机
+					setTimeout(function(){
+						jxm.open('../../util/barcode_scan.html');
+					}, 1000);
+				}
+				
+				if (device_code == undefined && scan_det_id == undefined) {
+					//保存后延迟打开相机
+					setTimeout(function(){
+						jxm.open('../../util/barcode_scan.html');
+					}, 1000);
+				}
+				
+		});
+		
+		//获取scan_id
+		JxDao.getParam('scan_id',function(data){
+			document.getElementById('scan_id').value = data;
+		});
+		
+		JxDao.getParam('scanswitch',function(data){
+			//不启用扫码
+			if(data=="false"){
+				document.getElementById('scan').style.display = 'none';
+				document.getElementById('ensurescan').marginRight = '20%';
+				document.getElementById('ensurescan').width = '60%';
+			}
+		});
+		
+		//回车键事件
+		document.getElementById('sp_code').addEventListener('keypress',function(e){
+			if(e.keyCode==13){ 
+				//阻止默认回车键事件
+				e.preventDefault();
+//				document.getElementById('device_code').focus();
+				var device_code=document.getElementById('sp_code').value;
+				AssetScan.onCodeAction(device_code,'');
+				
+			}  
+		});
+			
+    </script>
+    
+</body>
+</html>

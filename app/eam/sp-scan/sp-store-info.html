@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>待处理异常台账</title>
+	<link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css">
+    <style type="text/css">
+   		.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		.head-search {
+			padding-top: 1px;
+			height: 50px !important; 
+		}
+		.head-search button {
+			height: 48px; 
+			width: 18%;
+			border: none;
+			border-radius: 0 !important;
+			background-color:#f7f7f7;
+		}
+		.head-search input {
+			width:62%; 
+			height: 50px; 
+			border: none;
+		}
+    	.label-red {
+			padding-left: 5px;
+			color:red !important;
+		}
+		.text-disabled {
+			background-color: #EEEEEE;
+		}
+		.iconfont{
+			font-size:24px;
+		}
+		h5 {
+	    	font-size: 14px;
+	    	padding: 8px 5px 6px;
+	    	background-color: #efeff4;
+	    }
+	    /*.footer{
+			position:static;
+			padding-top: 8px;
+			padding-left: 20px;
+			padding-right: 20px;
+			margin: auto;
+		}*/
+		.btnfinish{
+			/*padding-left: 20px;
+			
+			padding-right: 20px;*/
+			width: 50%;
+			
+		}
+		
+		
+		.order-det {
+			width: 100%;
+			background-color: #FFFFFF;
+		}
+		.order-det tr th {
+			color: #929292;
+			font-weight: normal;
+			text-align: left;
+			padding: 6px 15px;
+			line-height: 30px;
+			text-align: center;
+			/*background-color:#f7f7f7 !important;*/
+		}
+		.order-det tr td  {
+			padding: 8px;
+			font-size: 15px;
+			line-height: 30px;
+			text-align: center;
+		}
+		.order-det tr td:first-child  {
+			padding-left: 15px;
+		}
+		.order-det tr:nth-of-type(even) {
+			background-color:#f7f7f7;
+		}
+		.btncommit{
+			/*padding-left: 20px;
+			
+			padding-right: 20px;*/
+			width: 70%;
+			
+		}
+		.footer{
+			position:static;
+			/*padding-top: 8px;*/
+			/*padding-left: 20px;
+			padding-right: 20px;*/
+		}
+		
+    </style>
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary" id="head">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" id="title">仓库库存汇总表-表单</h1>
+	</header>
+	
+	<div class="mui-content " id="mui-content">
+		<div>
+			<form class="mui-input-group">
+				<div class="mui-input-row " > 
+					<label >备件品种编码</label>
+					<input id='sp_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;margin-top: 1px;"/>
+				
+				</div>
+				<div class="mui-input-row" >
+					<label>备件品种名称</label>
+					<input id='sp_name' type="text"  type="text"  readonly="readonly" style="background-color: #F2F2F2; "/>
+				</div>
+				<!--<div class="mui-input-row" >
+					<label>备件型号</label>
+					<input id='sp_type' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>-->
+				<div class="mui-input-row" style="height: 60px;">
+					<label>备件型号</label>
+					<textarea name="sp_type" id="sp_type" readonly="readonly" rows="2" readonly="readonly" style="background-color: #F2F2F2;"></textarea>
+				</div>
+				<div class="mui-input-row" >
+					<label>其他编号</label>
+					<input id='other_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row " > 
+					<label >品牌</label>
+					<input id='brand' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" > 
+					<label >计量单位</label>
+					<input id='unit' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>制造厂</label>
+					<input id='factory' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>库存总数量</label>
+					<input id='store_num' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row rowlength" >
+					<label>含税总金额(元)</label>
+					<input id='tax_money' type="text" readonly="readonly" style="background-color: #F2F2F2;height: 50px;"/>
+				</div>
+				<div class="mui-input-row rowlength" > 
+					<label >不含税总金额(元)</label>
+					<input id='notax_money' type="text"  readonly="readonly" style="background-color: #F2F2F2;height: 50px;"/>
+				</div>
+				
+				<div class="mui-input-row" >
+					<label>仓库名称</label>
+					<input id='house_name' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>部门名称</label>
+					<input id='dept_name' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>二级单位</label>
+					<input id='sec_dept' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+			</form>
+		</div>
+		
+	</div>
+	
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	
+      	var key_id = '';
+//    	var whereSql = '';
+      	
+      	mui.plusReady(function(){
+      		
+      		var self = plus.webview.currentWebview();
+      		
+      		key_id = self.key_id;
+      		
+      		readData(key_id);
+      		
+	    });
+	    //加载表单数据
+	    var readData = function(key_id) {
+//	    	alert(orderid)
+	    	if (!key_id || key_id.length == 0) return;
+	    	
+	    	//基本信息发送请求
+			var wheresql = 'v_sp_store_house.sp_id = ?';
+			var params = "eventcode=query_data&funid=queryevent&pagetype=grid&query_funid=sp_store_house&limit=1"+
+			"&where_sql="+wheresql+"&where_type=string&where_value="+key_id;
+			
+			console.log('---'+params)
+			jxm.post(params, function(data){
+				if (!key_id || key_id.length == 0) return;
+	    	
+	    		//读取数据
+		    	if (!data) return;
+		    	
+  				console.log('-------'+JSON.stringify(data));
+				data = data.root;
+				data = data[0];
+				document.getElementById('sp_code').value = data.v_sp_store_house__sp_code;
+	  			document.getElementById('sp_name').value = data.v_sp_store_house__sp_name;
+	  			document.getElementById('sp_type').value = data.v_sp_store_house__sp_type;
+	  			document.getElementById('other_code').value = data.v_sp_store_house__other_code;
+	  			document.getElementById('brand').value = data.v_sp_store_house__brand;
+	  			document.getElementById('unit').value = data.v_sp_store_house__unit;
+	  			document.getElementById('factory').value = data.v_sp_store_house__factory;
+	  			document.getElementById('store_num').value = data.v_sp_store_house__store_num;
+	  			document.getElementById('tax_money').value = data.v_sp_store_house__tax_money;
+	  			document.getElementById('notax_money').value = data.v_sp_store_house__notax_money;
+				document.getElementById('house_name').value = data.v_sp_store_house__house_name;
+	  			document.getElementById('dept_name').value = data.v_sp_store_house__dept_name;
+				document.getElementById('sec_dept').value = data.v_sp_store_house__sec_dept;
+	  			
+			});
+		};
+		
+		
+		
+    </script>	
+</body>
+</html>

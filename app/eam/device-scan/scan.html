@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css"/>
+    <style>
+    	.footer{
+			position:static;
+			padding-top: 8px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+    </style>
+</head>
+<body>
+	
+	<header class="mui-bar mui-bar-nav mui-bar-primary">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">设备盘点</h1>
+	</header>
+	
+	<div class="mui-content">
+	
+		<div style="margin: 0px;"> 
+			<form class="mui-input-group">
+				<input id="scan_id" type="hidden">
+				<div class="mui-input-row">
+					<label>设备编号<span class="label-red mui-hidden" id="codeSpan">*</span></label>
+					<input id='device_code' type="text" class="mui-input" placeholder="" readOnly=true style="background-color: #F2F2F2;margin-top: 1px;">
+					
+				</div>
+				<div class="mui-input-row ">
+					<label>设备名称<span class="label-red">*</span></label>
+					<input id='device_name' type="text" class="mui-input" placeholder="" readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<div class="mui-input-row ">
+					<label>设备型号</label>
+					<input id='device_type' type="text" class="mui-input" placeholder="" readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<div class="mui-input-row">
+					<label>资产编码</label>
+					<input id='asset_code' type="text" class="mui-input" readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<div class="mui-input-row">
+					<label>标签编码</label>
+					<input id='label_code' type="text" class="mui-input" readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<div class="mui-input-row">
+					<label>部门名称</label>
+					<input id='dept_name' type="text" class="mui-input" readOnly=true style="background-color: #F2F2F2;">
+					<input id='dept_id' type="hidden" />
+				</div>
+				<div class="mui-input-row">
+					<label>安装地点</label>
+					<input id='install_site' type="text" class="mui-input" readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				
+				<div class="mui-input-row">
+					<label>管理状态</label>
+						<select id='use_state' class="mui-btn-block" disabled="disabled" style="background-color: #F2F2F2;">
+								<!--<option value="0">在库</option>-->
+								<option value="1">在用</option>
+								<option value="2">停用</option>
+								<option value="3">封存</option>
+								<option value="4">闲置</option>
+								<option value="5">出租</option>
+								<option value="6">报废</option>
+								<option value="7">变卖</option>
+								<option value="8">盘亏</option>
+								<option value="9">退租</option>
+						</select>
+				</div>
+				<!--<div class="mui-input-row rowlength" >
+					<label>备注</label>
+					<input id='memo' type="text" class="mui-input" readOnly=true style="background-color: #F2F2F2;">
+				</div>-->
+			
+				<input id='ismore' type="hidden" value="0" />
+		</form>
+		
+				<h5 style="margin-left: 2%; font-size: 17px;">备注<span class="label-red mui-hidden" id="span">*</span></h5>
+					<textarea id='memo' type="text" class="" rows="3" readOnly=true style="background-color: #F2F2F2;">
+					</textarea>
+		</div>
+		<!--<div class="mui-content-padded" style="margin-top: 25px;"> 
+			<button id="scan" type="button" class="mui-btn mui-btn-success mui-pull-left" style="width:33%; padding:10px 0;">
+				<i class="iconfont icon-saoma" style="font-size: 20px;"></i>&nbsp;扫码</button>
+				<button id='ensurescan' type="button" class="mui-btn mui-btn-primary mui-pull-right" style="width:33%; padding:10px 0;">确定</button>
+			<button id='ensurescan' type="button" class="mui-btn mui-btn-primary mui-pull-right" style="width:33%; padding:10px 0;">确定</button>-->
+		
+		<nav class="mui-bar-footer footer" id="footer">
+				<center>
+				<!--<button type="button" id="import" class="mui-btn mui-btn-primary mui-btn-outlined" style="width: 32%;font-size: 17px;">导入</button>-->
+				<button id="scan" type="button" class="mui-btn mui-btn-primary mui-btn-success " style="width:24%; padding:10px 0;">
+				<i class="iconfont icon-saoma" style="font-size: 20px;"></i>&nbsp;扫码</button>
+				<button type="button" id="more" class="mui-btn mui-btn-primary" style="width: 24%;font-size: 17px;" >盘盈</button>
+				<button type="button" id="loss" class="mui-btn mui-btn-primary" style="width: 24%;font-size: 17px;">盘亏</button>
+				<button type="button" id="ensurescan" class="mui-btn mui-btn-primary" style="width: 24%;font-size: 17px;">保存</button>
+				</center>
+			</nav>
+		
+		<!--</div>-->
+	</div>
+	
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<script src="../../../jxm/js/JxDao.js"></script>
+	<script src="../../../jxm/js/NfcUtil.js"></script>
+	
+	<script src="TaskDown.js"></script>
+	<script src="AssetQuery.js"></script>
+	<script src="AssetScan.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+      	mui.init({  
+		    beforeback: function() {  
+			    //获得列表界面的webview  
+			    var list = plus.webview.currentWebview().opener();  
+			    //触发列表界面的自定义事件（refresh）,从而进行数据刷新  
+			    mui.fire(list, 'refresh');  
+			    //返回true，继续页面关闭逻辑  
+			    return true;  
+	    	}
+		});
+//		function load(){
+//		    var use_state = document.getElementById("use_state");
+//		    use_state.selectedIndex = -1;
+//		}
+		var device_code = '';
+		var readOnly = '';
+		var weipan = '';
+		var isOpen;
+		mui.plusReady(function(){
+      		var self = plus.webview.currentWebview();
+      		device_code = self.device_code;
+      		readOnly = self.readOnly;
+      		weipan = self.weipan;
+      		//手动盘点，除盘盈外
+			if (device_code != undefined && readOnly == undefined) {
+				
+				document.getElementById("memo").readOnly=false;
+				document.getElementById("memo").setAttribute("style","background-color:white");
+				document.getElementById('span').classList.remove('mui-hidden');
+//				mui.toast('')
+				assetScan(device_code);
+				
+			}
+			
+			//盘盈状态进来后，隐藏所有按钮
+			if (device_code != undefined && readOnly != undefined) {
+				
+//				document.getElementById("memo").readOnly=false;
+//				document.getElementById("memo").setAttribute("style","background-color:white");
+				document.getElementById('footer').classList.add('mui-hidden');
+//				mui.toast('')
+				assetScan(device_code);
+				
+			}
+      		isOpen = 0;
+      		//启动NFC功能
+      		if (plus.os.name == 'Android') {
+			
+				NfcUtil.initNfc(function(result){
+					assetScan(result);
+					isOpen = 2;
+					assetDisable();
+//					document.getElementById("memo").readOnly=true;
+//					document.getElementById('span').classList.add('mui-hidden');
+//					document.getElementById("memo").setAttribute("style","background-color:#F2F2F2");
+				})
+			}
+      	});
+		
+		//扫描条码完成
+		var scanSucess = function(result){
+			assetScan(result);
+		};
+		var assetScan = function(result){
+//			mui.toast(result)
+			AssetScan.onCodeAction(result,'');
+		}
+  		//加载时自动聚焦在资产条码框里
+//		document.getElementById('device_code').focus();
+  		
+  		//扫描资产条码
+  		document.getElementById('scan').addEventListener('tap', function(){
+  			isOpen = 1;
+  			//设置全部字段不可编辑
+  			assetDisable();
+  			jxm.open('../../util/barcode_scan.html');
+  		});
+  		//盘亏
+  		document.getElementById('loss').addEventListener('tap',function(){
+//			alert(device_code.length)
+				var device_code = document.getElementById('device_code').value;
+				
+				if (device_code.length != 0 && isOpen != 2) {
+					var memo = document.getElementById('memo').value;
+					if (memo.length == 0) {
+						if (isOpen!=1) {
+							mui.alert('手动盘点时备注为必填！');
+							return false;
+							
+						}
+					}
+					if (isOpen == 1) {
+						mui.alert('请选择具体的设备记录进行盘亏操作！');
+						return false;
+					}
+					AssetScan.onScanOk('loss');
+					
+					document.getElementById("memo").readOnly=true;
+					document.getElementById("memo").setAttribute("style","background-color:#F2F2F2");
+				}else{
+//					if (isOpen != 1) {
+						mui.alert('请选择具体的设备记录进行盘亏操作！');
+//					}
+				}
+  		});
+  		
+  		//盘盈
+  		document.getElementById('more').addEventListener('tap',function(){
+  				isOpen = 2;
+  				document.getElementById('span').classList.add('mui-hidden');
+  				device_code = '';
+  				AssetScan.addAsset();
+  		});
+  		
+		//点击保存后
+		document.getElementById('ensurescan').addEventListener('tap',function(){
+//			mui.toast('---'+isOpen)
+//			return;
+			var memo = document.getElementById('memo').value;
+			var code = document.getElementById('device_code').value;
+			if (memo.length == 0 && device_code != undefined && code.length != 0 && isOpen == 0) {
+				mui.alert('手动盘点时备注为必填！');
+				return false;
+			}
+			AssetScan.onScanOk();		
+			
+			//点击扫码获取数据保存后延迟打开相机
+			setTimeout(function(){
+				
+				if (isOpen == 1) {
+					jxm.open('../../util/barcode_scan.html');
+				}	
+				
+					//未盘保存后延迟打开相机
+				if (weipan != undefined && isOpen != 2) {
+					isOpen = 1;
+					setTimeout(function(){
+						jxm.open('../../util/barcode_scan.html');
+					}, 300);
+					
+				}
+			}, 1000);
+			
+			
+		});
+		
+		//获取scan_id
+		JxDao.getParam('scan_id',function(data){
+			var scan_id = document.getElementById('scan_id').value = data;
+//			mui.toast('--'+scan_id);
+		});
+		
+		JxDao.getParam('scanswitch',function(data){
+			//不启用扫码
+			if(data=="false"){
+				document.getElementById('scan').style.display = 'none';
+				document.getElementById('ensurescan').marginRight = '20%';
+				document.getElementById('ensurescan').width = '60%';
+			}
+		});
+		
+		//回车键事件
+		document.getElementById('device_code').addEventListener('keypress',function(e){
+			if(e.keyCode==13){ 
+				//阻止默认回车键事件
+				e.preventDefault();
+//				document.getElementById('device_code').focus();
+				var device_code=document.getElementById('device_code').value;
+//				AssetScan.onCodeAction(device_code,'');
+				
+			}  
+		});
+		
+		//设置全部字段不可编辑
+		var assetDisable = function(){
+			document.getElementById('device_name').readOnly=true;
+			document.getElementById('device_name').setAttribute("style","background-color:#F2F2F2");
+			document.getElementById("device_code").readOnly=true;
+			document.getElementById('device_code').setAttribute("style","background-color: #F2F2F2;margin-top: 1px;");
+			
+			document.getElementById('device_type').readOnly=true;
+			document.getElementById('device_type').setAttribute("style","background-color:#F2F2F2");
+			document.getElementById("asset_code").readOnly=true;
+			document.getElementById('asset_code').setAttribute("style","background-color:#F2F2F2");
+			
+			document.getElementById('label_code').readOnly=true;
+			document.getElementById('label_code').setAttribute("style","background-color:#F2F2F2");
+			document.getElementById("dept_name").readOnly=true;
+			document.getElementById('dept_name').setAttribute("style","background-color:#F2F2F2");
+			
+			document.getElementById('install_site').readOnly=true;
+			document.getElementById('install_site').setAttribute("style","background-color:#F2F2F2");
+			document.getElementById("use_state").setAttribute("disabled","disabled");
+			document.getElementById("use_state").setAttribute("style","background-color:#F2F2F2");
+			
+			document.getElementById("memo").readOnly=true;
+			document.getElementById('span').classList.add('mui-hidden');
+			document.getElementById("memo").setAttribute("style","background-color:#F2F2F2");
+			
+			document.getElementById("device_code").readOnly=true;
+			document.getElementById('codeSpan').classList.add('mui-hidden');
+			document.getElementById("device_code").setAttribute("style","background-color:#F2F2F2");
+		}
+    </script>
+    
+</body>
+</html>

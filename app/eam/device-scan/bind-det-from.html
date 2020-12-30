@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css"/>
+    <style>
+    	.footer{
+			position:static;
+			padding-top: 8px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+    </style>
+</head>
+<body>
+	
+	<header class="mui-bar mui-bar-nav mui-bar-primary">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">绑定标签</h1>
+	</header>
+	<nav class="mui-hidden mui-bar mui-bar-footer" id="footer">
+		<center>
+			<button id="delete" type="button" class="mui-btn mui-btn-block mui-btn-primary btncommit" style="font-size: 17px;width: 50%;">清除标签编码</button>
+		</center>
+	</nav>
+	<div class="mui-content">
+	
+		<div style="margin: 0px;"> 
+			<form class="mui-input-group">
+				<input id="bind_id" type="hidden">
+				<input id="bind_det_id" type="hidden">
+				<div class="mui-input-row">
+					<label>设备编号<span class="label-red mui-hidden" id="codeSpan">*</span></label>
+					<input id='device_code' type="text" class="mui-input" placeholder="" readOnly=true style="background-color: #F2F2F2;margin-top: 1px;">
+					
+				</div>
+				<div class="mui-input-row ">
+					<label>设备名称<span class="label-red">*</span></label>
+					<input id='device_name' type="text" class="mui-input" placeholder="" readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<div class="mui-input-row ">
+					<label>设备型号</label>
+					<input id='device_type' type="text" class="mui-input" placeholder="" readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<div class="mui-input-row">
+					<label>资产编码</label>
+					<input id='asset_code' type="text" class="mui-input" readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				<div class="mui-input-row">
+					<label>标签编码</label>
+					<input id='label_code' type="text" class="mui-input" >
+				</div>
+				<div class="mui-input-row">
+					<label>使用部门</label>
+					<input id='dept_name' type="text" class="mui-input" readOnly=true style="background-color: #F2F2F2;">
+					<input id='dept_id' type="hidden" />
+				</div>
+				<div class="mui-input-row">
+					<label>安装地点</label>
+					<input id='install_site' type="text" class="mui-input" readOnly=true style="background-color: #F2F2F2;">
+				</div>
+				
+				<div class="mui-input-row">
+					<label>管理状态</label>
+						<select id='use_state' class="mui-btn-block" disabled="disabled" style="background-color: #F2F2F2;">
+								<!--<option value="0">在库</option>-->
+								<option value="1">在用</option>
+								<option value="2">停用</option>
+								<option value="3">封存</option>
+								<option value="4">闲置</option>
+								<option value="5">出租</option>
+								<option value="6">报废</option>
+								<option value="7">变卖</option>
+								<option value="8">盘亏</option>
+								<option value="9">退租</option>
+						</select>
+				</div>
+		</form>
+		
+		</div>
+		<!--<div class="mui-content-padded" style="margin-top: 25px;"> 
+			<button id="scan" type="button" class="mui-btn mui-btn-success mui-pull-left" style="width:33%; padding:10px 0;">
+				<i class="iconfont icon-saoma" style="font-size: 20px;"></i>&nbsp;扫码</button>
+				<button id='ensurescan' type="button" class="mui-btn mui-btn-primary mui-pull-right" style="width:33%; padding:10px 0;">确定</button>
+			<button id='ensurescan' type="button" class="mui-btn mui-btn-primary mui-pull-right" style="width:33%; padding:10px 0;">确定</button>-->
+		
+		<nav class="mui-bar-footer footer" id="footer2">
+				<center>
+				<button type="button" id="ensurescan" class="mui-btn mui-btn-primary" style="width: 24%;font-size: 17px;">保存</button>
+				</center>
+			</nav>
+		
+		<!--</div>-->
+	</div>
+	
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<script src="../../../jxm/js/JxDao.js"></script>
+	<script src="../../../jxm/js/NfcUtil.js"></script>
+	
+	<script src="TaskDown2.js"></script>
+	<script src="AssetQuery2.js"></script>
+	<script src="AssetScan2.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+      	mui.init({  
+		    beforeback: function() {  
+			    //获得列表界面的webview  
+			    var list = plus.webview.currentWebview().opener();  
+			    //触发列表界面的自定义事件（refresh）,从而进行数据刷新  
+			    mui.fire(list, 'refresh');  
+			    //返回true，继续页面关闭逻辑  
+			    return true;  
+	    	}
+		});
+		var device_code = '';
+//		var readOnly = '';
+//		var weipan = '';
+//		var isOpen;
+		mui.plusReady(function(){
+      		var self = plus.webview.currentWebview();
+      		device_code = self.device_code;
+//    		weipan = self.weipan;
+			
+			AssetScan.onCodeAction(device_code,'');
+      		
+      		//启动NFC功能
+      		if (plus.os.name == 'Android') {
+			
+				//nfc功能
+		    	NfcUtil.initNfc(function(result){
+		    		var device_code = document.getElementById('device_code').value;
+					var btnArray = ['确定', '取消'];
+					mui.confirm('是否将'+result+'绑定到设备编号为['+device_code+']的设备上？', '提示', btnArray, function(e) {
+						if (e.index == 0) {
+		    				document.getElementById('label_code').value = result;
+							AssetScan.onScanOk();
+						}
+					});
+				})
+			}
+      	});
+		
+		//点击保存后
+		document.getElementById('ensurescan').addEventListener('tap',function(){
+			AssetScan.onScanOk();		
+		});
+		//清除标签编码
+		document.getElementById('delete').addEventListener('tap',function(){
+			AssetScan.deleteCode();		
+		});
+		
+    </script>
+    
+</body>
+</html>

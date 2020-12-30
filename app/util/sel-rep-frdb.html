@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>选择故障库</title>
+    
+	<link href="../../mui/css/mui.min.css" rel="stylesheet" />
+	<link href="../../mui/css/mui.indexedlist.css" rel="stylesheet" />
+	<link href="../../jxm/css/jxm.css" rel="stylesheet" />
+	<style>
+		html,
+		body {
+			height: 100%;
+			overflow: hidden;
+		}
+		.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		
+		.mui-search,
+		.mui-search .mui-icon-clear,
+		.mui-search .mui-placeholder {
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		.p{
+			font-size: 16px;
+			color: #000000;
+		}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">选择故障库</h1>
+	</header>
+	<div class="mui-content">
+		<div id='main-list' class="mui-indexed-list mui-hidden">
+			<div class="mui-indexed-list-search mui-input-row mui-search">
+				<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索">
+			</div>
+			
+			<!--<div class="mui-indexed-list-alert"></div>-->
+			<div class="mui-indexed-list-inner">
+				<div class="mui-indexed-list-empty-alert">没有数据</div>
+				<ul id="data-list" class="mui-table-view"></ul>
+			</div>
+		</div>
+		
+		<div class="mui-loader">加载中...</div>
+	</div>
+	
+    <script src="../../mui/js/mui.min.js"></script>
+	<script src="../../mui/js/mui.indexedlist.js"></script>
+	<!--<script src="../../mui/js/mui.indexedlist.x.js"></script>-->
+	<script src="../../jxm/js/jxm.js"></script>
+	<script src="../../jxm/js/jxm-util.js"></script>
+	<script src="../../jxm/js/combo-data.js"></script>
+	
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		
+		//是否需要多选
+		var ms = false;
+		var device_id = '';
+		var type_id = '';
+		//传递目标窗口ID、触发事件名称 {callbackWinId:mui.currentWebview.id, callbackEvent:cbe, notback:true}
+		mui.plusReady(function(){
+			
+			var opts = mui.currentWebview.selectParams;
+			device_id = opts.device_id;
+			type_id = opts.type_id;
+			console.log(device_id+'-----'+type_id);
+			console.log('callbackWinId='+opts.callbackWinId+';callbackEvent='+opts.callbackEvent+';mutilsel='+opts.mutilsel);
+			
+			if (opts.mutilsel) ms = true;
+		//});
+		//mui.ready(function(){
+			
+			var mainList = document.getElementById('main-list');
+			var dataList = document.getElementById("data-list");
+			//计算数据区域的高度
+			var calheight = function(){
+				var header_h = document.querySelector('header.mui-bar').offsetHeight;
+				mainList.style.height = (document.body.offsetHeight - header_h) + 'px';
+			};
+			
+			
+			var e = encodeURIComponent;
+//			var wheresql = "(frdb_id in (select frdb_id from rep_frdb where device_id=?) or frdb_id in (select frdb_id from rep_frdb where"+
+//			" bom_id=(select bom_id from device_card where device_id=?)) or frdb_id in (select frdb_id from rep_frdb where type_id like ?||'%25') or"+
+//			" frdb_id in (select frdb_id from rep_frdb where bom_id is null and device_id is null and type_id is null)) and auditing in ('1','3')";
+			
+			var wheresql = "(frdb_id in (select frdb_id from rep_frdb where device_id=?) or frdb_id in (select frdb_id from rep_frdb where "+
+			"bom_id=(select bom_id from device_card where device_id=?)) or frdb_id in (select frdb_id from rep_frdb where ? like  type_id||'%25' and"+
+			" type_id is not null) or frdb_id in (select frdb_id from rep_frdb where bom_id is null and device_id is null and type_id is null)) and auditing in ('1','3')";
+			console.log('wheresql---'+wheresql)
+			
+			var wheretype = 'string;string;string';
+			var wherevalue = e(device_id+';'+device_id+';'+type_id+'%');
+			
+			var params = "funid=queryevent&eventcode=query_data&query_funid=rep_frdb_sel&query_type=0&is_query=1&has_page=1&limit=500&start=0";
+				params += "&where_sql="+wheresql+"&where_type="+wheretype+"&where_value="+wherevalue;
+			
+			console.log(params)
+			
+			jxm.post(params, function(data){
+//				data = eval("(" + data + ")");
+				console.log("----"+JSON.stringify(data));
+				var root = data.root;
+//				console.log("----"+root.device_catalog__edit_date);
+				
+				var str = "";
+				
+				
+				//查询数据与需要的数据格式转换
+				var dataConvert = function(item){
+					var data = {
+							describe:item['rep_frdb__fault_describe'],//故障现象
+							reason:item['rep_frdb__fault_reason'],//故障原因
+							frdb_code:item['rep_frdb__frdb_code'],//故障库编码
+							measures:item['rep_frdb__measures'],//解决方法
+							level:item['rep_frdb__frdb_level'],//故障程度
+							bom_code:item['rep_frdb__bom_code'],//故障部位编码
+							bom_allname:item['rep_frdb__bom_allname'],//故障部位名称
+							frdb_id:item['rep_frdb__frdb_id']//主键
+						};
+					return data;
+				};
+				mui.each(root, function(i, item){
+					//参数值需要根据不同的功能进行调整
+					item = dataConvert(item);
+//					mui.toast(item.level)
+					var level = jxm.getComboText(ComboData.level, item.level);
+					str += '<li id="'+item.frdb_id+'" data-ext="'+item.frdb_code +'"'+
+						'" data-ext2="'+item.reason +'"'+'" data-ext3="'+item.measures +'"'+
+						'class="mui-table-view-cell mui-indexed-list-item '+
+						
+						'<div class="mui-media-body style="font-size: 17px;"">'+
+							'故障库编码：'+item.frdb_code+'<br />'+
+							'故障程度：'+level+'<br />'+
+							'故障部位名称：'+item.bom_allname+'<br />'+
+							'故障现象：'+item.describe+'<br />'+
+							'故障原因：'+item.reason+'<br />'+
+							'解决方法：'+item.measures+
+							
+//							'<p class="mui-ellipsis p1">'+'故障程度：'+item.level+'</p>'+
+////							'<p class="mui-ellipsis p1">'+'故障部位编码：'+item.bom_code+'</p>'+
+//							
+//							'<p class="mui-ellipsis p1">'+'故障部位名称：'+item.bom_allname+'</p>'+
+//							'<p class="mui-ellipsis p1">'+'故障现象：'+item.describe+'</p>'+
+//							'<p class="mui-ellipsis p1">'+'故障原因：'+item.reason+'</p>'+
+//							'<p class="mui-ellipsis p1">'+'解决方法：'+item.measures+'</p>'+
+						'</div>'+
+					'</li>';
+				});
+				dataList.innerHTML = str;
+				jxm.loadhint(mainList, (str.length > 0));
+				
+				//calc hieght
+				calheight();
+				//加载完页面后构建，查询才能生效；如果带index-bar的控件必须用searchFixed:true
+				var wlist = new mui.IndexedList(mainList,{selectParams:opts,searchFixed:true});
+				//绑定选择事件
+				(ms ? wlist.doMutilSelect() : wlist.doSingleSelect());
+				
+				
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,2371 @@
+{
+    "id": "com.eam.standard", 
+    "name": "中设iEAM", 
+    "version": {
+        "name": "1.0.5", 
+        "code": "84"
+    }, 
+    "description": "中设iEAM6设备管理系统APP，帮助企业更好管理设备，提高生产效率。", 
+    "icons": {
+        "72": "icon.png"
+    }, 
+    "launch_path": "index.html", 
+    "developer": {
+        "name": "Sam", 
+        "email": "596149381@qq.com", 
+        "url": "http://www.kingtangdata.com"
+    }, 
+    "permissions": {
+         
+        "Audio": {
+            "description": "访问麦克风"
+        }, 
+        "Cache": {
+            "description": "管理应用缓存"
+        }, 
+        "Camera": {}, 
+        "Console": {
+            "description": "跟踪调试输出日志"
+        }, 
+        "Contacts": {
+            "description": "访问系统联系人信息"
+        }, 
+        "Device": {
+            "description": "访问设备信息"
+        }, 
+        "Downloader": {
+            "description": "文件下载管理"
+        }, 
+        "Events": {
+            "description": "应用扩展事件"
+        }, 
+        "File": {
+            "description": "访问本地文件系统"
+        }, 
+        "Gallery": {
+            "description": "访问系统相册"
+        }, 
+        "Geolocation": {
+            "description": "访问位置信息"
+        }, 
+        "Invocation": {}, 
+        "Storage": {
+            "description": "管理应用本地数据"
+        }, 
+        "Uploader": {
+            "description": "管理文件上传任务"
+        }, 
+        "Runtime": {
+            "description": "访问运行期环境"
+        }, 
+        "Zip": {
+            "description": "文件压缩与解压缩"
+        }, 
+        "Barcode": {
+            "description": "管理二维码扫描插件"
+        }, 
+        "Speech": {
+            "description": "管理语音识别插件"
+        }, 
+        "Webview": {
+            "description": "窗口管理"
+        }, 
+        "NativeUI": {
+            "description": "原生UI控件"
+        }, 
+        "Navigator": {
+            "description": "浏览器信息"
+        }, 
+        "NativeObj": {
+            "description": "原生对象"
+        },"Push":{},"Accelerometer":{}
+    }, 
+    "plus": {"distribute":{"icons":{"ios":{"iphone":{"retina":"unpackage/res/icons/114x114.png","normal":"unpackage/res/icons/57x57.png","retina8":"unpackage/res/icons/180x180.png","retina7":"unpackage/res/icons/120x120.png","settings-retina":"unpackage/res/icons/58x58.png","settings-normal":"unpackage/res/icons/29x29.png","spotlight-retina":"unpackage/res/icons/58x58.png","spotlight-normal":"unpackage/res/icons/29x29.png","settings-retina8":"unpackage/res/icons/87x87.png","spotlight-retina7":"unpackage/res/icons/80x80.png"},"ipad":{"retina":"unpackage/res/icons/144x144.png","normal":"unpackage/res/icons/72x72.png","retina7":"unpackage/res/icons/152x152.png","normal7":"unpackage/res/icons/76x76.png","settings-retina":"unpackage/res/icons/58x58.png","settings-normal":"unpackage/res/icons/29x29.png","spotlight-retina":"unpackage/res/icons/100x100.png","spotlight-normal":"unpackage/res/icons/50x50.png","spotlight-normal7":"unpackage/res/icons/40x40.png","spotlight-retina7":"unpackage/res/icons/80x80.png"}},"android":{"ldpi":"unpackage/res/icons/48x48.png","mdpi":"unpackage/res/icons/48x48.png","hdpi":"unpackage/res/icons/72x72.png","xhdpi":"unpackage/res/icons/96x96.png","xxhdpi":"unpackage/res/icons/144x144.png","xxxhdpi":"unpackage/res/icons/192x192.png"}},"splashscreen":{"ios":{"iphone":{"retina55":"C:/Users/Administrator/Desktop/iEAM图片/iEAM1242-2208.png","retina47":"C:/Users/Administrator/Desktop/iEAM图片/iEAM750-1334.png","retina40":"C:/Users/Administrator/Desktop/iEAM图片/iEAM640-1136.png","retina35":"C:/Users/Administrator/Desktop/iEAM图片/iEAM640-960.png","retina55l":"C:/Users/Administrator/Desktop/iEAM图片/iEAM2208-1242.png"}},"android":{"hdpi":"C:/Users/Administrator/Desktop/iEAM图片/iEAM480-762.png","xhdpi":"C:/Users/Administrator/Desktop/iEAM图片/iEAM720-1242.png","xxhdpi":"C:/Users/Administrator/Desktop/iEAM图片/iEAM1080-1882.png"}},"plugins":{"push":{"igexin":{"appid":"UegIXm0pu0922Gda5NHXM8","appkey":"SOZA08qMPB8J5zdf3C9XV5","appsecret":"XXn4bzIZnfAsGzXQkbiaj2"}}},"google":{"permissions":["<uses-permission android:name=\"android.permission.GET_TASKS\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.NFC\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]}},
+        "popGesture": "close", 
+        "splashscreen": {
+            "autoclose": false, 
+            "waiting": true, 
+            "delay": "0"
+        }, 
+        "runmode": "normal", 
+        "signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw=="
+    },
+	"dependencies": {
+		"pages": {
+			"index.html": {
+				"resources": [
+					"app/util/login-set.html",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"lib/ytx/base64.min.js",
+					"mui/fonts/mui.ttf",
+					"home.html",
+					"app/im/im.html",
+					"jxm/js/JxDao.js"
+				],
+				"refer": [
+					"app/set/set.html",
+					"app/eam/eam.html",
+					"app/oa/oa.html",
+					"app/util/select-fun.html",
+					"app/im/check-msg.html"
+				],
+				"priority": 0
+			},
+			"app/util/login-set.html": {
+				"resources": [
+					"index.html",
+					"mui/css/mui.min.css",
+					"jxm/js/jxm.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"home.html": {
+				"resources": [
+					"jxm/fonts/iconfont.ttf",
+					"jxm/js/jxm-update.js",
+					"mui/fonts/mui.ttf",
+					"app/im/im.html",
+					"jxm/css/jxm.css",
+					"mui/css/mui.min.css",
+					"app/im/im-all.html",
+					"mui/js/mui.min.js",
+					"jxm/js/jxm.js",
+					"index.html"
+				],
+				"refer": [
+					"app/set/set.html",
+					"app/eam/eam.html",
+					"app/oa/oa.html",
+					"bar-bus.html",
+					"bar-oa.html",
+					"app/util/select-user.html",
+					"app/util/select-fun.html",
+					"app/im/check-msg.html"
+				],
+				"priority": 0
+			},
+			"app/set/set.html": {
+				"resources": [
+					"jxm/img/face-set.png",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf",
+					"jxm/css/jxm.css",
+					"jxm/fonts/iconfont.ttf"
+				],
+				"refer": [
+					"app/set/feedback.html",
+					"app/set/setup.html",
+					"index.html",
+					"app/set/self-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/eam.html": {
+				"resources": [
+					"mui/js/arttmpl.js",
+					"mui/css/mui.min.css",
+					"app/eam/order-list.html",
+					"mui/css/mui.css",
+					"jxm/fonts/iconfont.ttf",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.min.js",
+					"jxm/css/jxm.css",
+					"jxm/js/jxm.js"
+				],
+				"refer": [
+					"app/eam/asset-card.html",
+					"app/eam/asset-card-list.html",
+					"app/eam/order-repair.html",
+					"app/eam/asset-change.html",
+					"app/eam/asset-disable.html",
+					"app/eam/asset-stop.html",
+					"app/eam/asset-unstop.html",
+					"app/eam/device-seal.html",
+					"app/eam/device-unseal.html",
+					"app/eam/device-idle.html",
+					"app/eam/device-unidle.html",
+					"app/eam/device-scrap.html",
+					"app/eam/device-allot.html",
+					"app/eam/device-trac.html",
+					"app/eam/device-unstop.html",
+					"app/eam/device-stop.html",
+					"app/eam/device-trac-list.html",
+					"app/eam/rep-fault/rep-fault.html",
+					"app/eam/rep-fault.html",
+					"app/eam/rep-fault-list.html",
+					"app/eam/rep-ault-exe.html",
+					"app/eam/rep-fault-chk.html",
+					"app/eam/rep-fault-qry.html",
+					"app/eam/pchk-done-list.html",
+					"app/eam/maint-done-list.html",
+					"app/eam/lub-done-list.html",
+					"app/eam/scan/scan-home.html",
+					"app/eam/move/device-trac-list.html",
+					"app/eam/move/device-unstop.html",
+					"app/eam/move/device-stop.html",
+					"app/eam/move/device-seal.html",
+					"app/eam/move/device-unseal.html",
+					"app/eam/move/device-allot.html",
+					"app/eam/move/device-unidle.html",
+					"app/eam/move/device-scrap.html",
+					"app/eam/move/device-idle.html",
+					"app/eam/rep-fault/rep-fault-list.html",
+					"app/eam/rep-fault/rep-ault-exe.html",
+					"app/eam/rep-fault/rep-fault-chk.html",
+					"app/eam/rep-fault/rep-fault-qry.html",
+					"app/eam/done/pchk-done-list.html",
+					"app/eam/done/maint-done-list.html",
+					"app/eam/done/lub-done-list.html",
+					"app/eam/device-scan/scan-home.html",
+					"app/eam/sp-scan/sp-scan-home.html",
+					"app/eam/move/device-stop-list.html",
+					"app/eam/move/device-unstop-list.html",
+					"app/eam/move/device-seal-list.html",
+					"app/eam/move/device-unseal-list.html",
+					"app/eam/move/device-idle-list.html",
+					"app/eam/move/device-unidle-list.html",
+					"app/eam/move/device-scrap-list.html",
+					"app/eam/move/device-allot-list.html",
+					"app/eam/card/device-list.html",
+					"app/eam/sp-scan/sp-store.html",
+					"app/eam/device-scan/device-bind.html"
+				],
+				"priority": 0
+			},
+			"app/set/feedback.html": {
+				"resources": [
+					"jxm/img/iconfont-tianjia.png",
+					"app/util/eam-util.js",
+					"jxm/js/jxm-image-input.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf",
+					"app/util/jxm-util.js"
+				],
+				"refer": [
+					"app/set/feedback-list.html"
+				],
+				"priority": 0
+			},
+			"app/im/im.html": {
+				"resources": [
+					"jxm/css/jxm.css",
+					"mui/css/mui.min.css",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/oa/oa-news-list.html",
+					"app/im/check-msg.html",
+					"app/im/notify-list.html"
+				],
+				"priority": 0
+			},
+			"app/oa/oa-news-list.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.indexedlist.css",
+					"app/util/combo-data.js",
+					"app/util/eam-util.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf",
+					"app/util/jxm-util.js"
+				],
+				"refer": [
+					"app/oa/oa-news-info.html"
+				],
+				"priority": 0
+			},
+			"app/util/select-tree.html": {
+				"resources": [
+					"mui/css/mui.indexedlist.css",
+					"mui/js/mui.indexedlist.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/asset-card.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"app/util/eam-util.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf",
+					"app/util/jxm-util.js",
+					"mui/js/mui.js"
+				],
+				"refer": [
+					"app/util/select-tree.html",
+					"app/eam/asset-card-list.html",
+					"app/util/select-catalog.html",
+					"app/util/select-type.html",
+					"app/util/select-dept.html",
+					"app/util/select-fdevice.html",
+					"app/util/select-special.html",
+					"app/eam/rep-fault/rep-fault.html",
+					"app/util/select-site_name.html"
+				],
+				"priority": 0
+			},
+			"app/eam/asset-card-list.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"app/util/eam-util.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/asset-card-info.html",
+					"app/util/barcode_scan.html",
+					"app/eam/asset-card-filter.html"
+				],
+				"priority": 0
+			},
+			"app/eam/asset-card-info.html": {
+				"resources": [],
+				"refer": [
+					"app/eam/asset-card.html"
+				],
+				"priority": 0
+			},
+			"app/oa/oa-users.html": {
+				"resources": [
+					"jxm/img/photo/avatar1.png",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"jxm/img/photo/avatar4.png",
+					"jxm/img/photo/avatar2.png",
+					"mui/js/mui.min.js",
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.indexedlist.js",
+					"jxm/img/photo/avatar0.png",
+					"jxm/img/photo/avatar3.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/oa/oa.html": {
+				"resources": [],
+				"refer": [
+					"app/oa/oa-users.html",
+					"app/oa/oa-app-seltype.html",
+					"app/oa/oa-news-list.html",
+					"app/oa/oa-docs.html"
+				],
+				"priority": 0
+			},
+			"app/im/check-msg.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/im/check-work.html"
+				],
+				"priority": 0
+			},
+			"app/im/notify-list.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.indexedlist.css",
+					"app/util/combo-data.js",
+					"app/util/eam-util.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf",
+					"app/util/jxm-util.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/oa/oa-app-seltype.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/oa/oa-appqj.html",
+					"app/oa/oa-appbx.html"
+				],
+				"priority": 0
+			},
+			"app/oa/oa-docs.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.indexedlist.css",
+					"jxm/img/file_type/folder.jpg",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf",
+					"jxm/img/file_type/text.png",
+					"jxm/img/file_type/docx.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/oa/oa-appqj.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/oa/oa-appbx.html": {
+				"resources": [
+					"jxm/fonts/iconfont.ttf",
+					"jxm/img/iconfont-tianjia.png",
+					"app/util/eam-util.js",
+					"jxm/js/jxm-image-input.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/set/setup.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/set/feedback-list.html": {
+				"resources": [
+					"jxm/fonts/iconfont.ttf",
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css"
+				],
+				"refer": [
+					"app/set/feedback-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/asset-card-filter.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/eam-util.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/select-tree.html"
+				],
+				"priority": 0
+			},
+			"app/oa/oa-news-info.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"app/util/eam-util.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf",
+					"app/util/jxm-util.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/im/check-work.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf",
+					"mui/css/icons-extra.css"
+				],
+				"refer": [
+					"app/util/select-user.html",
+					"app/im/test.html"
+				],
+				"priority": 0
+			},
+			"bar-bus.html": {
+				"resources": [
+					"mui/js/arttmpl.js",
+					"mui/css/mui.min.css"
+				],
+				"refer": [
+					"app/util/echarts.html"
+				],
+				"priority": 0
+			},
+			"bar-oa.html": {
+				"resources": [
+					"mui/js/arttmpl.js",
+					"mui/css/mui.min.css",
+					"jxm/fonts/iconfont.ttf",
+					"mui/fonts/mui.ttf",
+					"jxm/css/jxm.css",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js"
+				],
+				"refer": [
+					"app/oa/oa-app-seltype.html",
+					"app/oa/oa-news-list.html",
+					"app/oa/oa-docs.html",
+					"app/oa/oa-users.html"
+				],
+				"priority": 0
+			},
+			"app/util/echarts.html": {
+				"resources": [
+					"lib/echarts.min.js",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/set/self-info.html": {
+				"resources": [
+					"jxm/img/face-set.png",
+					"mui/css/mui.min.css",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/order-repair.html": {
+				"resources": [
+					"jxm/img/iconfont-tianjia.png",
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/order-list.html": {
+				"resources": [
+					"app/util/combo-data.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/asset-change.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css"
+				],
+				"refer": [
+					"app/util/select-tree.html"
+				],
+				"priority": 0
+			},
+			"app/eam/asset-disable.html": {
+				"resources": [
+					"jxm/img/iconfont-tianjia.png",
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js",
+					"app/util/combo-data.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/asset-stop.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/asset-unstop.html": {
+				"resources": [
+					"mui/css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/device-seal.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"mui/css/mui.picker.min.css",
+					"mui/js/mui.picker.min.js"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html"
+				],
+				"priority": 0
+			},
+			"app/eam/device-unseal.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/device-idle.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"mui/css/mui.picker.min.css",
+					"mui/js/mui.picker.min.js"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html"
+				],
+				"priority": 0
+			},
+			"app/eam/device-unidle.html": {
+				"resources": [
+					"mui/css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/device-scrap.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/combo-data.js",
+					"mui/js/mui.picker.min.js"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html"
+				],
+				"priority": 0
+			},
+			"app/eam/device-allot.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"mui/js/mui.picker.min.js",
+					"mui/css/mui.picker.min.css"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html"
+				],
+				"priority": 0
+			},
+			"app/eam/device-unstop.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/combo-data.js"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html",
+					"app/util/barcode_scan.html"
+				],
+				"priority": 0
+			},
+			"app/eam/device-trac.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/combo-data.js",
+					"mui/js/mui.picker.min.js",
+					"mui/css/mui.picker.min.css",
+					"jxm/css/jxm.css"
+				],
+				"refer": [
+					"app/util/select-tree.html",
+					"app/util/select-dept.html",
+					"app/util/select-device.html",
+					"app/util/select-user.html"
+				],
+				"priority": 0
+			},
+			"app/eam/device-stop.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/combo-data.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf",
+					"app/scripts/jquery.min.js",
+					"app/scripts/boot.js",
+					"app/scripts/miniui/miniui.js",
+					"app/scripts/miniui/themes/icons.css",
+					"app/scripts/miniui/themes/default/miniui.css",
+					"app/scripts/miniui/themes/default/images/button/pressed.png",
+					"app/scripts/miniui/themes/default/images/pager/first.gif",
+					"app/scripts/miniui/themes/default/images/buttonedit/icon2.gif",
+					"app/scripts/miniui/themes/default/images/grid/header.png",
+					"app/scripts/miniui/themes/default/images/pager/prev.gif",
+					"app/scripts/miniui/themes/default/images/panel/resize.gif",
+					"app/scripts/miniui/themes/default/images/button/hover.png",
+					"app/scripts/miniui/themes/default/images/grid/loading.gif",
+					"app/scripts/miniui/themes/default/images/pager/last.gif",
+					"app/scripts/miniui/themes/default/images/pager/next.gif",
+					"app/scripts/miniui/themes/default/images/buttonedit/close.gif",
+					"app/scripts/miniui/themes/default/images/grid/footer.png",
+					"app/scripts/miniui/themes/default/images/panel/header.png",
+					"app/scripts/miniui/themes/default/images/pager/reload.png",
+					"app/scripts/miniui/themes/icons/save.gif",
+					"app/scripts/miniui/themes/icons/remove.gif",
+					"app/scripts/miniui/themes/icons/add.gif",
+					"app/scripts/miniui/themes/default/images/button/button.png",
+					"app/scripts/miniui/themes/default/images/toolbar/toolbar.png",
+					"app/scripts/miniui/themes/default/images/icons/checkbox.gif",
+					"app/scripts/miniui/themes/default/images/buttonedit/hover.png",
+					"app/scripts/miniui/themes/default/images/buttonedit/pressed.png",
+					"app/scripts/miniui/themes/default/images/listbox/header.png",
+					"app/scripts/miniui/themes/default/images/textbox/error.gif",
+					"mui/css/mui.picker.min.css",
+					"mui/js/mui.picker.min.js"
+				],
+				"refer": [
+					"app/util/select-device.html",
+					"app/util/select-dept.html",
+					"app/eam/asset-change-list.html"
+				],
+				"priority": 0
+			},
+			"app/util/select-catalog.html": {
+				"resources": [
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/js/mui.indexedlist.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.min.js",
+					"mui/js/mui.indexedlist.x.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/util/select-type.html": {
+				"resources": [
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/js/mui.indexedlist.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.indexedlist.x.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/util/select-dept.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"mui/css/mui.indexedlist.css",
+					"mui/js/mui.indexedlist.js",
+					"jxm/css/jxm.css",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.indexedlist.x.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/util/select-fdevice.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.indexedlist.css",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.indexedlist.js",
+					"mui/js/mui.indexedlist.x.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/util/select-special.html": {
+				"resources": [
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/js/mui.indexedlist.js",
+					"jxm/js/jxm.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/device-trac-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/order-info.html",
+					"app/eam/device-trac.html"
+				],
+				"priority": 0
+			},
+			"app/eam/order-info.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"mui/css/mui.imageviewer.css",
+					"jxm/js/jxm-image-input.js",
+					"mui/js/mui.imageViewer.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/util/select-device.html": {
+				"resources": [
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/js/mui.indexedlist.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.indexedlist.x.js",
+					"jxm/js/jxm.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.min.js"
+				],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"app/eam/asset-change-list.html": {
+				"resources": [
+					"mui/css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/rep-fault.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/deviceName.html",
+					"app/util/select-user.html"
+				],
+				"priority": 0
+			},
+			"app/util/deviceName.html": {
+				"resources": [
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/js/mui.indexedlist.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.min.js",
+					"mui/js/mui.indexedlist.x.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/util/select-user.html": {
+				"resources": [
+					"jxm/img/photo/avatar1.png",
+					"jxm/img/photo/avatar4.png",
+					"jxm/img/photo/avatar2.png",
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/js/mui.indexedlist.js",
+					"jxm/img/photo/avatar0.png",
+					"jxm/img/photo/avatar3.png",
+					"app/util/combo-data.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"jxm/css/jxm.css",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.indexedlist.x.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/rep-fault-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css"
+				],
+				"refer": [
+					"app/eam/rep-fault-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault-info.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js"
+				],
+				"refer": [
+					"app/util/select-user.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-ault-exe.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/combo-data.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.min.js"
+				],
+				"refer": [
+					"app/eam/rep-ault-exe-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-ault-exe-info.html": {
+				"resources": [
+					"jxm/js/jxm-image-input.js",
+					"mui/css/mui.min.css",
+					"jxm/js/JxDao.js",
+					"mui/js/mui.picker.min.js",
+					"mui/css/mui.picker.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/select-user.html",
+					"app/util/sel-rep-type.html",
+					"app/util/select-device.html",
+					"app/util/select-rep-user.html",
+					"app/util/sys-done-user.html",
+					"app/util/sys-rep-fault-sp.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault-chk.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css"
+				],
+				"refer": [
+					"app/eam/rep-fault-chk-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault-chk-info.html": {
+				"resources": [
+					"jxm/js/jxm-image-input.js",
+					"mui/css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/rep-fault-qry.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css"
+				],
+				"refer": [
+					"app/eam/rep-fault-info.html",
+					"app/eam/rep-fault-qry-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault-qry-info.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/util/sel-rep-type.html": {
+				"resources": [
+					"mui/css/mui.indexedlist.css",
+					"mui/js/mui.indexedlist.js",
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.indexedlist.x.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/util/select-rep-user.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"mui/css/mui.indexedlist.css",
+					"mui/js/mui.indexedlist.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/im/im-chat.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"mui/css/mui.imageviewer.css",
+					"jxm/img/arecord.png",
+					"mui/js/mui.imageViewer.js",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/arttmpl.js",
+					"jxm/js/jxm.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/im/im-all.html": {
+				"resources": [
+					"lib/ytx/ytx-web-im-min-new.js",
+					"lib/ytx/MD5.min.js",
+					"jxm/js/jxm-im.js",
+					"mui/js/arttmpl.js",
+					"mui/css/mui.min.css",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"lib/ytx/base64.min.js",
+					"mui/fonts/mui.ttf",
+					"jxm/js/jxm-update.js"
+				],
+				"refer": [
+					"app/im/im-chat.html",
+					"app/im/notify-list.html",
+					"app/oa/oa-news-list.html",
+					"app/im/check-msg.html",
+					"app/im/sys-warn.html",
+					"index.html"
+				],
+				"priority": 0
+			},
+			"app/util/select-fun.html": {
+				"resources": [
+					"mui/css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/rep-fault/rep-fault.html": {
+				"resources": [
+					"jxm/js/jxm-image-input.js",
+					"mui/css/mui.min.css",
+					"app/util/combo-data.js",
+					"jxm/css/jxm.css",
+					"jxm/fonts/iconfont.ttf",
+					"app/util/jxm-util.js",
+					"jxm/img/iconfont-tianjia.png",
+					"mui/js/mui.min.js",
+					"jxm/js/jxm.js",
+					"mui/fonts/mui.ttf",
+					"jxm/js/jquery-3.2.1.min.js",
+					"app/util/js/NfcUtil.js"
+				],
+				"refer": [
+					"app/util/deviceName.html",
+					"app/util/select-user.html",
+					"app/util/sel-fault-describe.html",
+					"app/util/barcode_scan.html"
+				],
+				"priority": 0
+			},
+			"app/eam/pchk-done-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.min.js"
+				],
+				"refer": [
+					"app/eam/rep-fault-chk-info.html",
+					"app/eam/pchk-done-info.html",
+					"app/util/barcode_scan.html"
+				],
+				"priority": 0
+			},
+			"app/eam/pchk-done-info.html": {
+				"resources": [
+					"jxm/js/jxm-image-input.js",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/select-user.html",
+					"app/util/barcode_scan.html",
+					"app/util/sys-done-user.html"
+				],
+				"priority": 0
+			},
+			"app/eam/maint-done-list.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/combo-data.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/maint-done-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/maint-done-info.html": {
+				"resources": [
+					"jxm/js/jxm-image-input.js",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/barcode_scan.html",
+					"app/util/sys-done-user.html"
+				],
+				"priority": 0
+			},
+			"app/eam/lub-done-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css"
+				],
+				"refer": [
+					"app/eam/maint-done-info.html",
+					"app/eam/lub-done-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/lub-done-info.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js"
+				],
+				"refer": [
+					"app/util/barcode_scan.html",
+					"app/util/sys-done-user.html"
+				],
+				"priority": 0
+			},
+			"app/util/sys-done-user.html": {
+				"resources": [
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/js/mui.indexedlist.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.min.js",
+					"app/util/mui.indexedlist.css",
+					"app/util/mui.indexedlist.js",
+					"app/util/mui.min.css",
+					"app/util/jxm.css",
+					"app/util/mui.min.js",
+					"app/util/jxm.js",
+					"app/util/mui.indexedlist.x.js",
+					"mui/js/mui.indexedlist.x.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/util/sys-rep-fault-sp.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.indexedlist.js",
+					"mui/js/mui.min.js",
+					"mui/js/mui.indexedlist.x.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/scan/scan-home.html": {
+				"resources": [
+					"app/util/js/TaskDown.js",
+					"mui/css/mui.min.css",
+					"app/util/js/AssetQuery.js",
+					"jxm/js/JxDao.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf",
+					"app/eam/scan/queryScan.html",
+					"app/util/js/JxDao.js",
+					"app/eam/scan/TaskDown.js",
+					"app/eam/scan/AssetQuery.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/move/device-trac-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/move/device-trac.html",
+					"app/eam/move/device-trac2.html",
+					"index.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-trac.html": {
+				"resources": [
+					"mui/css/mui.picker.min.css",
+					"mui/js/mui.picker.min.js",
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html",
+					"app/eam/move/device-vary-det.html",
+					"app/eam/move/device-trans-det.html",
+					"app/util/select-user.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-stop.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"mui/css/mui.picker.min.css",
+					"mui/js/mui.picker.min.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html",
+					"app/eam/move/device-vary-det.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-seal.html": {
+				"resources": [
+					"mui/css/mui.picker.min.css",
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html",
+					"app/eam/move/device-vary-det.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-unseal.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html",
+					"app/eam/move/device-vary-det.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-scrap.html": {
+				"resources": [
+					"mui/css/mui.picker.min.css",
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html",
+					"app/eam/move/device-vary-det.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-idle.html": {
+				"resources": [
+					"mui/css/mui.picker.min.css",
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html",
+					"app/eam/move/device-vary-det.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-allot.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html",
+					"app/eam/move/device-vary-det.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-unstop.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html",
+					"app/eam/move/device-vary-det.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-unidle.html": {
+				"resources": [
+					"jxm/css/jxm.css",
+					"mui/css/mui.min.css"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-device.html",
+					"app/eam/move/device-vary-det.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault/rep-fault-list.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"app/util/js/NfcUtil.js"
+				],
+				"refer": [
+					"app/eam/rep-fault/rep-fault-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault/rep-ault-exe-info.html": {
+				"resources": [
+					"mui/css/mui.picker.min.css",
+					"mui/css/mui.min.css",
+					"mui/js/mui.picker.min.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"jxm/js/jxm-image-input.js",
+					"jxm/img/iconfont-tianjia.png",
+					"jxm/js/jxm-image-input2.js"
+				],
+				"refer": [
+					"app/util/sys-done-user.html",
+					"app/util/sys-rep-fault-sp.html",
+					"app/util/sel-rep-type.html",
+					"app/eam/rep-fault/rep-fault-sp.html",
+					"app/util/sel-rep-frdb.html",
+					"index.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault/rep-ault-exe.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/rep-fault/rep-ault-exe-info.html",
+					"app/eam/rep-fault/test.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault/rep-fault-chk.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/rep-fault/rep-fault-chk-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault/rep-fault-qry.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"jxm/fonts/iconfont.ttf",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/rep-fault/rep-fault-qry-info.html",
+					"index.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault/rep-fault-qry-info.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"jxm/img/iconfont-tianjia.png",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/rep-fault/rep-fault-sp.html"
+				],
+				"priority": 0
+			},
+			"app/eam/done/pchk-done-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/done/pchk-done-info.html",
+					"app/util/barcode_scan.html"
+				],
+				"priority": 0
+			},
+			"app/eam/done/pchk-done-info.html": {
+				"resources": [
+					"jxm/js/jxm-image-input.js",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/barcode_scan.html",
+					"app/util/sys-done-user.html",
+					"app/eam/done/pchk-plan-item.html"
+				],
+				"priority": 0
+			},
+			"app/eam/done/maint-done-list.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/combo-data.js",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/done/maint-done-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/scan/queryScan.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/eam/scan/scan-home.html",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/js/TaskDown.js",
+					"app/util/js/AssetQuery.js",
+					"mui/fonts/mui.ttf",
+					"jxm/js/JxDao.js",
+					"jxm/fonts/iconfont.ttf",
+					"app/eam/scan/TaskDown.js",
+					"app/eam/scan/AssetQuery.js"
+				],
+				"refer": [
+					"app/eam/scan/scan.html"
+				],
+				"priority": 0
+			},
+			"app/eam/scan/scan.html": {
+				"resources": [
+					"app/util/js/AssetScan.js",
+					"mui/css/mui.min.css",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"app/eam/scan/AssetScan.js"
+				],
+				"refer": [
+					"app/util/barcode_scan.html"
+				],
+				"priority": 0
+			},
+			"app/eam/device-scan/scan-home.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/eam/device-scan/TaskDown.js",
+					"app/eam/device-scan/AssetQuery.js",
+					"app/util/js/JxDao.js",
+					"app/eam/device-scan/queryScan.html",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/device-scan/queryScan.html": {
+				"resources": [
+					"jxm/js/JxDao.js",
+					"app/eam/device-scan/scan-home.html",
+					"jxm/css/jxm.css",
+					"mui/css/mui.min.css",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/eam/device-scan/TaskDown.js",
+					"mui/fonts/mui.ttf",
+					"app/eam/device-scan/AssetQuery.js",
+					"jxm/fonts/iconfont.ttf",
+					"app/util/combo-data.js",
+					"app/util/jxm-util.js",
+					"app/util/js/JxDao.js",
+					"jxm/js/jquery-3.2.1.min.js"
+				],
+				"refer": [
+					"app/eam/device-scan/scan.html",
+					"app/eam/device-scan/device-bind.html"
+				],
+				"priority": 0
+			},
+			"app/eam/sp-scan/sp-scan-home.html": {
+				"resources": [
+					"app/eam/sp-scan/SpQuery.js",
+					"mui/css/mui.min.css",
+					"app/eam/sp-scan/SpTaskDown.js",
+					"app/util/js/JxDao.js",
+					"app/eam/sp-scan/sp-queryScan.html",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"app/eam/sp-scan/sp-queryScan.html": {
+				"resources": [
+					"jxm/js/JxDao.js",
+					"app/eam/sp-scan/sp-scan-home.html",
+					"mui/css/mui.min.css",
+					"app/eam/sp-scan/SpQuery.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf",
+					"app/eam/sp-scan/SpTaskDown.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/js/jquery-3.2.1.min.js",
+					"app/util/js/JxDao.js"
+				],
+				"refer": [
+					"app/eam/sp-scan/sp-scan.html"
+				],
+				"priority": 0
+			},
+			"app/eam/sp-scan/sp-scan.html": {
+				"resources": [
+					"app/eam/sp-scan/SpScan.js",
+					"mui/css/mui.min.css",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"app/eam/sp-scan/SpQuery.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf",
+					"jxm/js/JxDao.js",
+					"app/eam/sp-scan/SpTaskDown.js"
+				],
+				"refer": [
+					"app/util/barcode_scan.html"
+				],
+				"priority": 0
+			},
+			"app/eam/device-scan/scan.html": {
+				"resources": [
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/css/mui.min.css",
+					"app/eam/device-scan/AssetScan.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/eam/device-scan/TaskDown.js",
+					"mui/fonts/mui.ttf",
+					"app/eam/device-scan/AssetQuery.js",
+					"app/util/js/JxDao.js",
+					"app/util/js/NfcUtil.js"
+				],
+				"refer": [
+					"app/util/barcode_scan.html"
+				],
+				"priority": 0
+			},
+			"app/eam/done/maint-done-info.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"jxm/fonts/iconfont.ttf"
+				],
+				"refer": [
+					"app/util/sys-rep-fault-sp.html",
+					"app/util/sys-done-user.html",
+					"app/util/barcode_scan.html",
+					"app/eam/rep-fault/rep-fault-sp.html",
+					"app/eam/done/pchk-plan-item.html",
+					"app/eam/done/maint-done-item.html"
+				],
+				"priority": 0
+			},
+			"app/eam/done/lub-done-list.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/combo-data.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/done/lub-done-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/done/lub-done-info.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"jxm/fonts/iconfont.ttf"
+				],
+				"refer": [
+					"app/util/sys-done-user.html",
+					"app/util/barcode_scan.html",
+					"app/eam/done/lub-done-item.html"
+				],
+				"priority": 0
+			},
+			"app/util/sel-fault-describe.html": {
+				"resources": [
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/js/mui.indexedlist.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.indexedlist.x.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/rep-fault/rep-fault-info.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js",
+					"jxm/css/jxm.css",
+					"jxm/img/iconfont-tianjia.png",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/util/select-user.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault/rep-fault-chk-info.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"jxm/img/iconfont-tianjia.png",
+					"mui/fonts/mui.ttf",
+					"jxm/js/jxm-image-input2.js"
+				],
+				"refer": [
+					"app/eam/rep-fault/rep-fault-sp.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-stop-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/move/device-stop.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-unstop-list.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/combo-data.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/move/device-unstop.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-seal-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/move/device-seal.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-unseal-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/move/device-unseal.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-idle-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/move/device-idle.html",
+					"app/util/barcode_scan.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-unidle-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/move/device-unidle.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-scrap-list.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/combo-data.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/move/device-scrap.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-allot-list.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/fonts/iconfont.ttf",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/move/device-allot.html"
+				],
+				"priority": 0
+			},
+			"app/eam/rep-fault/rep-fault-sp.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"mui/js/mui.picker.min.js",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"jxm/js/jxm-image-input.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/done/pchk-plan-item.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"mui/js/mui.picker.min.js",
+					"jxm/css/jxm.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"jxm/js/jxm-image-input.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/done/maint-done-item.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"mui/js/mui.picker.min.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"jxm/js/jxm-image-input.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/done/lub-done-item.html": {
+				"resources": [
+					"mui/js/mui.picker.min.js",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"jxm/js/jxm-image-input.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/set/feedback-info.html": {
+				"resources": [
+					"mui/css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/util/sel-rep-frdb.html": {
+				"resources": [
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/js/mui.indexedlist.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.min.js",
+					"mui/js/mui.indexedlist.x.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/util/barcode_scan.html": {
+				"resources": [
+					"mui/js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/im/sys-warn.html": {
+				"resources": [
+					"mui/fonts/mui.ttf",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"mui/js/arttmpl.js",
+					"jxm/fonts/iconfont.ttf"
+				],
+				"refer": [
+					"app/eam/done/maint-done-list.html",
+					"app/eam/done/lub-done-list.html",
+					"app/eam/rep-fault/rep-ault-exe.html",
+					"app/eam/rep-fault/rep-fault-list.html",
+					"app/eam/rep-fault/rep-fault-chk.html"
+				],
+				"priority": 0
+			},
+			"app/util/select-site_name.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"mui/css/mui.indexedlist.css",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"mui/js/mui.indexedlist.x.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"mui/css/mui.min.css",
+					"mui/js/mui.indexedlist.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/move/device-vary-det.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"mui/js/mui.picker.min.js",
+					"jxm/js/jxm-image-input.js",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"jxm/css/jxm.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/move/device-trans-det.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/js/jxm-image-input.js"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-user.html",
+					"app/util/select-site-allname.html"
+				],
+				"priority": 0
+			},
+			"app/eam/move/device-trac2.html": {
+				"resources": [
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css"
+				],
+				"refer": [
+					"app/util/select-dept.html",
+					"app/util/select-user.html"
+				],
+				"priority": 0
+			},
+			"app/util/select-site-allname.html": {
+				"resources": [
+					"mui/css/mui.indexedlist.css",
+					"mui/css/mui.min.css",
+					"mui/js/mui.indexedlist.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/rep-fault/test.html": {
+				"resources": [
+					"jxm/img/bg.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/card/device-list.html": {
+				"resources": [
+					"app/util/combo-data.js",
+					"mui/css/mui.min.css",
+					"jxm/css/jxm.css",
+					"jxm/fonts/iconfont.ttf",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"mui/fonts/mui.ttf"
+				],
+				"refer": [
+					"app/eam/card/device-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/card/device-info.html": {
+				"resources": [
+					"jxm/js/jxm-image-input.js",
+					"mui/css/mui.min.css",
+					"app/util/jxm-util.js",
+					"jxm/js/jxm.js",
+					"jxm/css/jxm.css",
+					"mui/js/mui.min.js",
+					"app/util/combo-data.js",
+					"mui/fonts/mui.ttf",
+					"app/util/js/NfcUtil.js",
+					"jxm/js/jquery-3.2.1.min.js"
+				],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"app/im/test.html": {
+				"resources": [
+					"jxm/js/jxm.js",
+					"lib/mxCanvas.js",
+					"jxm/css/jxm.css",
+					"lib/ext-all.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf",
+					"lib/mxclient-ch.js",
+					"lib/ext-base.js",
+					"app/util/jxm-util.js",
+					"mui/js/mui.min.js",
+					"lib/showeditor.xml",
+					"jxm/fonts/iconfont.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"app/eam/sp-scan/sp-store.html": {
+				"resources": [],
+				"refer": [
+					"app/eam/sp-scan/sp-store-det.html",
+					"app/eam/sp-scan/sp-store-info.html"
+				],
+				"priority": 0
+			},
+			"app/eam/device-scan/device-bind.html": {
+				"resources": [],
+				"refer": [
+					"app/eam/device-scan/queryScan.html",
+					"app/eam/device-scan/device-bind-det.html"
+				],
+				"priority": 0
+			},
+			"app/eam/device-scan/device-bind-det.html": {
+				"resources": [],
+				"refer": [
+					"app/eam/device-scan/device-bind.html",
+					"app/eam/device-scan/scan.html",
+					"app/eam/device-scan/bind-det-from.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"app/oa/oa-appcc.html",
+				"lib/ytx/ytx-web-im.5-1-3.js",
+				"app/util/js/AssetInfo.js",
+				"lib/ytx/ytx-web-im.min.5-1-3.js",
+				"app/oa/oa-task-list.html",
+				"app/oa/oa-task.html",
+				"app/jz/rec/jz-tran.html",
+				"app/util/login-reg.html",
+				"jxm/img/bg1.png",
+				"jxm/img/photo/avatar.png",
+				"jxm/img/user.png",
+				"app/oa/oa-appsx-list.html",
+				"app/oa/oa-appsx.html",
+				"app/util/select-asset.html",
+				"app/jz/util/select-project.html",
+				"app/eam/asset-move-list.html",
+				"app/eam/asset-paramdet.html",
+				"app/jz/rec/jz-comp-list.html",
+				"app/jz/rec/jz-account-list.html",
+				"app/eam/order-sparedet.html",
+				"app/eam/asset-move.html",
+				"app/oa/oa-pro-seltype.html",
+				"app/jz/util/select-emp.html",
+				"app/eam/asset-scrap-list.html",
+				"app/oa/oa-app-wf-dyn.html",
+				"jxm/img/file_type/pdf.png",
+				"app/jz/rec/jz-bill.html",
+				"jxm/img/file_type/jpeg.png",
+				"app/oa/oa-appqj-list.html",
+				"jxm/img/file_type/rar.png",
+				"app/jz/util/select-account.html",
+				"mui/css/mui.poppicker.css",
+				"app/eam/asset-movedet.html",
+				"app/eam/asset-scrap.html",
+				"app/eam/asset-sparedet.html",
+				"app/im/check-info.html",
+				"app/eam/order-filter.html",
+				"mui/js/mui.poppicker.js",
+				"app/util/js/AssetReturn.js",
+				"app/eam/asset-scrap-info.html",
+				"app/jz/rec/jz-home-list.html",
+				"app/eam/asset-move-info.html",
+				"jxm/img/file_type/pptx.png",
+				"jxm/img/file_type/zip.png",
+				"app/oa/oa-pro-list.html",
+				"jxm/img/logo1.png",
+				"app/jz/rec/jz-bill-list.html",
+				"app/jz/rec/jz-comp.html",
+				"jxm/img/file_type/vsd.png",
+				"app/util/login-tenant.html",
+				"app/jz/util/select-type.html",
+				"lib/ytx/justdo.js",
+				"jxm/img/photo/face.png",
+				"app/oa/oa-appbx-list.html",
+				"app/jz/rec/jz-tran-list.html",
+				"app/jz/rec/jz-home.html",
+				"app/set/version_update.html",
+				"app/eam/order-exp.html",
+				"app/eam/asset-change-info.html",
+				"app/eam/order-userdet.html",
+				"jxm/img/file_type/xlsx.png",
+				"app/util/pullrefresh_main.html",
+				"app/oa/oa-app-wf-free.html",
+				"jxm/img/logo.png",
+				"app/oa/oa-appcc-list.html",
+				"app/eam/order-analysis.html",
+				"app/util/login-findpwd.html",
+				"jxm/img/face.png"
+			]
+		}
+	},
+	"unpackage":[
+	  "app/im/check-info.html",
+	  "app/jz/rec/jz-account-list.html",
+	  "app/jz/rec/jz-bill-list.html",
+	  "app/jz/rec/jz-bill.html",
+	  "app/jz/rec/jz-comp-list.html",
+	  "app/jz/rec/jz-comp.html",
+	  "app/jz/rec/jz-home-list.html",
+	  "app/jz/rec/jz-home.html",
+	  "app/jz/rec/jz-tran-list.html",
+	  "app/jz/rec/jz-tran.html",
+	  "app/jz/util/select-account.html",
+	  "app/jz/util/select-emp.html",
+	  "app/jz/util/select-project.html",
+	  "app/jz/util/select-type.html",
+	  "app/oa/oa-app-wf-dyn.html",
+	  "app/oa/oa-app-wf-free.html",
+	  "app/oa/oa-appbx-list.html",
+	  "app/oa/oa-appcc-list.html",
+	  "app/oa/oa-appcc.html",
+	  "app/oa/oa-appqj-list.html",
+	  "app/oa/oa-appsx-list.html",
+	  "app/oa/oa-appsx.html",
+	  "app/oa/oa-pro-list.html",
+	  "app/oa/oa-pro-seltype.html",
+	  "app/oa/oa-task-list.html",
+	  "app/oa/oa-task.html",
+	  "app/set/version_update.html",
+	  "app/util/js/AssetInfo.js",
+	  "app/util/login-findpwd.html",
+	  "app/util/login-reg.html",
+	  "app/util/login-tenant.html",
+	  "app/util/pullrefresh_main.html",
+	  "app/util/select-asset.html",
+	  "jxm/img/bg1.png",
+	  "jxm/img/face.png",
+	  "jxm/img/file_type/docx.png",
+	  "jxm/img/file_type/jpeg.png",
+	  "jxm/img/file_type/pdf.png",
+	  "jxm/img/file_type/pptx.png",
+	  "jxm/img/file_type/rar.png",
+	  "jxm/img/file_type/vsd.png",
+	  "jxm/img/file_type/xlsx.png",
+	  "jxm/img/file_type/zip.png",
+	  "jxm/img/logo.png",
+	  "jxm/img/logo1.png",
+	  "jxm/img/photo/avatar.png",
+	  "jxm/img/photo/face.png",
+	  "jxm/img/user.png",
+	  "lib/ytx/justdo.js",
+	  "lib/ytx/ytx-web-im.5-1-3.js",
+	  "lib/ytx/ytx-web-im.min.5-1-3.js",
+	  "mui/css/mui.poppicker.css",
+	  "mui/js/mui.js",
+	  "mui/js/mui.poppicker.js"
+	]
+}

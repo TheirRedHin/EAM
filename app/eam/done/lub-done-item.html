@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>设备保养实施明细</title>
+    <link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css">
+   	<style type="text/css">
+    	.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		h5 {
+	    	font-size: 14px;
+	    	padding: 8px 5px 6px;
+	    	background-color: #efeff4;
+	    }
+    	.label-red {
+			padding-left: 5px;
+			color:red !important;
+		}
+		.text-disabled {
+			background-color: #EEEEEE;
+		}
+		.iconfont{
+			font-size:24px;
+		}
+		.footer{
+			position:static;
+			/*padding-top: 8px;
+			padding-left: 20px;
+			padding-right: 20px;*/
+		}
+		.btncommit{
+			/*padding-left: 20px;
+			
+			padding-right: 20px;*/
+			width: 70%;
+			
+		}
+		/*.head{
+			position: fixed !important;
+			top: auto;
+			bottom: auto;
+			
+		}*/
+		/*.mui-content{
+			position: absolute;
+			position:fixed;top:0px; bottom:0px;width:100%;overflow:scroll;
+		}	*/
+		
+		/*.head,.foot{position:fixed;left:0;height:50px;line-height:50px;width:100%;background-color:#99CC00;}*/
+		
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary head" id="head">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">设备润滑实施明细</h1>
+	</header>
+	<nav class="mui-bar mui-bar-footer" id="footer">
+		<center>
+		<button id="btncommit" type="button" class="mui-btn mui-btn-block mui-btn-primary btncommit" style="font-size: 17px;">保存</button>
+		</center>
+	</nav>
+	
+	<!--工单基本信息-->
+	<div class="mui-content mui-hidden" id="mui-content">
+		<form class="mui-input-group">
+			<!--<div class="mui-input-row" >-->
+				
+			<!--</div>-->
+			<div class="mui-input-row" >
+				<label>完成情况<span class="label-red">*</span></label>
+				<!--<input id='complete' type="text" class="mui-input-clear"  readonly="readonly" style="background-color: #F2F2F2;height: 50px;"/>-->
+				<select id="complete" type="text">
+					<option disabled selected value>请选择</option>
+					<option value="1">√</option>
+					<option value="2">×</option>
+				</select>
+			
+			</div>
+			<div class="mui-input-row" >
+				<label>序号</label>
+				
+				<input id='din_item_id' type="hidden"/>
+				<input id='lubsp_id' type="hidden"/>
+				<input id='object_id' type="hidden"/>
+				<input id='lubsp_code' type="hidden"/>
+				
+				<input id='seq' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			
+			<div class="mui-input-row" style="height: 50px;">
+				<label>润滑部位</label>
+				<textarea id="object_name" rows="2" type="text"  readonly="readonly" style="background-color: #F2F2F2;"></textarea>
+			</div>
+			
+			
+			<div class="mui-input-row" >
+				<label>润滑方式</label>
+				<input id='lub_meth' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row rowlength" >
+				<label>作业时设备状态</label>
+				<input id='work_state'type="text"  readonly="readonly" style="background-color: #F2F2F2; height: 50px;"/>
+			</div>
+			
+			<div class="mui-input-row" >
+				<label>油脂名称</label>
+				<input id='lubsp_name' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>油脂型号</label>
+				<input id='lubsp_type' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>油脂品牌</label>
+				<input id='lubsp_brand' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				
+			</div>
+			
+			
+			<div class="mui-input-row" >
+				<label>计量单位</label>
+				<input id='sp_unit' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>润滑点数</label>
+				<input id='lub_point' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>加油量</label>
+				<input id='add_oil' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				
+			</div>
+			
+			<div class="mui-input-row" >
+				<label>换油量</label>
+				<input id='chg_oil' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			<div class="mui-input-row" >
+				<label>使用工具</label>
+				<input id='use_tool' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+			</div>
+			
+			<div class="mui-input-row rowlength">
+				<label>花费工时(分钟)</label> 
+				<input id='work_hours' type="number"  readonly="readonly" style="background-color: #F2F2F2;height: 50px;"/>
+			</div>
+			<div class="mui-input-row" style="height: 60px;">
+				<label>备注</label>
+				<textarea id="memo" rows="2" type="text"></textarea>
+			</div>
+		
+			
+		</form>
+	</div>	
+	
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<script src="../../../jxm/js/jxm-image-input.js"></script>
+	<script src="../../../jxm/js/jxm-util.js"></script>
+	<script src="../../../jxm/js/combo-data.js"></script>
+	<script src="../../../jxm/js/jquery-3.2.1.min.js"></script>
+	<script src="../../../mui/js/mui.picker.min.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	var key_id = '';
+      	var plan_id = '';
+      	var query_funid = '';
+      	var pfunid = '';
+//    	document.getElementById("mui-content").style.display="none";//隐藏
+      	mui.plusReady(function(){
+      		
+      		
+//    		document.getElementById("footer").style.display="none";
+      		
+      		var self = plus.webview.currentWebview();
+      		key_id = self.key_id;
+      		plan_id = self.plan_id;
+      		query_funid = self.query_funid;
+      		pfunid = self.pfunid;
+//    		alert(self.key_id);
+      		readData(key_id);
+      		
+	    });
+	    //加载表单数据
+	    var readData = function(key_id) {
+	     	
+//	    	if (!key_id || key_id.length == 0) return;
+	    	
+	    	var wheresql = 'pm_plan_item.plan_item_id = ?';
+			var params = "funid=queryevent&eventcode=query_data&query_funid="+query_funid+"&query_type=0&has_page=1&limit=1"+
+			"&where_sql="+wheresql+"&where_type=string&where_value="+key_id;
+			
+			console.log('---'+params)
+			jxm.post(params, function(data){
+				
+	    		//读取数据
+		    	if (!data) return;
+		    	document.getElementById('mui-content').classList.remove('mui-hidden');
+//		    	document.getElementById("mui-content").style.display="";//显示
+  				console.log('----00000000000---'+JSON.stringify(data));
+				data = data.root;
+				data = data[0];
+				 
+				document.getElementById('seq').value = data.pm_plan_item__seq;
+				
+				document.getElementById('object_name').value = data.pm_plan_item__object_name;
+				
+				document.getElementById('object_id').value = data.pm_plan_item__object_id;
+				
+				var lub_meth = jxm.getComboText(ComboData.lub_meth, data.pm_plan_item__lub_meth);
+				document.getElementById('lub_meth').value = lub_meth;
+				document.getElementById('lubsp_name').value = data.pm_plan_item__lubsp_name;
+	  			document.getElementById('lubsp_type').value = data.pm_plan_item__lubsp_type;
+	  			document.getElementById('lubsp_brand').value = data.pm_plan_item__lubsp_brand;
+	  			
+	  			var work_state = jxm.getComboText(ComboData.work_state, data.pm_plan_item__work_state);
+	  			document.getElementById('work_state').value = work_state;
+	  			
+	  			document.getElementById('lub_point').value = jxm.date(data.pm_plan_item__lub_point);
+	  			document.getElementById('add_oil').value = jxm.date(data.pm_plan_item__add_oil);
+	  			
+	  			document.getElementById('chg_oil').value = jxm.date(data.pm_plan_item__chg_oil);
+				document.getElementById('use_tool').value = data.pm_plan_item__use_tool;
+				document.getElementById('sp_unit').value = data.pm_plan_item__sp_unit;
+	  			document.getElementById('lubsp_code').value = data.pm_plan_item__lubsp_code;
+	  			document.getElementById('din_item_id').value = data.pm_plan_item__din_item_id;
+	  			document.getElementById('lubsp_id').value = data.pm_plan_item__lubsp_id;
+	  			
+	  			document.getElementById('work_hours').value = jxm.date(data.pm_plan_item__work_hours);
+	  			document.getElementById('memo').value = data.pm_plan_item__memo;
+	  			
+	  			var complete = jxm.getComboText(ComboData.complete, data.pm_plan_item__complete);
+				var obj = mui("#complete option");
+				for (var i = 0; i < obj.length; i++) { 
+					if (obj[i].text == complete) { 
+						obj[i].selected = true; 
+						return false; 
+					} 
+				}
+				
+			});
+		};
+		
+  		var commitAsset = function() {
+  			
+  			var seq = document.getElementById('seq').value;
+				
+			var object_name = document.getElementById('object_name').value;
+			
+			var object_id = document.getElementById('object_id').value;
+			
+			var lub_meth = document.getElementById('lub_meth').value;
+			var lubsp_name = document.getElementById('lubsp_name').value;
+  			var lubsp_type = document.getElementById('lubsp_type').value;
+  			var lubsp_brand = document.getElementById('lubsp_brand').value;
+  			
+  			var work_state = document.getElementById('work_state').value;
+  			var lub_point = document.getElementById('lub_point').value;
+  			var add_oil = document.getElementById('add_oil').value;
+  			
+  			var chg_oil = document.getElementById('chg_oil').value;
+			var use_tool = document.getElementById('use_tool').value;
+			var sp_unit = document.getElementById('sp_unit').value;
+  			var lubsp_code = document.getElementById('lubsp_code').value;
+  			var din_item_id = document.getElementById('din_item_id').value;
+  			var lubsp_id = document.getElementById('lubsp_id').value;
+  			
+  			var work_hours = document.getElementById('work_hours').value;
+  			var memo = document.getElementById('memo').value;
+  			var complete = document.getElementById('complete').value;
+  			
+			if ((!complete || complete.length == 0)) {
+				mui.alert('完成情况为必填项！');
+				return false;
+			}
+			var params = 'funid='+query_funid+'&eventcode=save_eg&pagetype=editgrid';
+			params += '&pfunid='+pfunid+'&fkValue='+plan_id;
+			
+			params += '&keyid='+key_id;
+			params += '&pm_plan_item__complete='+complete;
+			params += '&pm_plan_item__object_name='+object_name;
+			
+			params += '&pm_plan_item__lub_meth='+(lub_meth == '加油'?'1':'2');
+			params += '&pm_plan_item__seq='+seq;
+			params += '&pm_plan_item__lubsp_name='+lubsp_name;
+			
+			params += '&pm_plan_item__work_state='+(work_state == '停机'?'10':'20');
+			params += '&pm_plan_item__lubsp_type='+lubsp_type;
+			params += '&pm_plan_item__lubsp_brand='+lubsp_brand;
+			params += '&pm_plan_item__lub_point='+lub_point;
+			params += '&pm_plan_item__add_oil='+add_oil;
+			params += '&pm_plan_item__chg_oil='+chg_oil;
+			params += '&pm_plan_item__use_tool='+use_tool;
+			params += '&pm_plan_item__work_hours='+work_hours;
+			params += '&pm_plan_item__memo='+memo;
+			params += '&pm_plan_item__sp_unit='+sp_unit;
+			params += '&pm_plan_item__plan_id='+plan_id;
+			params += '&pm_plan_item__din_item_id='+din_item_id;
+			params += '&pm_plan_item__object_id='+object_id;
+			params += '&pm_plan_item__lubsp_id='+lubsp_id;
+			params += '&pm_plan_item__plan_item_id='+key_id;		
+  			console.log('params--'+params);
+//			mui.toast(complete)
+			//保存
+			jxm.post(params, function(data){
+			
+				console.log("save:"+JSON.stringify(data));
+				//提交成功后返回列表页面
+				setTimeout(function(){
+					mui.toast('保存成功！');
+					//获得列表界面的webview  
+				    var list = plus.webview.currentWebview().opener();  
+				    //触发列表界面的自定义事件（reload）,从而进行数据刷新  
+				    mui.fire(list, 'loadDet');
+					
+					mui.currentWebview.close('auto');
+				}, 500);
+			});
+  		};
+  		
+//		//点击提交按钮
+		document.getElementById('btncommit').addEventListener('tap', commitAsset);
+		
+    </script>
+</body>
+</html>

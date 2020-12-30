@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>设备故障处理</title>
+    
+    <link rel="stylesheet" href="../../../mui/css/previewer.css">
+	<link rel="stylesheet" href="../../../mui/css/mui.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../mui/css/mui.picker.min.css" />
+    <link rel="stylesheet" href="../../../jxm/css/jxm.css">
+    <style type="text/css">
+   		.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		.head-search {
+			padding-top: 1px;
+			height: 40px !important; 
+		}
+		.device{
+			height: 40px; 
+			width: 35% ;
+			/*border: none;
+			border-radius: 0 !important;
+			background-color:#f7f7f7;*/
+		}
+		
+		.head-search input {
+			float:left !important; 
+			width:54% !important; 
+			height: 40px; 
+			border: none;
+		}
+    	.head-search button {
+			height: 40px; 
+			width: 11%  ;
+			border: none;
+			border-radius: 0 !important;
+			background-color:#f7f7f7;
+		}
+    	.label-red {
+			padding-left: 5px;
+			color:red !important;
+		}
+		/*.text-disabled {
+			background-color: #EEEEEE;
+		}*/
+		.iconfont{
+			font-size:24px;
+		}
+		h5 {
+	    	font-size: 14px;
+	    	padding: 8px 5px 6px;
+	    	background-color: #efeff4;
+	    }
+	    .btnfinish{
+			width: 50%;
+		}
+		.listtip,.listtip2{
+			padding-top: 20px;
+			text-align: center;
+			background-color: white;
+			height: 100px;
+			color: #CCCCCC;
+		}
+		/*.footer{
+			position:static;
+			padding-top: 8px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}*/
+		#save{
+			float: left;
+		}
+		
+		#btncommit{
+			float: right;
+		}
+		.btncommit{
+			width: 50%;
+			
+		}
+		#addPopover,#addPopover2{
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 998;
+			background-color: rgba(0,0,0,.4);
+		}
+		.addContent{
+			position: absolute;
+			left:5%;
+			right:5%;
+			top: 35%;
+			/*margin:0 auto;*/
+		}
+		.addContent2{
+			position: absolute;
+			left:20%;
+			right:20%;
+			top: 35%;
+			/*margin:0 auto;*/
+		}
+		
+    </style>
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary" id="head">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" id="title">设备故障处理-表单</h1>
+	</header>
+	<nav class="mui-bar mui-bar-footer mui-hidden" id="footer">
+		<center>
+			<button id="save" type="button" class="mui-btn mui-btn-block mui-btn-primary btncommit" style="width: 45%;font-size: 17px;">保存</button>
+			<button id="btncommit" type="button" class="mui-btn mui-btn-block mui-btn-primary btncommit" style="width: 45%;font-size: 17px;">提交</button>
+		</center>
+	</nav>
+	<div class="mui-content mui-hidden" id="mui-content">
+		<div>
+			<form class="mui-input-group">
+				
+				<div class="mui-input-row" > 
+					<label >故障单号</label>
+					<input id='fault_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;margin-top: 1px;"/>
+					
+				</div>
+				<div class="mui-input-row mui-hidden" > 
+					<label >故障状态</label>
+					<input id='fault_status' type="text" readonly="readonly"/>
+				</div>
+				<div class="mui-input-row" > 
+					<label >故障发生时间</label>
+					<input id='fault_date' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>设备编号</label>
+					<input id='device_code' type="text"  readonly="readonly" style="background-color: #F2F2F2;" />
+				</div>
+				<div class="mui-input-row" >
+					<label>设备名称</label>
+					<input id='device_name' type="text"  readonly="readonly" style="background-color: #F2F2F2;" />
+					<input id='device_id' type="hidden"/>
+				</div>
+				<div class="mui-input-row" > 
+					<label >设备状态</label>
+					<input id='device_status' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				
+				<div class="mui-input-row mui-hidden" >
+					<label>资产编号</label>
+					<input id='asset_code' type="text" readonly="readonly" />
+				
+				</div>
+				<div class="mui-input-row" >
+					<label>设备型号</label>
+					<input id='device_type' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>设备规格</label>
+					<input id='device_size' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>设备类别</label>
+					<input id='type_name' type="text" readonly="readonly" />
+					<input id='type_id' type="hidden"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>安装地点</label>
+					<input id='install_site' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>使用部门</label>
+					<input id='dept_name' type="text"  readonly="readonly" style="background-color: #F2F2F2;"/>
+					<input id="dept_id" type="hidden" />
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>使用二级单位</label>
+					<input id='sec_dept' type="text" readonly="readonly" />
+				</div>
+				<div class="mui-input-row mui-hidden" >
+					<label>上报人</label>
+					<input id='edit_user' type="text" readonly="readonly"/>
+				</div>
+				
+				<div class="mui-input-row mui-hidden" >
+					<label>维保部门</label>
+					<input id='wdept_name' type="text" readonly="readonly" />
+					<input id="wdept_id" type="hidden"/>
+				</div>
+				<div class="mui-input-row rowlength mui-hidden" >
+					<label>维保部门二级单位</label>
+					<input id='wsec_dept' type="text" readonly="readonly"/>
+				</div>
+				<div class="mui-input-row" >
+					<label>维修人员</label>
+					<input id='repair_user' type="text"   readonly="readonly" style="background-color: #F2F2F2;"/>
+					<input id="repair_userid" type="hidden" />
+				</div>
+				<div class="mui-input-row" style="height: 60px;">
+					<label>地理区域</label>
+					<textarea name="site_name" id="site_name" readonly="readonly" rows="2" readonly="readonly" style="background-color: #F2F2F2;"></textarea>
+				</div>
+				<div class="mui-input-row" style="height: 100px;">
+					<label>故障现象描述</label>
+					<textarea id="fault_describe" rows="4" type="text"  readonly="readonly" style="background-color: #F2F2F2;"></textarea>
+				
+				</div>
+				
+			</form>
+			
+			<h5 class="mui-hidden" id="imageTitle">相关图片</h5>
+			<form class="mui-hidden mui-input-group jxm-image-input" id="image">
+				<div id='image-list' class="row image-list">
+				</div>
+			</form>
+			
+			<h5>处理图片</h5>
+			<form class="mui-input-group jxm-image-input">
+				<div id='image-list2' class="row image-list">
+				</div>
+			</form>
+			
+			<form class="mui-input-group mui-hidden">
+				<div class="mui-input-row" > 
+					<label>异常处理</label>
+						<input id='fault_dispose' type="text" readonly="readonly"/>
+				
+				</div>
+				<div class="mui-input-row" > 
+					<label >接单人</label>
+					<input id='order_user' type="text" readonly="readonly"/>
+					<input id="order_userid" type="hidden"/>
+				</div>
+				<div class="mui-input-row" > 
+					<label >接单时间</label>
+					<input id='order_date' type="text" readonly="readonly"/>
+				</div>
+				
+			</form>	
+			
+			<h5>故障处理</h5>
+			<form class="mui-input-group">
+				<div class="mui-input-row" > 
+					<label>处理方式<span class="label-red">*</span></label>
+						<select id="dispose_type"     type="text">
+							<option disabled selected value>请选择</option>
+							<option value="1">误报</option>
+							<option value="2">紧急维修</option>
+							<option value="3">计划维修</option>
+							<option value="4">委外维修</option>
+						</select>
+				</div>
+				
+				<div class="mui-input-row" > 
+					<label >故障分类<span class="label-red mui-hidden"  id="typeSpan">*</span></label>
+					<input id='rep_type_name' type="text" style="background-color: #F2F2F2;" readonly=ture placeholder=""/>
+				</div>
+				
+				<div class="mui-input-row" > 
+					<label >完工时间<span class="label-red mui-hidden" id="dateSpan">*</span></label>
+					<input id='complete_date' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" > 
+					<label >维修工时(h)</label>
+					<input id='repair_hours' type="text" readonly="readonly" style="background-color: #F2F2F2;"/>
+				</div>
+				<div class="mui-input-row" > 
+					<label >故障库编码</label>
+					<input id='frdb_code' type="text" readonly=ture placeholder="点击可从故障库中选择"/>
+					<input id="frdb_id" type="hidden"/>
+				</div>
+				
+				<div class="mui-input-row" style="height: 100px;">
+					<label>故障原因</label>
+					<textarea id="fault_reason"    rows="4" type="text"></textarea>
+				</div>
+				<div class="mui-input-row" style="height: 100px;">
+					<label>解决方法</label>
+					<textarea id="measures"    rows="4" type="text"></textarea>
+				</div>
+				<div class="mui-input-row" style="height: 100px;">
+					<label>备注</label>
+					<textarea id="fault_memo"    rows="4" type="text"></textarea>
+				</div>
+				
+			</form>	
+			
+			
+			<h5 id="detailNum"></h5>
+			<form class="mui-input-group">
+				<div class="mui-input-row " style="height: 50px;">
+					<button type="button"  id="sp_import" class="mui-btn-primary mui-pull-left" style="margin-top:5px;margin-left:20px;width:40%;height:40px; font-size: 16px;">添加备件</button>
+					<button type="button" id="create_order" class="mui-btn-primary mui-pull-right" style="margin-top:5px ;margin-right:20px;width: 40%;height:40px;font-size: 16px;">生成领料出库单</button>
+				</div>
+			</form>
+			<div class="listtip2" style="clear:both">
+				<p style="font-size: 16px;">点击添加备件按钮可添加备件消耗明细</p>
+			</div>
+			<ul id="spare_list2" class="mui-table-view mui-hidden">
+			</ul>
+			
+			<div id="addPopover2" class="mui-hidden">
+				<div class="addContent2 ">
+				<ul class="mui-table-view">
+						<li class="mui-table-view-cell" style="text-align:center;" id="device_sp_store_sel">设备备件BOM库存</li>
+						<li class="mui-table-view-cell" style="text-align:center;" id="sp_store_house_sel">仓库库存汇总表</li>
+						<li class="mui-table-view-cell" style="text-align:center;" id="sp_catalog_sel">备件品种目录</li>
+						<div style="background-color: #f7f7f7;">
+					<center>
+						<button type="button" id="btncancel2" class=" mui-btn-blue" style="width:30%;margin: 10px 10px;">取消</button>
+					</center>
+					</div>
+					</ul>
+				</div>
+			</div>
+			
+			
+			<h5 id="laborNum"></h5>
+			<form class="mui-input-group">
+				<div class="mui-input-row " style="height: 50px;">
+					<button type="button" id="import" class="mui-btn-primary mui-pull-right" style="margin-top:5px ;margin-right:10px;width: 25%;height:40px;font-size: 16px;">添加人员</button>
+					
+				</div>
+			</form>
+			<div class="listtip" style="clear:both">
+				<p style="font-size: 16px;">点击添加人员按钮可添加人员明细</p>
+			</div>
+			<ul id="spare_list" class="mui-table-view mui-hidden">
+			</ul>
+			
+			
+		</div>
+	</div>
+	<div style="height: 10px;"></div>
+		<div id="addPopover" class="mui-hidden">
+			<div class="addContent ">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>姓名</label>
+						<input id='labor_name' type="text" readonly="readonly" style="background-color: #F2F2F2;">
+						<input id="labor_id" />
+					</div>
+					<div class="mui-input-row">
+						<label>工时(h)<span class="label-red">*</span></label>
+						<input id='work_hours' type="number" class="mui-input-clear" placeholder="请输入工时">
+					</div>
+					<div class="mui-input-row">
+						<label>备注</label>
+						<input id='memo' type="text" class="mui-input-clear" placeholder="">
+					</div>
+					
+					<div style="background-color: #f7f7f7;">
+					<center>
+						<button type="button" id="btnok" class=" mui-btn-blue" style="width:30%;margin: 10px 10px;">确定</button>
+						<button type="button" id="btncancel" class=" mui-btn-blue" style="width:30%;margin: 10px 10px;">取消</button>
+					</center>
+					</div>
+				</form>
+			</div>
+		</div>
+	<script src="../../../mui/js/mui.min.js"></script>
+	<script src="../../../mui/js/mui.zoom.js"></script>
+	<script src="../../../mui/js/mui.previewimage.js"></script>
+	<script src="../../../jxm/js/jxm.js"></script>
+	<script src="../../../jxm/js/jxm-image-input.js"></script>
+	<script src="../../../jxm/js/jxm-image-input2.js"></script>
+	
+	<script src="../../../jxm/js/jxm-util.js"></script>
+	<script src="../../../jxm/js/combo-data.js"></script>
+	<script type="text/javascript" src="../../../jxm/js/jquery-3.2.1.min.js"></script>
+	<script src="../../../mui/js/mui.picker.min.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	
+      	var fault_id = '';
+      	var whereSql = '';
+      	var type = '';
+      	var total = '';
+      	
+      	mui.plusReady(function(){
+      		
+//    		mui.toast('更新了');
+      		var self = plus.webview.currentWebview();
+      		
+      		whereSql = self.whereSql;
+      		
+      		fault_id = self.fault_id;
+//    		alert(whereSql+'----'+fault_id);
+      		//如果存在工单ID，读取工单信息显示在页面
+      		readOrder(fault_id);
+      		
+	    });
+	    //加载表单数据
+	    var readOrder = function(fault_id) {
+	    	
+	    	if (!fault_id || fault_id.length == 0) return;
+	    	
+	    	//基本信息发送请求
+			var wheresql = 'fault_id = ?';
+			var params = "funid=queryevent&eventcode=query_data&query_funid=rep_fault_exe&query_type=0&has_page=1&limit=1"+
+			"&where_sql="+wheresql+"&where_type=string&where_value="+fault_id;
+			
+			console.log('---'+params)
+			jxm.post(params, function(data){
+				if (!fault_id || fault_id.length == 0) return;
+	    	
+	    		//读取数据
+		    
+	    		if (!data) return;
+	    		document.getElementById('mui-content').classList.remove('mui-hidden');
+	  			document.getElementById('footer').classList.remove('mui-hidden');
+//				alert(document.getElementById('mui-content'))
+  				console.log('----00000000000---'+JSON.stringify(data));
+				
+				data = data.root;
+				
+				data = data[0];
+//				document.getElementById('key_id').value = data.rep_fault__fault_id;
+				document.getElementById('fault_code').value = data.rep_fault__fault_code;
+				
+				var fault_status = jxm.getComboText(ComboData.fault_status, data.rep_fault__fault_status);
+				document.getElementById('fault_status').value = fault_status;
+				document.getElementById('fault_date').value = data.rep_fault__fault_date.substr(0,16);
+				
+				var device_status = jxm.getComboText(ComboData.device_status, data.rep_fault__device_status);
+				document.getElementById('device_status').value = device_status;
+				
+				document.getElementById('device_code').value = data.rep_fault__device_code;
+	  			document.getElementById('device_id').value = data.rep_fault__device_id;
+	  			document.getElementById('device_name').value = data.rep_fault__device_name;
+	  			document.getElementById('device_type').value = data.rep_fault__device_type;
+	  			document.getElementById('device_size').value = data.rep_fault__device_type;
+	  			document.getElementById('type_id').value = data.rep_fault__type_id;
+	  			document.getElementById('type_name').value = data.rep_fault__type_name;
+	  			document.getElementById('install_site').value = data.rep_fault__install_site;
+	  			document.getElementById('dept_name').value = data.rep_fault__dept_name;
+	  			document.getElementById('edit_user').value = data.rep_fault__edit_user;
+	  			document.getElementById('sec_dept').value = data.rep_fault__sec_dept;
+//		  			document.getElementById('major_device_type').value = jxm.getComboText(ComboData.majortype, data.asset_card__major_device_type);
+//				document.getElementById('sec_deptid').value = data.device_card__sec_deptid;
+				document.getElementById('asset_code').value = data.rep_fault__asset_code;
+//		  			document.getElementById('edit_userid').value = data.asset_card__major_device_type;
+				document.getElementById('wdept_name').value = data.rep_fault__wdept_name;
+	  			
+	  			document.getElementById('wdept_id').value = data.rep_fault__wdept_id;
+				document.getElementById('wsec_dept').value = data.rep_fault__wsec_dept;
+				
+				document.getElementById('repair_user').value = data.rep_fault__repair_user;
+	  			document.getElementById('repair_userid').value = data.rep_fault__repair_userid;
+		  			
+				document.getElementById('site_name').value = data.rep_fault__site_name;
+				document.getElementById('fault_describe').value = data.rep_fault__fault_describe;
+				//异常处理
+				if (data.rep_fault__fault_dispose.length > 0) {
+					var fault_dispose = jxm.getComboText(ComboData.fault_dispose, data.rep_fault__fault_dispose);
+					document.getElementById('fault_dispose').value = fault_dispose;
+				}
+				document.getElementById('order_user').value = data.rep_fault__order_user;
+				document.getElementById('order_date').value = data.rep_fault__order_date;
+				
+				//故障处理
+				document.getElementById('dispose_type').value = data.rep_fault__dispose_type;
+				document.getElementById('rep_type_name').value = data.rep_fault__rep_type_name;
+				document.getElementById('complete_date').value = data.rep_fault__complete_date.substr(0,16);
+				document.getElementById('repair_hours').value = jxm.date(data.rep_fault__repair_hours);
+				
+				document.getElementById('frdb_id').value = data.rep_fault__frdb_id;
+				document.getElementById('frdb_code').value = data.rep_fault__frdb_code;
+				document.getElementById('fault_reason').value = data.rep_fault__fault_reason;
+				document.getElementById('measures').value = data.rep_fault__measures;
+				document.getElementById('fault_memo').value = data.rep_fault__fault_memo;
+				
+//				document.getElementById('complete_date').type='date';
+				var dispose_type = jxm.getComboText(ComboData.dispose_type, data.rep_fault__dispose_type);
+				
+//				var dispose_type = data.rep_fault__dispose_type;
+//				mui.toast()
+				//如果为紧急维修，故障分类可编辑
+				if (dispose_type == '紧急维修') {
+					document.getElementById("dateSpan").classList.remove('mui-hidden');
+					document.getElementById("typeSpan").classList.remove('mui-hidden');
+					document.getElementById("rep_type_name").setAttribute("style","background-color:white");
+					document.getElementById("complete_date").setAttribute("style","background-color:white");
+					$(document.getElementById("rep_type_name")).attr('placeholder',"点击可选择故障分类");
+					
+		    	}
+				else if(dispose_type == '计划维修' || dispose_type == '委外维修'){
+//					document.getElementById("dateSpan").classList.remove('mui-hidden');
+					document.getElementById("typeSpan").classList.remove('mui-hidden');
+					document.getElementById("rep_type_name").setAttribute("style","background-color:white");
+					$(document.getElementById("rep_type_name")).attr('placeholder',"点击可选择故障分类");
+//					document.getElementById("complete_date").setAttribute("style","background-color:white");
+		    	}
+//				else{
+//		    		document.getElementById('rep_type_name').readOnly=false;
+//		    	}
+				
+				//设置select中text="paraText"的第一个Item为选中 
+				//判断是否存在 
+				var obj = mui("#dispose_type option");
+				for (var i = 0; i < obj.length; i++) { 
+					if (obj[i].text == dispose_type) { 
+						obj[i].selected = true; 
+						return false; 
+					} 
+				} 
+			});
+			
+			//加载报修的图片
+			jxm.imgUI.downImages({dataid:fault_id, tablename:'rep_fault',fun_id:'rep_fault', isedit:false, callback:function(){
+				jxm.imgUI.newImageDiv('noadd');
+				mui.previewImage();
+			}});
+			
+//			//加载处理的图片
+			jxm.imgUI2.downImages2({dataid:fault_id, tablename:'rep_fault',fun_id:'rep_fault_exe', isedit:true, callback:function(){
+				jxm.imgUI2.newImageDiv2();
+				mui.previewImage();
+			}});
+			
+			
+//			document.getElementById('image-list').addEventListener('tap',function(){
+//				mui.toast('---')
+//			})
+			loadDet();
+	    	maintDoneLabor();
+	    };
+	    
+	    //导入人员数据
+	    var selUsertEvent = 'select-user';
+	    document.getElementById('import').addEventListener('tap', function(){
+//	    	console.log("key_id:----");
+  			var wdept_id = document.getElementById('wdept_id').value;
+			var where_sql = "(user_id not in (select labor_id from rep_fault_labor where fault_id = ?)) and (sys_user.dept_id like ?)";
+    			
+			var href = "../../../app/util/sys-done-user.html";
+			var param = {callbackWinId:mui.currentWebview.id, callbackEvent:selUsertEvent, mutilsel:true,key_id:fault_id,where_sql:where_sql,wdept_id:wdept_id};
+			jxm.open(href,{extras:{selectParams:param}});
+	    });
+	    
+	    window.addEventListener(selUsertEvent, function(event){
+	    	
+			var objs = event.detail.selectdata;
+			
+  			//导入
+			var params = "funid=sys_user&destfunid=rep_fault_labor&pagetype=import&eventcode=import&parentId="+fault_id;
+			
+			mui.each(objs, function(i, obj){
+  				params += '&keyid='+obj.dataid;
+  			});
+//			var data = '';
+			jxm.post(params, function(data){
+				
+				console.log('导入：'+JSON.stringify(data));
+//				total = data.length+total;
+//				add(data);
+				maintDoneLabor();
+//				location.reload();
+			});
+			
+	    });
+	    
+	    //导入备件数据
+	    var selSpEvent = 'select-sp';
+	    document.getElementById('sp_import').addEventListener('tap', function(){
+//	    	mui.toast("key_id:----");
+
+
+			var addp = document.getElementById("addPopover2");
+			addp.classList.remove("mui-hidden");
+			
+//			var href = "../../../app/util/sys-rep-fault-sp.html";
+//			var btnArray = ['仓库库存汇总表', '备件品种目录','设备备件BOM库存'];
+//			
+//			var type;
+//			mui.confirm('请选择备件消耗明细！', '提示', btnArray, function(e) {
+//				if (e.index == 0) {
+////					type = 'store_house';
+//
+//					var param = {callbackWinId:mui.currentWebview.id, callbackEvent:selSpEvent, mutilsel:true,key_id:fault_id,type:'store_house'};
+//					jxm.open(href,{extras:{selectParams:param}});
+//					console.log(0);
+//				} else if (e.index == 1){
+////					type = 'catalog';
+//					var param = {callbackWinId:mui.currentWebview.id, callbackEvent:selSpEvent, mutilsel:true,key_id:fault_id,type:'catalog'};
+//					jxm.open(href,{extras:{selectParams:param}});
+//					console.log(1);
+//				}
+//			});
+
+			
+		});
+		
+		//取消
+		document.getElementById("btncancel2").addEventListener("tap",function(){
+//			document.getElementById("change_num").value="";
+			document.getElementById("addPopover2").classList.add("mui-hidden");
+		});
+		
+		//选择备件品种目录
+	    document.getElementById('sp_catalog_sel').addEventListener('tap',function(){
+			var href = "../../../app/util/sys-rep-fault-sp.html";
+			type = 'catalog';
+			var param = {callbackWinId:mui.currentWebview.id, callbackEvent:selSpEvent, mutilsel:true,key_id:fault_id,type:'catalog'};
+			jxm.open(href,{extras:{selectParams:param}});
+			console.log(1);
+			mui.trigger(document.getElementById("btncancel2"),"tap");
+		})
+		//选择备件BOM库存
+		document.getElementById('device_sp_store_sel').addEventListener('tap',function(){
+			var href = "../../../app/util/sys-rep-fault-sp.html";
+			var device_id = document.getElementById('device_id').value;
+			type = 'device';
+			var param = {callbackWinId:mui.currentWebview.id, callbackEvent:selSpEvent, mutilsel:true,key_id:fault_id,type:'device',device_id:device_id};
+			jxm.open(href,{extras:{selectParams:param}});
+			console.log(1);
+			mui.trigger(document.getElementById("btncancel2"),"tap");
+		})
+		//选择仓库库存
+		document.getElementById('sp_store_house_sel').addEventListener('tap',function(){
+			var href = "../../../app/util/sys-rep-fault-sp.html";
+			type = 'store_house';
+//
+			var param = {callbackWinId:mui.currentWebview.id, callbackEvent:selSpEvent, mutilsel:true,key_id:fault_id,type:'store_house'};
+			jxm.open(href,{extras:{selectParams:param}});
+			console.log(0);
+			mui.trigger(document.getElementById("btncancel2"),"tap");
+		})
+	    window.addEventListener(selSpEvent, function(event){
+	    	
+	        var objs = event.detail.selectdata;
+			//添加选中的资产
+			console.log(JSON.stringify(objs))
+  			var funid;
+  			//导入store_house
+  			if (objs[0].dataext == 'catalog') {
+  				funid = 'sp_catalog_sel';
+  			} 
+  			else if(objs[0].dataext == '导入store_house'){
+  				funid = 'sp_store_house_sel';
+  			}
+  			else {
+  				funid = 'device_sp_store_sel';
+  			}
+  			
+			var params = "funid="+funid+"&destfunid=rep_fault_sp&pagetype=import&eventcode=import&parentId="+fault_id;
+
+			mui.each(objs, function(i, obj){
+  				params += '&keyid='+obj.dataid;
+  			});
+  			
+			jxm.post(params, function(data){
+				
+				console.log('导入：'+JSON.stringify(data));
+				loadDet();
+//					location.reload();
+			});
+	    });
+	   	//加载人员工时明细
+		var maintDoneLabor = function(){
+//			alert(00)
+			
+	   		document.getElementById('spare_list').innerHTML='';
+	   		var wheresql = 'rep_fault_labor.fault_id = ?';
+			var params = "funid=queryevent&eventcode=query_data&query_funid=rep_fault_labor&query_type=0&has_page=1&limit=500"+
+			"&where_sql="+wheresql+"&where_type=string&where_value="+fault_id;
+//				console.log('---'+params)
+			jxm.post(params, function(data){
+				console.log('人员明细：----'+JSON.stringify(data));
+				document.getElementById('laborNum').innerHTML = '人员明细 ('+data.total+')';
+				data = data.root;
+				if (data.length == 0) {
+					document.body.querySelector('.listtip').classList.remove('mui-hidden');
+					return false;
+				}
+				
+//				var objs = event.detail.selectdata;
+				//添加选中的人员明细明细
+				var li_html = document.getElementById('spare_list').innerHTML;
+				mui.each(data, function(n, obj){
+					var has = false;
+					mui('.mui-table-view li').each(function(){
+						var n = 0 ;
+		  				if (this.id == obj.rep_fault_labor__fault_labor_id) {
+		  					has = true;
+		  					return false;
+		  				}
+		  			});
+					
+					if (!has) {
+						li_html += '<li class="mui-table-view-cell" id="'+ obj.rep_fault_labor__fault_labor_id +
+						'" labor_name="'+obj.rep_fault_labor__labor_name+
+						'" labor_id="'+obj.rep_fault_labor__labor_id+
+						'" work_hours="'+obj.rep_fault_labor__work_hours+
+						'" memo="'+obj.rep_fault_labor__memo+'">';
+						li_html += ' <div class="mui-slider-right mui-disabled">';
+						li_html += '	<a class="mui-btn mui-btn-grey">删除</a>';
+						li_html += ' </div>';
+						li_html += '<div class="mui-table mui-slider-handle">';
+						li_html += '<div class="mui-table-cell mui-col-xs-10">';
+				    	li_html += '<p class="p2">姓名：'+ obj.rep_fault_labor__labor_name+ '</p>';
+				    	li_html += '<p class="p2">工时(h)：'+ jxm.date(obj.rep_fault_labor__work_hours)+ '</p>';
+				    	li_html += '<p class="p2">备注：'+ obj.rep_fault_labor__memo+ '</p>';
+						li_html += '</div>';
+						li_html += '<div class="mui-table-cell mui-col-xs-2 mui-text-right">';
+//						li_html += '<span class="mui-badge mui-badge-blue"  style="font-size: 15px;">1</span>';
+						li_html += '</div>';
+						li_html += '</div>';
+						li_html += '</li>';
+					}
+				});
+				if (li_html.length > 0) {
+					document.getElementById('spare_list').innerHTML = li_html;
+					document.getElementById('spare_list').classList.remove('mui-hidden');
+					document.body.querySelector('.listtip').classList.add('mui-hidden');
+				} 
+			})
+		}
+	   	
+	   	
+		//人员明细列表添加单击事件
+		mui("#spare_list").on('tap',".mui-table-view-cell",function(e){
+			var item = this;
+			var dataid = item.getAttribute("id");
+			
+			var addp = document.getElementById("addPopover");
+			addp.classList.remove("mui-hidden");
+			addp.setAttribute("data-id",dataid);
+			
+			document.getElementById("labor_name").value=item.getAttribute("labor_name");
+			document.getElementById("labor_id").value=item.getAttribute("labor_id");
+			document.getElementById("work_hours").value=jxm.date(item.getAttribute("work_hours"));
+			document.getElementById("memo").value=item.getAttribute("memo");
+		});
+		
+		//人员明细保存
+		document.getElementById("btnok").addEventListener("tap",function(){
+			
+			var repair_hours = document.getElementById('repair_hours').value;
+			var dataid = document.getElementById("addPopover").getAttribute("data-id");
+			var labor_id = document.getElementById("labor_id").value;
+			var labor_name = document.getElementById("labor_name").value;
+			var work_hours = document.getElementById("work_hours").value;
+			var memo = document.getElementById("memo").value;
+			var re = /^[0-9]+.?[0-9]*$/;   //判断字符串是否为数字     //判断正整数 /^[1-9]+[0-9]*]*$/  
+			if (!re.test(work_hours)) {
+				mui.alert('请输入数字！');
+		    	document.getElementById("work_hours").value = '';
+  				return false;
+		    }
+			
+			
+  			if (parseFloat(work_hours) > parseFloat(repair_hours)) {
+  				mui.alert('人员工时不能大于维修工时！');
+  				return false;
+  			}
+//			mui.toast('---')
+//			return;
+  			var params = 'funid=rep_fault_labor&eventcode=save_eg&pagetype=editgrid';
+			params += '&pfunid=rep_fault_exe&fkValue='+fault_id;
+			params += '&keyid='+dataid;
+			params += '&rep_fault_labor__labor_name='+labor_name;
+			params += '&rep_fault_labor__work_hours='+work_hours;
+			params += '&rep_fault_labor__memo='+memo;
+			params += '&rep_fault_labor__fault_id='+fault_id;
+			params += '&rep_fault_labor__labor_id='+labor_id;
+			params += '&rep_fault_labor__fault_labor_id='+dataid;
+			jxm.post(params,function(data){
+//				console.log(data);
+				maintDoneLabor();
+				mui.toast('保存成功！');
+			})
+  			mui.trigger(document.getElementById("btncancel"),"tap");
+		});
+		//取消
+		document.getElementById("btncancel").addEventListener("tap",function(){
+//			document.getElementById("change_num").value="";
+			document.getElementById("addPopover").classList.add("mui-hidden");
+		});
+		
+		var btnArray = ['确认', '取消'];
+		//向左拖拽后显示删除图标，释放后自动删除该条人员明细
+		mui('#spare_list').on('slideleft', '.mui-table-view-cell', function(event) {
+			var elem = this;
+			var keyid = event.target.getAttribute('id');
+			mui.confirm('确认删除该条明细？', '提示', btnArray, function(e) {
+				if (e.index == 0) {
+					
+					var params = 'funid=rep_fault_labor&pagetype=editgrid&eventcode=delete_eg&keyid='+keyid;
+					
+					jxm.post(params, function(data){
+		   				console.log(JSON.stringify(data));
+		   				elem.parentNode.removeChild(elem);
+		   				mui.toast('删除成功！');
+		   				maintDoneLabor();//删除成功后重新加载人员明细信息
+		   			})
+				} else {
+					setTimeout(function() {
+						mui.swipeoutClose(elem);
+					}, 0);
+				}
+			});
+		});
+		
+		
+	   	//加载备件消耗明细
+		var loadDet = function(){
+//			mui.toast('0')
+		   	document.getElementById('spare_list2').innerHTML='';
+	   		var wheresql = 'rep_fault_sp.fault_id = ?';
+			var params = "funid=queryevent&eventcode=query_data&query_funid=rep_fault_sp&query_type=0&has_page=1&limit=500"+
+			"&where_sql="+wheresql+"&where_type=string&where_value="+fault_id;
+//				console.log('---'+params)
+			jxm.post(params, function(data){
+				console.log('备件消耗明细：----'+JSON.stringify(data));
+				document.getElementById('detailNum').innerHTML = '备件消耗明细 ('+data.total+')';
+				data = data.root;
+				if (data.length == 0) {
+					document.body.querySelector('.listtip2').classList.remove('mui-hidden');
+					return false;
+				}
+				
+//				var objs = event.detail.selectdata;
+				//添加选中备件明细明细
+				var li_html = document.getElementById('spare_list2').innerHTML;
+				mui.each(data, function(n, obj){
+					var has = false;
+					mui('.mui-table-view li').each(function(){
+						var n = 0 ;
+		  				if (this.id == obj.rep_fault_labor__fault_labor_id) {
+		  					has = true;
+		  					return false;
+		  				}
+		  			});
+					
+					if (!has) {
+						li_html += '<li class="mui-table-view-cell" id="'+ obj.rep_fault_sp__fault_sp_id +'">';
+						li_html += ' <div class="mui-slider-right mui-disabled">';
+						li_html += '	<a class="mui-btn mui-btn-grey">删除</a>';
+						li_html += ' </div>';
+						li_html += '<div class="mui-table mui-slider-handle">';
+						li_html += '<div class="mui-table-cell mui-col-xs-10">';
+				    	li_html += '<p class="p2">备件品种编码：'+ obj.rep_fault_sp__sp_code+ '</p>';
+				    	li_html += '<p class="p2">备件品种名称：'+ obj.rep_fault_sp__sp_name+ '</p>';
+				    	li_html += '<p class="p2">备件型号：'+ obj.rep_fault_sp__sp_type+ '</p>';
+				    	
+				    	li_html += '<p class="p2">申请数量：'+ obj.rep_fault_sp__apply_num+ '&emsp;库存数量：'+obj.rep_fault_sp__cur_num+'</p>';
+						var sp_source = jxm.getComboText(ComboData.sp_source, obj.rep_fault_sp__sp_source);
+						li_html += '<p class="p2">来源：'+ sp_source+ '</p>';
+						li_html += '</div>';
+						li_html += '<div class="mui-table-cell mui-col-xs-2 mui-text-right">';
+						var is_order = jxm.getComboText(ComboData.yesno, obj.rep_fault_sp__is_order);
+						li_html += '<span id = "'+obj.rep_fault_sp__fault_sp_id+'" class="mui-badge mui-badge-blue"  style="font-size: 15px;">'+is_order+'</span>';
+						
+						li_html += '</div>';
+						li_html += '</div>';
+						li_html += '</li>';
+					}
+				});
+				if (li_html.length > 0) {
+					document.getElementById('spare_list2').innerHTML = li_html;
+					document.getElementById('spare_list2').classList.remove('mui-hidden');
+					document.body.querySelector('.listtip2').classList.add('mui-hidden');
+				} 
+			})
+		}
+		
+		var btnArray2 = ['确认', '取消'];
+		//向左拖拽后显示删除图标，释放后自动删除该条备件明细
+		mui('#spare_list2').on('slideleft', '.mui-table-view-cell', function(event) {
+			var elem = this;
+			var keyid = event.target.getAttribute('id');
+			mui.confirm('确认删除该条明细？', '提示', btnArray2, function(e) {
+				if (e.index == 0) {
+					
+					var params = 'funid=rep_fault_sp&pagetype=editgrid&eventcode=delete_eg&keyid='+keyid;
+					
+					jxm.post(params, function(data){
+		   				console.log(JSON.stringify(data));
+		   				elem.parentNode.removeChild(elem);
+		   				mui.toast('删除成功！');
+		   				loadDet();//删除成功后重新加载明细信息
+		   			})
+				} else {
+					setTimeout(function() {
+						mui.swipeoutClose(elem);
+					}, 0);
+				}
+			});
+		});
+		
+		//备件明细列表添加单击事件
+		mui("#spare_list2").on('tap',".mui-table-view-cell",function(e){
+			var item = this;
+			var dataid = item.getAttribute("id");
+//			alert(dataid)
+			jxm.open('rep-fault-sp.html',{extras:{key_id:dataid,type:'edit'}});
+	  		
+		});
+		//生成领料出库单
+		document.getElementById('create_order').addEventListener('tap', function(){
+			
+			jxm.confirm('是否确定将所有来源于“库存”的明细记录生成领料出库单？', function(){
+				var params='funid=rep_fault_sp&pagetype=grid&eventcode=create_order&fault_id='+fault_id;
+				jxm.post(params,function(data){
+					console.log(data);
+					loadDet();
+					mui.toast('生成领料出库单成功！');
+				})
+  			});
+		});
+		
+		//监听处理方式的选择值
+		var select = document.getElementById('dispose_type');
+		select.onchange = function(){
+			
+			var dispose_type = document.getElementById('dispose_type').value;
+			
+			//处理方式为紧急维修时，完工时间、故障分类为必填
+			if (dispose_type == '2') {
+//				mui.toast(2)
+				document.getElementById("dateSpan").classList.remove('mui-hidden');
+				document.getElementById("typeSpan").classList.remove('mui-hidden');
+				document.getElementById("rep_type_name").setAttribute("style","background-color:white");
+				document.getElementById("complete_date").setAttribute("style","background-color:white");
+				$(document.getElementById("complete_date")).attr('placeholder',"点击可选择完工时间");
+				$(document.getElementById("rep_type_name")).attr('placeholder',"点击可选择故障分类");
+	    	}
+			//处理方式为计划维修、委外维修时，故障分类为必填,完工时间不可编辑
+			else if(dispose_type == '3' || dispose_type == '4'){
+//				mui.toast(34)
+				document.getElementById('complete_date').value = '';
+	    		document.getElementById('repair_hours').value = '';
+				document.getElementById("dateSpan").classList.add('mui-hidden');
+				document.getElementById("typeSpan").classList.remove('mui-hidden');
+				document.getElementById("rep_type_name").setAttribute("style","background-color:white");
+				document.getElementById("complete_date").setAttribute("style","background-color:#F2F2F2");
+	    		$(document.getElementById("complete_date")).attr('placeholder',"");
+				$(document.getElementById("rep_type_name")).attr('placeholder',"点击可选择故障分类");
+			}
+			//处理方式为误报时，完工时间、故障分类都为不可编辑
+			else{
+	    		document.getElementById('rep_type_name').value = '';
+	    		document.getElementById('complete_date').value = '';
+	    		document.getElementById('repair_hours').value = '';
+	    		document.getElementById("dateSpan").classList.add('mui-hidden');
+				document.getElementById("typeSpan").classList.add('mui-hidden');
+				document.getElementById("rep_type_name").setAttribute("style","background-color:#F2F2F2");
+				document.getElementById("complete_date").setAttribute("style","background-color:#F2F2F2");
+	    		$(document.getElementById("complete_date")).attr('placeholder',"");
+				$(document.getElementById("rep_type_name")).attr('placeholder',"");
+			}
+
+			
+		}
+		
+		//选择故障库
+		var frdb_code = 'frdb_code';
+		document.getElementById('frdb_code').addEventListener('tap',function(){
+			var device_id = document.getElementById('device_id').value;
+			var type_id = document.getElementById('type_id').value;
+			
+			var href = "../../../app/util/sel-rep-frdb.html";
+			var param = {callbackWinId:mui.currentWebview.id, callbackEvent:frdb_code,device_id:device_id,type_id:type_id};
+			jxm.open(href,{extras:{selectParams:param}});
+		
+			
+		});	
+			
+		window.addEventListener(frdb_code, function(event){
+			var obj = event.detail;
+			
+			console.log('obj---'+JSON.stringify(obj));
+			document.getElementById('frdb_code').value = obj.dataext;
+			document.getElementById('fault_reason').value = obj.dataext2;
+			document.getElementById('frdb_id').value = obj.dataid;
+			document.getElementById('measures').value = obj.dataext3;
+			
+		});
+		
+		//故障分类选择按钮
+		var btnadd = 'btnadd';
+		document.getElementById('rep_type_name').addEventListener('tap', function(){
+			var dispose_type = document.getElementById('dispose_type').value;
+			//选择故障分类
+			if (dispose_type.length==0) {
+				mui.alert('请先选择处理方式！')
+				return false;
+			}
+			
+			if (dispose_type == 1) {
+				
+				mui.alert('处理方式为误报时不可选择！');
+				return false;
+			}
+			
+				
+			var href = "../../../app/util/sel-rep-type.html";
+			var param = {callbackWinId:mui.currentWebview.id, callbackEvent:btnadd};
+			jxm.open(href,{extras:{selectParams:param}});
+		
+			
+		});	
+			
+		window.addEventListener(btnadd, function(event){
+			var obj = event.detail;
+			document.getElementById('rep_type_name').value = obj.dataname;
+//			document.getElementById('repair_userid').value = obj.dataid;
+			
+		});
+		
+	    //设置完工时间
+		document.getElementById('complete_date').addEventListener('tap', function() {
+			
+			var dispose_type = document.getElementById('dispose_type').value;
+			if (dispose_type != 2) {
+				 mui.alert('处理方式为紧急维修时，才可以设置完工时间！');
+				 return false;
+			}
+			var optionsJson = this.getAttribute('data-options') || '{}';
+			var options = JSON.parse(optionsJson);
+			
+			var picker = new mui.DtPicker(options);
+			picker.show(function(rs) {
+				//接单时间
+				var order_date = document.getElementById('order_date').value;
+				//完工时间
+				var complete_date = rs.text;
+				
+				var nowDate = jxm.getTodayTime2();
+				if (complete_date > nowDate) {
+					mui.alert('完工时间不能大于当前时间!');
+					return false;
+				}
+				if (order_date > complete_date) {
+					mui.alert('完工时间必须大于或等于接单时间!');
+					return false;
+				}
+				document.getElementById('complete_date').value = complete_date;
+				
+				picker.dispose();
+				order_date = order_date.replace(/\-/g, "/");
+				complete_date = complete_date.replace(/\-/g, "/");
+				
+				var date1 = new Date(order_date);
+ 				var date2 = new Date(complete_date);
+				 
+				var s1 = date1.getTime();
+				s2 = date2.getTime();
+				var total = (s2 - s1)/1000;
+			
+//				mui.toast(date1+'---'+date2)
+				 
+				var day = parseInt(total / (24*60*60));//计算整数天数
+				var afterDay = total - day*24*60*60;//取得算出天数后剩余的秒数
+				var hour = parseInt(afterDay/(60*60));//计算整数小时数
+				var afterHour = total - day*24*60*60 - hour*60*60;//取得算出小时数后剩余的秒数
+				var min = parseInt(afterHour/60);//计算整数分
+				var afterMin = total - day*24*60*60 - hour*60*60 - min*60;//取得算出分后剩余的秒数
+				
+				//计算总共的小时
+				var hourTotal = day*24+hour+min/60;
+				//最后赋值保留两位小数
+				document.getElementById('repair_hours').value = hourTotal.toFixed(2);
+			});
+		}, false);
+	    
+	    
+		//单据提交按钮
+		document.getElementById('btncommit').addEventListener('tap', function(){
+			var dispose_type  = document.getElementById('dispose_type').value;
+	    	
+			var rep_type_name  = document.getElementById('rep_type_name').value;
+	    	
+	    	var complete_date  = document.getElementById('complete_date').value;
+	    	
+	    	var repair_hours  = document.getElementById('repair_hours').value;
+	    	var fault_reason  = document.getElementById('fault_reason').value;
+	    	var measures  = document.getElementById('measures').value;
+	    	var fault_memo  = document.getElementById('fault_memo').value;
+	    	
+	    	var frdb_code  = document.getElementById('frdb_code').value;
+	    	var frdb_id  = document.getElementById('frdb_id').value;
+	    	
+	    	if (!dispose_type || dispose_type.length == 0) {
+				mui.alert('请选择处理方式！');
+				return false;
+			}
+	    	if (dispose_type != 1) {
+	    		
+				if (!rep_type_name  || rep_type_name.length == 0) {
+					mui.alert('请选择故障分类！');
+					return false;
+				}
+			}
+	    	if (dispose_type == 2) {
+	    		if (!complete_date  || complete_date.length == 0) {
+					mui.alert('请选择完工时间！');
+					return false;
+				}
+	    	}
+	    	
+	    	if (complete_date.length == 16) {
+	    		complete_date = complete_date+':00';
+	    	}
+			
+			var e = encodeURIComponent;
+			var params = 'funid=rep_fault_exe&eventcode=save&pagetype=form';
+			params += '&rep_fault__dispose_type='+e(dispose_type)+'&rep_fault__rep_type_name='+e(rep_type_name);
+			params += '&rep_fault__complete_date='+e(complete_date)+'&rep_fault__repair_hours='+e(repair_hours);
+			params += '&rep_fault__fault_reason='+e(fault_reason)+'&rep_fault__measures='+e(measures);
+			params += '&rep_fault__frdb_code='+e(frdb_code)+'&frdb_id='+frdb_id;
+			params += '&rep_fault__fault_memo='+e(fault_memo)+'&keyid='+fault_id;
+			params += '&dirtyfields=rep_fault.dispose_type;rep_fault.rep_type_name;rep_fault.frdb_code;rep_fault.frdb_id;';
+			params += 'rep_fault.complete_date;rep_fault.repair_hours;rep_fault.fault_reason;rep_fault.measures;rep_fault.fault_memo';
+			console.log("params:"+params);
+			
+//			//保存成功后再提交
+			jxm.post(params, function(data){
+				
+				
+				var params = 'funid=rep_fault_exe&eventcode=audit&pagetype=form';
+//				
+				params += '&auditvalue=1'+'&keyid='+fault_id;
+	//			alert(params)
+			
+				jxm.post(params, function(data){
+					
+					console.log('---audit--'+JSON.stringify(data));
+					
+					mui.toast('提交成功！');
+					//提交成功后返回列表页面
+					setTimeout(function(){
+						//获得列表界面的webview  
+					    var list = plus.webview.currentWebview().opener();  
+					    //触发列表界面的自定义事件（reload）,从而进行数据刷新  
+					    mui.fire(list, 'reload');
+						
+						mui.currentWebview.close('auto');
+					}, 500);
+					
+				
+				});
+				
+				
+				console.log(JSON.stringify(data))
+				/** 上传附件参数：
+					attach_path: datafile
+					attach_name: 文件名称
+					attach_field: 空
+					dataid: 1001
+					datafunid: sys_dept
+					回调方法：cb
+				**/
+				var params = {
+					dataid:fault_id,
+					datafunid:'rep_fault_exe',
+					callback:function(){
+					
+					}
+				};
+				jxm.imgUI2.uploadImages2(params);
+				
+//				mui.toast('保存成功！');
+			})
+	    	
+			
+
+	    
+		});
+		//单据保存按钮
+		document.getElementById('save').addEventListener('tap', function(){
+			var dispose_type  = document.getElementById('dispose_type').value;
+	    	
+			var rep_type_name  = document.getElementById('rep_type_name').value;
+	    	
+	    	var complete_date  = document.getElementById('complete_date').value;
+	    	
+	    	var repair_hours  = document.getElementById('repair_hours').value;
+	    	var fault_reason  = document.getElementById('fault_reason').value;
+	    	var measures  = document.getElementById('measures').value;
+	    	var fault_memo  = document.getElementById('fault_memo').value;
+	    	
+	    	var frdb_code  = document.getElementById('frdb_code').value;
+	    	var frdb_id  = document.getElementById('frdb_id').value;
+	    	
+	    	if (!dispose_type || dispose_type.length == 0) {
+				mui.alert('请选择处理方式！');
+				return false;
+			}
+	    	if (dispose_type != 1) {
+	    		
+				if (!rep_type_name  || rep_type_name.length == 0) {
+					mui.alert('请选择故障分类！');
+					return false;
+				}
+			}
+	    	if (dispose_type == 2) {
+	    		if (!complete_date  || complete_date.length == 0) {
+					mui.alert('请选择完工时间！');
+					return false;
+				}
+	    	}
+	    	
+	    	if (complete_date.length == 16) {
+	    		complete_date = complete_date+':00';
+	    	}
+			
+			var e = encodeURIComponent;
+			var params = 'funid=rep_fault_exe&eventcode=save&pagetype=form';
+			params += '&rep_fault__dispose_type='+e(dispose_type)+'&rep_fault__rep_type_name='+e(rep_type_name);
+			params += '&rep_fault__complete_date='+e(complete_date)+'&rep_fault__repair_hours='+e(repair_hours);
+			params += '&rep_fault__fault_reason='+e(fault_reason)+'&rep_fault__measures='+e(measures);
+			params += '&rep_fault__frdb_code='+e(frdb_code)+'&frdb_id='+frdb_id;
+			params += '&rep_fault__fault_memo='+e(fault_memo)+'&keyid='+fault_id;
+			params += '&dirtyfields=rep_fault.dispose_type;rep_fault.rep_type_name;rep_fault.frdb_code;rep_fault.frdb_id;';
+			params += 'rep_fault.complete_date;rep_fault.repair_hours;rep_fault.fault_reason;rep_fault.measures;rep_fault.fault_memo';
+			console.log("params:"+params);
+			
+//			//保存成功后再提交
+			jxm.post(params, function(data){
+//				console.log(JSON.stringify(data))
+//				/** 上传附件参数：
+//					attach_path: datafile
+//					attach_name: 文件名称
+//					attach_field: 空
+//					dataid: 1001
+//					datafunid: sys_dept
+//					回调方法：cb
+//				**/
+//				var params = {
+//					dataid:fault_id,
+//					datafunid:'rep_fault_exe',
+//					callback:function(){
+//					
+//					}
+//				};
+//				jxm.imgUI2.uploadImages(params);
+				
+				mui.toast('保存成功！');
+			})
+		});
+		
+		//自定义事件（refresh）,返回刷新数据  
+  		window.addEventListener('loadDet', function(e) {  
+            loadDet();
+        });
+    </script>	
+</body>
+</html>

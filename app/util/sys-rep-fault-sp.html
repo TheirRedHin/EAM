@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>选择备件消耗明细</title>
+    
+	<link href="../../mui/css/mui.min.css" rel="stylesheet" />
+	<link href="../../mui/css/mui.indexedlist.css" rel="stylesheet" />
+	<link href="../../jxm/css/jxm.css" rel="stylesheet" />
+	<style>
+		.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		.mui-search,
+		.mui-search .mui-icon-clear,
+		.mui-search .mui-placeholder {
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		.mui-indexed-list {
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">选择备件消耗明细</h1>
+	</header>
+	<footer class="mui-bar mui-bar-footer mui-hidden">
+		<center>
+		<button type="button" id="btn-select" class="mui-btn mui-btn-primary" style="width: 60%;">确定</button>
+		</center>
+	</footer>
+	<div class="mui-content">
+		<!--<div style="padding: 10px 10px;">
+				<div id="segmentedControl" class="mui-segmented-control">
+					<div class="mui-control-item mui-active" id="store_house">仓库库存汇总表</div>
+					<div class="mui-control-item" id="catalog">备件品种目录</div>
+				</div>
+			</div>-->
+		<div id='main-list' class="mui-indexed-list mui-hidden">
+			<div class="mui-indexed-list-search mui-input-row mui-search">
+				<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索">
+			</div>
+			<div class="mui-indexed-list-alert"></div>
+			<div class="mui-indexed-list-inner">
+				<div class="mui-indexed-list-empty-alert">没有数据</div>
+				<ul id="data-list" class="mui-table-view"></ul>
+			</div>
+		</div>
+		
+		<div class="mui-loader">加载中...</div>
+	</div>
+	
+    <script src="../../mui/js/mui.min.js"></script>
+    <!--<script src="../../mui/js/mui.indexedlist.js"></script>-->
+    <script src="../../mui/js/mui.indexedlist.x.js"></script>
+	<script src="../../jxm/js/jxm.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		var where_sql;
+		var opts;
+		//是否需要多选
+		var ms = false;
+		//传递目标窗口ID、触发事件名称 {callbackWinId:mui.currentWebview.id, callbackEvent:cbe, notback:true, mutilsel:true}
+		mui.plusReady(function(){
+			
+			opts = mui.currentWebview.selectParams;
+			console.log('callbackWinId='+opts.callbackWinId+';callbackEvent='+opts.callbackEvent+';mutilsel='+opts.mutilsel+';key_id='+opts.key_id);
+			
+			if (opts.mutilsel) ms = true;
+			readOrder(opts.type);
+			
+		});
+		var readOrder = function(type) {
+			
+			console.log(opts.type+'----'+opts.device_id+'---'+opts.key_id)
+//			alert(0)
+			var mainList = document.getElementById("main-list");
+			var dataList = document.getElementById("data-list");
+			
+			var params;
+			if (type == 'store_house') {
+				console.log('store_house');
+				where_sql = "store_num>0 and sp_house_id not in (select sp_house_id from rep_fault_sp where sp_house_id is not null and fault_id=?)";
+				params = "funid=queryevent&eventcode=query_data&query_funid=sp_store_house_sel&limit=500000&start=0"+
+				"&pagetype=import&where_sql="+where_sql+"&where_type=string&where_value="+opts.key_id;
+				
+			} else if(type == 'catalog'){
+				console.log('catalog');
+				where_sql = "sp_id not in (select sp_id from rep_fault_sp where fault_id=? and sp_house_id is null)";
+				params = "funid=queryevent&eventcode=query_data&query_funid=sp_catalog_sel&limit=500000&start=0"+
+				"&where_sql="+where_sql+"&where_type=string&where_value="+opts.key_id;
+			}
+			
+			
+			else if(type == 'device'){
+				console.log('device_sp_store_sel');
+				var e = encodeURIComponent;
+				var wheretype = 'string;string';
+				var wherevalue = e(opts.key_id+';'+opts.device_id);
+				
+				where_sql = "(store_num>0 and sp_house_id not in (select sp_house_id from rep_fault_sp where sp_house_id is not null and fault_id=?)) and"+
+				" (v_sp_store_house.sp_id in (select sp_id from sp_correlation where device_id in (select device_id from rep_fault where device_id=?)))";
+				params = "funid=queryevent&eventcode=query_data&query_funid=device_sp_store_sel&limit=500000&start=0";
+				params += "&where_sql="+where_sql+"&where_type="+wheretype+"&where_value="+wherevalue;
+			}
+			else if(type == 'device2'){
+				console.log('device_sp_store_sel');
+				var e = encodeURIComponent;
+				var wheretype = 'string;string';
+				var wherevalue = e(opts.key_id+';'+opts.device_id);
+				
+				where_sql = "(store_num>0 and sp_house_id not in (select sp_house_id from pm_plan_sp where plan_id=? and sp_house_id is not null)) and "+
+				"(v_sp_store_house.sp_id in (select sp_id from sp_correlation where device_id in (select device_id from pm_plan where device_id=?)))";
+				params = "funid=queryevent&eventcode=query_data&query_funid=device_sp_store_sel&limit=500000&start=0";
+				params += "&where_sql="+where_sql+"&where_type="+wheretype+"&where_value="+wherevalue;
+			}
+			
+			
+			else if(type == 'store_house2'){
+				console.log('store_house2');
+				where_sql = "store_num>0 and sp_house_id not in (select sp_house_id from pm_plan_sp where plan_id=? and sp_house_id is not null)";
+				params = "funid=queryevent&eventcode=query_data&query_funid=sp_store_house_sel&limit=500000&start=0"+
+				"&where_sql="+where_sql+"&where_type=string&where_value="+opts.key_id;
+			}
+			else if(type == 'catalog2'){
+				console.log('catalog2');
+				where_sql = "sp_id not in (select sp_id from pm_plan_sp where plan_id=? and sp_house_id is null)";
+				params = "funid=queryevent&eventcode=query_data&query_funid=sp_catalog_sel&limit=500000&start=0"+
+				"&where_sql="+where_sql+"&where_type=string&where_value="+opts.key_id;
+			}
+			console.log(params);
+			//从后台加载用户数据
+			jxm.post(params, function(data){
+				
+				console.log(JSON.stringify(data));
+				var str = "";
+				console.log(type)
+				mui.each(data.root, function(i, item){
+					
+						if(type == 'store_house' || type == 'store_house2' || type == 'device' || type == 'device2'){
+							var item = {
+								data_id:item['v_sp_store_house__sp_house_id'],
+								data_code:item['v_sp_store_house__sp_code'],
+								data_name:item['v_sp_store_house__sp_name'],
+								
+								sp_type:item['v_sp_store_house__sp_type'],
+								brand:item['v_sp_store_house__brand'],
+								unit:item['v_sp_store_house__unit'],
+								house_name:item['v_sp_store_house__house_name'],
+								store_num:item['v_sp_store_house__store_num'],
+							};
+							
+							str += '<li id="'+item.data_id+'" data-name="'+item.data_name+'" data-ext="'+type+
+						   '" class="mui-table-view-cell mui-indexed-list-item '+ (ms?'mui-checkbox mui-left':'') +'">'+
+						   		(ms?'<input type="checkbox" />':'')+
+								'<div class="mui-media-body">'+
+									'备件品种编号：'+item.data_code+'<br />'+
+									'<p class="mui-ellipsis p1 mui-hidden">'+type+'</p>'+
+									'备件品种名称：'+item.data_name+'<br />'+
+									'备件型号：'+item.sp_type+'<br />'+
+									'品牌：'+item.brand+'<br />'+
+									'计量单位：'+item.unit+'<br />'+
+									'仓库名称：'+item.house_name+'<br />'+
+									'库存数量：'+item.store_num+
+									
+								'</div>'+
+							'</li>';
+						}else if(type == 'catalog' || type == 'catalog2'){
+							var item = {
+								data_id:item['sp_catalog__sp_id'],
+								data_code:item['sp_catalog__sp_code'],
+								data_name:item['sp_catalog__sp_name'],
+								
+								sp_type:item['sp_catalog__sp_type'],
+								brand:item['sp_catalog__brand'],
+								unit:item['sp_catalog__unit'],
+							};
+							str += '<li id="'+item.data_id+'" data-name="'+item.data_name+'" data-ext="'+type+
+						   '" class="mui-table-view-cell mui-indexed-list-item '+ (ms?'mui-checkbox mui-left':'') +'">'+
+						   		(ms?'<input type="checkbox" />':'')+
+								'<div class="mui-media-body">'+
+									'备件品种编号：'+item.data_code+'<br />'+
+									'<p class="mui-ellipsis p1 mui-hidden">'+type+'</p>'+
+									'备件品种名称：'+item.data_name+'<br />'+
+									'备件品种型号：'+item.sp_type+'<br />'+
+									'品牌：'+item.brand+'<br />'+
+									'计量单位：'+item.unit+
+									
+								'</div>'+
+							'</li>';
+						}
+						
+				});
+				dataList.innerHTML = str;
+				jxm.loadhint(mainList, (str.length > 0));
+				
+				//加载完页面后构建，查询才能生效
+				var wlist = new mui.IndexedList(mainList,{selectParams:opts});
+				//绑定选择事件
+				(ms ? wlist.doMutilSelect() : wlist.doSingleSelect());
+			});
+		}
+	</script>
+</body>
+</html>

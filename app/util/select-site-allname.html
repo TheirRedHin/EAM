@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>选择人员</title>
+    
+	<link href="../../mui/css/mui.min.css" rel="stylesheet" />
+	<link href="../../mui/css/mui.indexedlist.css" rel="stylesheet" />
+	<link href="../../jxm/css/jxm.css" rel="stylesheet" />
+	<style>
+		html,
+		body {
+			height: 100%;
+			overflow: hidden;
+		}
+		.mui-bar {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		
+		.mui-search,
+		.mui-search .mui-icon-clear,
+		.mui-search .mui-placeholder {
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		.p{
+			font-size: 17px;
+			color: #000000;
+		}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav mui-bar-primary">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">选择地理区域</h1>
+	</header>
+	<div class="mui-content">
+		<div id='main-list' class="mui-indexed-list mui-hidden">
+			<div class="mui-indexed-list-search mui-input-row mui-search">
+				<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索">
+			</div>
+			
+			<!--<div class="mui-indexed-list-alert"></div>-->
+			<div class="mui-indexed-list-inner">
+				<div class="mui-indexed-list-empty-alert">没有数据</div>
+				<ul id="data-list" class="mui-table-view"></ul>
+			</div>
+		</div>
+		
+		<div class="mui-loader">加载中...</div>
+	</div>
+	
+    <script src="../../mui/js/mui.min.js"></script>
+	<script src="../../mui/js/mui.indexedlist.js"></script>
+	<!--<script src="../../mui/js/mui.indexedlist.x.js"></script>-->
+	<script src="../../jxm/js/jxm.js"></script>
+	<script src="../../jxm/js/jxm-util.js"></script>
+	<script src="../../jxm/js/combo-data.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		
+		//是否需要多选
+		var ms = false;
+		//传递目标窗口ID、触发事件名称 {callbackWinId:mui.currentWebview.id, callbackEvent:cbe, notback:true}
+		mui.plusReady(function(){
+			
+			var opts = mui.currentWebview.selectParams;
+//			var dept_id = opts.dept_id;
+//			alert(wdept_id);
+			console.log('callbackWinId='+opts.callbackWinId+';callbackEvent='+opts.callbackEvent+';mutilsel='+opts.mutilsel);
+			
+			if (opts.mutilsel) ms = true;
+		//});
+		//mui.ready(function(){
+			
+			var mainList = document.getElementById('main-list');
+			var dataList = document.getElementById("data-list");
+			//计算数据区域的高度
+			var calheight = function(){
+				var header_h = document.querySelector('header.mui-bar').offsetHeight;
+				mainList.style.height = (document.body.offsetHeight - header_h) + 'px';
+			};
+			
+			
+			//从后台加载用户数据
+//			var e = encodeURIComponent;
+			
+			var params = "eventcode=query_data&funid=queryevent&pagetype=combogrid&query_funid=device_site&limit=500";
+			
+			
+			 	
+			console.log('-----'+params);
+			jxm.post(params, function(data){
+						
+  						console.log(JSON.stringify(data));
+						
+						
+						data = data.root;
+						
+						
+						var str = "";
+						mui.each(data, function(i, item){
+									
+									str += '<li id="'+data[i].device_site__site_id+'" data-ext="'+data[i].device_site__site_allname+'"'+
+//									'data-ext="'+data[i].device_size +'" data-code="'+data[i].type_code+'"'+
+										'class="mui-table-view-cell mui-indexed-list-item '+
+										
+										'<div class="mui-media-body p1">'+
+											'<p class="mui-ellipsis p1">'+'地理区域编码：'+data[i].device_site__site_code+'</p>'+
+//											'<p class="mui-ellipsis p1">'+'工作状态<span class="label-red">*</span>：'+rep_status+'</p>'+
+											
+//											'地理区域名称：'+data[i].device_site__site_name+
+											  
+											'<p class="mui-ellipsis p1">'+'地理区域名称：'+data[i].device_site__site_name+'</p>'+
+											'<p class="mui-ellipsis p1">地理区域全称：'+data[i].device_site__site_allname+'</p>'+
+//											'技术等级：'+data[i].sys_user__duty+
+										'</div>'+
+									'</li>';
+						});
+						dataList.innerHTML = str;
+						jxm.loadhint(mainList, (str.length > 0));
+						
+						//calc hieght
+						calheight();
+						//加载完页面后构建，查询才能生效；如果带index-bar的控件必须用searchFixed:true
+						var wlist = new mui.IndexedList(mainList,{selectParams:opts,searchFixed:true});
+						//绑定选择事件
+						(ms ? wlist.doMutilSelect() : wlist.doSingleSelect());
+					
+			});
+		});
+	</script>
+</body>
+</html>
